@@ -19,10 +19,10 @@ export default function WhoUs() {
           <p>
             puede contactarme en
             <a
-              href="mailto:dev-apps-armenia@gmail.com"
+              href="mailto:dev.apps.armenia@gmail.com"
               className="tw-mx-1 tw-font-bold tw-underline tw-text-yellow-600"
             >
-              dev-apps-armenia@gmail.com
+              dev.apps.armenia@gmail.com
             </a>
           </p>
         </section>

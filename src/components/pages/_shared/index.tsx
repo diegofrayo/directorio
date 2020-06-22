@@ -1,3 +1,3 @@
-import ContentBox from './ContentBox.tsx';
+import ContentBox from './ContentBox';
 
 export { ContentBox };

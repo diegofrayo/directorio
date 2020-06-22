@@ -20,9 +20,9 @@ export default function Privacy() {
             consultar y agregar información a este sitio web es <strong>GRATIS</strong>
           </li>
           <li>
-            el sitio web usa <strong>COOKIES</strong> solo para contar el número de
-            visitantes y recolectar otras estadísticas, en ningún momento se recolectan
-            datos personales de los visitantes
+            este sitio web usa <strong>COOKIES</strong> solo para contar el número de
+            visitantes y recolectar otras estadísticas, en ningún momento recolecta datos
+            personales de los visitantes
           </li>
         </ul>
       </ContentBox>

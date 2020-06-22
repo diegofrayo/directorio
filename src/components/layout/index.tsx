@@ -1,4 +1,4 @@
-import MainLayout from './MainLayout.tsx';
-import Page from './Page.tsx';
+import MainLayout from './MainLayout';
+import Page from './Page';
 
 export { Page, MainLayout };
