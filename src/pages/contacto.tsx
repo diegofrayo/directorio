@@ -9,15 +9,8 @@ export default function WhoUs() {
 
         <section className="tw-text-justify">
           <p>
-            soy un desarrollador de software de la ciudad de
-            <span className="tw-underline tw-italic tw-mx-1">armenia</span>
-            que realiza este proyecto solo por hobbie. detrás del desarrollo y
-            mantenimiento de este sitio web no hay ninguna empresa o grupo de personas a
-            cargo.
-          </p>
-          <br />
-          <p>
-            puede contactarme en
+            si tiene alguna duda, reclamo, sugerencia o idea de mejora puede contactarme
+            en
             <a
               href="mailto:dev.apps.armenia@gmail.com"
               className="tw-mx-1 tw-font-bold tw-underline tw-text-yellow-600"

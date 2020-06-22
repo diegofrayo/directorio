@@ -5,22 +5,38 @@ import { ContentBox } from '~/components/pages/_shared';
 
 export default function Categories() {
   const CATEGORIES = [
-    { slug: 'comidas', name: 'comidas', icon: '🥘', total: 9 },
-    { slug: 'licorerias', name: 'licorerías', icon: '🍺', total: 2 },
+    {
+      slug: 'comidas',
+      name: 'comidas',
+      icon: '🥘',
+      total: 9,
+    },
+    {
+      slug: 'licorerias',
+      name: 'licorerías',
+      icon: '🍺',
+      total: 2,
+    },
     {
       slug: 'servicio-de-domicilio',
       name: 'servicio de domicilio',
       icon: '🛵',
       total: 5,
     },
-    { slug: 'ropa', name: 'ropa', icon: '👗', total: 4 },
+    {
+      slug: 'ropa',
+      name: 'ropa',
+      icon: '👗',
+      total: 4,
+    },
   ].sort((a, b) => (a.name > b.name ? 1 : -1));
 
   return (
     <MainLayout>
       <ContentBox>
         <ContentBox.Title>categorías</ContentBox.Title>
-        <section className="tw-flex tw-flex-row tw-flex-wrap">
+
+        <section className="tw-flex tw-flex-row tw-flex-wrap tw-justify-between">
           {CATEGORIES.map((category, index) => {
             return (
               <article
@@ -40,6 +56,10 @@ export default function Categories() {
             );
           })}
         </section>
+
+        <p className="tw-mt-2 tw-text-right tw-text-gray-600 tw-text-sm tw-italic tw-mx-0 sm:tw-mx-1">
+          (pronto se agregarán mas categorías)
+        </p>
       </ContentBox>
 
       <style jsx>{`

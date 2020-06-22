@@ -7,10 +7,10 @@ export default function Home() {
       <ContentBox>
         <ContentBox.Title>bienvenido!</ContentBox.Title>
         <p className="tw-text-justify">
-          el objetivo de este sitio web es dar a conocer emprendimientos y pequeños
-          negocios de la ciudad de armenia, desde tiendas de ropa, puestos de comida
-          callejera o productos que se vendan principalmente a través de redes sociales o
-          whatsapp
+          el objetivo de este sitio web es dar a conocer de manera rápida y fácil el
+          número de contacto y links de redes sociales de los negocios, pequeñas empresas
+          o personas particulares que venden sus productos o servicios a través de redes
+          sociales o whatsapp
         </p>
       </ContentBox>
     </MainLayout>

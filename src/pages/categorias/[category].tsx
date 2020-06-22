@@ -3,8 +3,19 @@ import Link from 'next/link';
 
 import { MainLayout } from '~/components/layout';
 import { ContentBox } from '~/components/pages/_shared';
+import { createArray } from '~/utils/utils';
 
 function CategoryDetails({ category }) {
+  const ITEMS = createArray(7).map(index => {
+    return {
+      name: 'El nombre de tu negocio...',
+      wp: '312 000 0000',
+      ig: 'nombre_de_tu_negocio',
+      fb: index % 3 === 0 ? 'nombre_de_tu_negocio' : '',
+      description: 'Descripcion de tu negocio',
+    };
+  });
+
   return (
     <MainLayout>
       <ContentBox>
@@ -18,7 +29,9 @@ function CategoryDetails({ category }) {
             </a>
           </Link>
         </section>
+
         <ContentBox.Title>{category}</ContentBox.Title>
+
         <section>
           {ITEMS.map((item, index) => {
             return (
@@ -39,7 +52,7 @@ function CategoryDetails({ category }) {
                         className="tw-w-4 tw-h-4 tw-inline-block tw-mr-2"
                         alt="WhatsApp icon"
                       />
-                      <span className="tw-text-sm tw-text-gray-800">(+57) {item.wp}</span>
+                      <span className="tw-text-sm tw-text-gray-800">{item.wp}</span>
                     </section>
                   </section>
                   <section className="tw-flex tw-flex-row tw-items-center tw-w-full sm:tw-w-auto tw-justify-end tw-pt-2 sm:tw-pt-0">
@@ -90,89 +103,5 @@ function CategoryDetails({ category }) {
 CategoryDetails.getInitialProps = ({ query }) => {
   return { category: query.category };
 };
-
-const CATEGORIES = [
-  { name: 'comidas', icon: '🥘', total: 9 },
-  { name: 'licorerías', icon: '🍺', total: 2 },
-  { name: 'servicio de domicilio', icon: '🛵', total: 5 },
-  { name: 'ropa', icon: '👗', total: 4 },
-  { name: 'comidas', icon: '🥘', total: 9 },
-  { name: 'licorerías', icon: '🍺', total: 2 },
-  { name: 'servicio de domicilio', icon: '🛵', total: 5 },
-  { name: 'ropa', icon: '👗', total: 4 },
-].sort((a, b) => (a.name > b.name ? 1 : -1));
-
-const ITEMS = [
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: 'salsasartesanales',
-    description: 'Vendemos XXX',
-  },
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: '',
-    description: 'Vendemos XXX',
-  },
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: 'salsasartesanales',
-    description: 'Vendemos XXX',
-  },
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: '',
-    description: 'Vendemos XXX',
-  },
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: 'salsasartesanales',
-    description: 'Vendemos XXX',
-  },
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: '',
-    description: 'Vendemos XXX',
-  },
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: '',
-    description: 'Vendemos XXX',
-  },
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: '',
-    description: 'Vendemos XXX',
-  },
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: '',
-    description: 'Vendemos XXX',
-  },
-  {
-    name: 'Salsas artesanales',
-    wp: '311 374 9590',
-    ig: 'salsasartesanales',
-    fb: '',
-    description: 'Vendemos XXX',
-  },
-];
 
 export default CategoryDetails;

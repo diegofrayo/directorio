@@ -38,8 +38,8 @@ export default function MainLayout({ children }) {
       <footer className="tw-border-t tw-pt-2 tw-mt-10">
         <ul>
           <li className="tw-inline-block tw-m-2">
-            <Link href="/privacidad">
-              <a className="tw-font-bold tw-underline">privacidad</a>
+            <Link href="/terminos-y-condiciones">
+              <a className="tw-font-bold tw-underline">términos y condiciones</a>
             </Link>
           </li>
           <li className="tw-inline-block tw-m-2">
