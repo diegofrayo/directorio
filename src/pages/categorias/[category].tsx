@@ -9,7 +9,7 @@ function CategoryDetails({ category }) {
   const ITEMS = createArray(7).map(index => {
     return {
       name: 'El nombre de tu negocio...',
-      wp: '312 000 0000',
+      wp: '311 372 8898',
       ig: 'nombre_de_tu_negocio',
       fb: index % 3 === 0 ? 'nombre_de_tu_negocio' : '',
       description: 'Descripcion de tu negocio',
@@ -36,23 +36,34 @@ function CategoryDetails({ category }) {
           {ITEMS.map((item, index) => {
             return (
               <Fragment key={`item-${index}`}>
-                <article className="site tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-cursor-pointer tw-w-full hover:tw-bg-yellow-200 tw-px-2">
+                <article className="site tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-w-full hover:tw-bg-yellow-200 tw-px-2 tw-transition-all tw-duration-300">
                   <section>
+                    {/*
                     <img
                       src="/vercel.svg"
                       className="tw-w-12 tw-h-12 tw-rounded-full tw-shadow-md tw-p-1"
                       alt="Profile picture"
                     />
+                    */}
+                    <span className="tw-w-12 tw-h-12 tw-block tw-mr-1 tw-bg-gray-600 tw-rounded-full tw-shadow-md tw-p-1" />
                   </section>
-                  <section className="tw-flex-1 tw-text-left tw-pl-3 sm:tw-px-6">
-                    <h2 className="tw-font-bold">{item.name}</h2>
+                  <section className="tw-flex-1 tw-text-left tw-pl-3 sm:tw-px-4">
+                    <h2 className="tw-font-bold tw-leading-tight">{item.name}</h2>
                     <section>
-                      <img
-                        src="/static/images/icons/wp.png"
-                        className="tw-w-4 tw-h-4 tw-inline-block tw-mr-2"
-                        alt="WhatsApp icon"
-                      />
-                      <span className="tw-text-sm tw-text-gray-800">{item.wp}</span>
+                      <a
+                        href={`https://api.whatsapp.com/send?phone=57${item.wp.replace(
+                          / /g,
+                          '',
+                        )}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
+                        target="_blank"
+                      >
+                        <img
+                          src="/static/images/icons/wp.png"
+                          className="tw-w-4 tw-h-4 tw-inline-block tw-mr-1"
+                          alt="WhatsApp icon"
+                        />
+                        <span className="tw-text-sm tw-text-gray-600">{item.wp}</span>
+                      </a>
                     </section>
                   </section>
                   <section className="tw-flex tw-flex-row tw-items-center tw-w-full sm:tw-w-auto tw-justify-end tw-pt-2 sm:tw-pt-0">

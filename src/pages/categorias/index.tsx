@@ -41,7 +41,7 @@ export default function Categories() {
             return (
               <article
                 key={`category-${index}`}
-                className="category tw-mb-2 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-yellow-200"
+                className="category tw-mb-2 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-yellow-200 tw-transition-all tw-duration-300"
               >
                 <Link href={`/categorias/${category.slug}`}>
                   <a className="tw-block tw-p-4 tw-w-full tw-flex tw-flex-row tw-items-center">

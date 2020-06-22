@@ -4,7 +4,7 @@ function ContentBox({ children }) {
 
 function Title({ children }) {
   return (
-    <h2 className="tw-font-bold tw-underline tw-mb-4 tw-text-3xl sm:text-5xl tw-leading-tight">
+    <h2 className="tw-font-bold tw-underline tw-mb-6 tw-text-3xl sm:text-5xl tw-leading-tight">
       {children}
     </h2>
   );

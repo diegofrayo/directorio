@@ -7,7 +7,7 @@ export default function WhoUs() {
       <ContentBox>
         <ContentBox.Title>contacto</ContentBox.Title>
 
-        <section className="tw-text-justify">
+        <section className="tw-text-left">
           <p>
             si tiene alguna duda, reclamo, sugerencia o idea de mejora puede contactarme
             en

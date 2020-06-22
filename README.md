@@ -1,4 +1,4 @@
-# directorio
+# directorio-armenia
 
 ## tech stack
 
@@ -6,3 +6,7 @@
 - TailwindCSS
 - TypeScript
 - Firebase
+
+## url
+
+https://directorio-armenia.vercel.app
