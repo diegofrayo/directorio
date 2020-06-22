@@ -1,20 +1,18 @@
 import { MainLayout } from '~/components/layout';
+import { ContentBox } from '~/components/pages/_shared';
 
 export default function Home() {
   return (
     <MainLayout>
-      <section className="tw-border tw-border-black tw-p-4">
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-          Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-          unknown printer took a galley of type and scrambled it to make a type specimen
-          book. It has survived not only five centuries, but also the leap into electronic
-          typesetting, remaining essentially unchanged. It was popularised in the 1960s
-          with the release of Letraset sheets containing Lorem Ipsum passages, and more
-          recently with desktop publishing software like Aldus PageMaker including
-          versions of Lorem Ipsum
+      <ContentBox>
+        <ContentBox.Title>bienvenido!</ContentBox.Title>
+        <p className="tw-text-justify">
+          el objetivo de este sitio web es dar a conocer emprendimientos y pequeños
+          negocios de la ciudad de armenia, desde tiendas de ropa, puestos de comida
+          callejera o productos que se vendan principalmente a través de redes sociales o
+          whatsapp
         </p>
-      </section>
+      </ContentBox>
     </MainLayout>
   );
 }

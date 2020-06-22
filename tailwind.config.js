@@ -3,7 +3,7 @@ const { colors, fontSize, borderRadius } = require('tailwindcss/defaultTheme');
 
 module.exports = {
   prefix: 'tw-',
-  important: true,
+  important: false,
   purge: {
     content: ['./src/components/**/*.jsx', './src/pages/**/*.jsx'],
     options: {
