@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 
-const Page = ({ children }) => {
+function Page({ children }) {
   return (
     <Fragment>
       <Head>
@@ -17,6 +17,6 @@ const Page = ({ children }) => {
       {children}
     </Fragment>
   );
-};
+}
 
 export default Page;

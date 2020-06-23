@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import { Modal } from '~/components/primitive';
-import { ContentBox } from '~/components/pages/_shared';
+import { ContentBox, Title, BusinessItem } from '~/components/pages';
 import twcss from '~/lib/twcss';
 
 export default function MainLayout({ children }) {
@@ -73,13 +73,13 @@ export default function MainLayout({ children }) {
         }}
       >
         <section className="modal-content tw-bg-white tw-p-6 tw-relative tw-max-w-screen-md tw-w-screen-md tw-max-h-full tw-overflow-auto">
-          <section className="tw-px-6 tw-pt-6">
+          <section className="tw-px-6 tw-pt-10">
             <Modal.CloseButton />
-            <ContentBox.Title>agrega un negocio a este sitio web</ContentBox.Title>
+            <Title>agrega un negocio a este sitio web</Title>
           </section>
 
-          <section className="tw-my-6">
-            <label htmlFor="name" className="tw-text-left tw-block">
+          <section className="tw-my-10">
+            <InputContainer htmlFor="name">
               <InputLabel>
                 nombre <span className="tw-text-red-600">(*)</span>
               </InputLabel>
@@ -89,14 +89,14 @@ export default function MainLayout({ children }) {
                 name="name"
                 className="input__element--name tw-border tw-border-black tw-p-2"
               />
-            </label>
-            <Separator className="tw-my-6" />
+            </InputContainer>
+            <Separator />
 
-            <label htmlFor="whatsapp" className="tw-text-left tw-block">
+            <InputContainer htmlFor="whatsapp">
               <InputLabel>
                 whatsapp <span className="tw-text-red-600">(*)</span>
               </InputLabel>
-              <div className="tw-w-full tw-flex tw-border tw-border-black">
+              <InputGroup>
                 <InputIcon>+57</InputIcon>
                 <InputElement
                   type="text"
@@ -104,13 +104,13 @@ export default function MainLayout({ children }) {
                   name="whatsapp"
                   className="whatsapp tw-flex-1 tw-p-2"
                 />
-              </div>
-            </label>
-            <Separator className="tw-my-6" />
+              </InputGroup>
+            </InputContainer>
+            <Separator />
 
-            <label htmlFor="instagram" className="tw-text-left tw-block">
+            <InputContainer htmlFor="instagram">
               <InputLabel>instagram</InputLabel>
-              <div className="tw-w-full tw-flex tw-border tw-border-black">
+              <InputGroup>
                 <InputIcon>@</InputIcon>
                 <InputElement
                   type="text"
@@ -118,13 +118,13 @@ export default function MainLayout({ children }) {
                   name="instagram"
                   className="instagram tw-flex-1 tw-p-2"
                 />
-              </div>
-            </label>
-            <Separator className="tw-my-6" />
+              </InputGroup>
+            </InputContainer>
+            <Separator />
 
-            <label htmlFor="facebook" className="tw-text-left tw-block">
+            <InputContainer htmlFor="facebook">
               <InputLabel>facebook</InputLabel>
-              <div className="tw-w-full tw-flex tw-border tw-border-black">
+              <InputGroup>
                 <InputIcon>@</InputIcon>
                 <InputElement
                   type="text"
@@ -132,11 +132,11 @@ export default function MainLayout({ children }) {
                   name="facebook"
                   className="facebook tw-flex-1 tw-p-2"
                 />
-              </div>
-            </label>
-            <Separator className="tw-my-6" />
+              </InputGroup>
+            </InputContainer>
+            <Separator />
 
-            <label htmlFor="description" className="tw-text-left tw-block">
+            <InputContainer htmlFor="description">
               <InputLabel>descripción</InputLabel>
               <InputElement
                 is="textarea"
@@ -144,10 +144,22 @@ export default function MainLayout({ children }) {
                 name="description"
                 className="description tw-border tw-border-black tw-p-2"
               />
-            </label>
+            </InputContainer>
           </section>
 
-          <button className="tw-bg-black tw-text-white tw-py-4 tw-px-4 tw-w-full tw-font-bold">
+          <ContentBox className="tw-mb-10">
+            <p className="tw-font-bold tw-mb-2 tw-text-left">vista previa</p>
+            <BusinessItem
+              item={{
+                name: 'Name',
+                wp: '3113728898',
+                ig: 'diegofrayo',
+                fb: 'diegofrayo',
+              }}
+            />
+          </ContentBox>
+
+          <button className="tw-bg-black tw-text-white tw-py-4 tw-px-4 tw-w-full tw-font-bold hover:tw-bg-gray-900">
             agregar
           </button>
         </section>
@@ -184,7 +196,9 @@ export default function MainLayout({ children }) {
 
 // __- Components __-
 
+const InputContainer = twcss.label`tw-text-left tw-block`;
 const InputLabel = twcss.p`tw-mb-1 tw-font-bold tw-cursor-pointer`;
+const InputGroup = twcss.div`tw-w-full tw-flex tw-border tw-border-black`;
 const InputIcon = twcss.span`input__icon tw-bg-gray-400 tw-text-gray-800 tw-flex tw-items-center tw-text-sm tw-font-bold tw-border-r tw-border-black tw-justify-center tw-flex-shrink-0`;
 const InputElement = twcss.input`input__element tw-p-2 tw-rounded-none`;
-const Separator = twcss.hr`tw-border-0`;
+const Separator = twcss.hr`tw-border-0 tw-my-5`;

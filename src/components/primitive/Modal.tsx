@@ -1,9 +1,9 @@
 import { useRef, createContext, useContext } from 'react';
 
 function Modal({ children, visible, onCloseHandler }) {
-  const closeModal = () => {
+  function closeModal() {
     onCloseHandler(false);
-  };
+  }
 
   if (!visible) {
     return null;
@@ -27,11 +27,11 @@ Modal.Context = Context;
 function Backdrop({ children, closeModalHandler }) {
   const backdropRef = useRef(null);
 
-  const handleBackdropClick = e => {
+  function handleBackdropClick(e) {
     if (backdropRef && backdropRef.current === e.target) {
       closeModalHandler();
     }
-  };
+  }
 
   return (
     <div
@@ -68,17 +68,18 @@ function CloseButton() {
   const { onCloseModalHandler } = useContext(Context);
 
   return (
-    <button className="close-button" onClick={onCloseModalHandler}>
-      <span className="tw-font-bold tw-text-3xl">x</span>
+    <button onClick={onCloseModalHandler}>
+      <span className="tw-font-thin tw-text-2xl">x</span>
 
       <style jsx>{`
-        .close-button {
+        button {
           height: auto;
+          opacity: 0.2;
           position: absolute;
           right: 20px;
-          text-shadow: 2px 2px 2px #d3d3d3;
           top: 10px;
           z-index: 30;
+          font-family: Tahoma;
         }
       `}</style>
     </button>

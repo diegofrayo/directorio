@@ -1,11 +1,11 @@
 import { MainLayout } from '~/components/layout';
-import { ContentBox } from '~/components/pages/_shared';
+import { ContentBox, Title } from '~/components/pages';
 
 export default function Home() {
   return (
     <MainLayout>
       <ContentBox>
-        <ContentBox.Title>¡bienvenido!</ContentBox.Title>
+        <Title>¡bienvenido!</Title>
 
         <p className="tw-text-justify">
           el objetivo de este sitio web es dar a conocer de manera fácil y rápida el

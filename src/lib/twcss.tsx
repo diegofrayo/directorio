@@ -138,8 +138,8 @@ const HTML_TAGS = [
 const twcssObject: any = {};
 
 function twcss(Tag: string) {
-  return function(styles: string) {
-    return function({ children, className, is, ...rest }: any) {
+  return function (styles: string) {
+    return function ({ children, className, is, ...rest }: any) {
       const Element = is || Tag;
       return (
         <Element className={`${styles} ${className || ''}`.trim()} {...rest}>

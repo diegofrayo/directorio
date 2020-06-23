@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { MainLayout } from '~/components/layout';
-import { ContentBox } from '~/components/pages/_shared';
+import { ContentBox, Title } from '~/components/pages';
 
 export default function Categories() {
   const CATEGORIES = [
@@ -34,14 +34,14 @@ export default function Categories() {
   return (
     <MainLayout>
       <ContentBox>
-        <ContentBox.Title>categorías</ContentBox.Title>
+        <Title>categorías</Title>
 
         <section className="tw-flex tw-flex-row tw-flex-wrap tw-justify-between">
           {CATEGORIES.map((category, index) => {
             return (
               <article
                 key={`category-${index}`}
-                className="category tw-mb-2 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-yellow-200 tw-transition-all tw-duration-300"
+                className="category tw-mb-2 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-yellow-200"
               >
                 <Link href={`/categorias/${category.slug}`}>
                   <a className="tw-block tw-p-4 tw-w-full tw-flex tw-flex-row tw-items-center">

@@ -1,11 +1,11 @@
 import { MainLayout } from '~/components/layout';
-import { ContentBox } from '~/components/pages/_shared';
+import { ContentBox, Title } from '~/components/pages';
 
 export default function Privacy() {
   return (
     <MainLayout>
       <ContentBox>
-        <ContentBox.Title>términos y condiciones</ContentBox.Title>
+        <Title>términos y condiciones</Title>
 
         <ul className="tw-text-left">
           <li>
@@ -25,7 +25,7 @@ export default function Privacy() {
           </li>
           <li>
             la información añadida es primero <strong>VALIDADA</strong> y
-            <strong>ACEPTADA</strong> por el administrador antes de ser publicada
+            <strong> ACEPTADA</strong> por el administrador antes de ser publicada
           </li>
           <li>
             este sitio web usa <strong>COOKIES</strong> solo para contar el número de

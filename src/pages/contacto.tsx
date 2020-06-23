@@ -1,11 +1,11 @@
 import { MainLayout } from '~/components/layout';
-import { ContentBox } from '~/components/pages/_shared';
+import { ContentBox, Title } from '~/components/pages';
 
 export default function WhoUs() {
   return (
     <MainLayout>
       <ContentBox>
-        <ContentBox.Title>contacto</ContentBox.Title>
+        <Title>contacto</Title>
 
         <section className="tw-text-left">
           <p>
