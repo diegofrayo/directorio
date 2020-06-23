@@ -64,6 +64,7 @@ export default function MainLayout({ children }) {
           </li>
         </ul>
       </footer>
+
       <Modal
         visible={isModalVisible}
         onCloseHandler={() => {
@@ -80,7 +81,9 @@ export default function MainLayout({ children }) {
 
           <section className="tw-my-6">
             <label htmlFor="name" className="tw-text-left tw-block">
-              <Label>nombre</Label>
+              <Label>
+                nombre <span className="tw-text-red-600">(*)</span>
+              </Label>
               <input
                 type="text"
                 id="name"
@@ -91,7 +94,9 @@ export default function MainLayout({ children }) {
             <div className="tw-my-6" />
 
             <label htmlFor="whatsapp" className="tw-text-left tw-block">
-              <Label>whatsapp</Label>
+              <Label>
+                whatsapp <span className="tw-text-red-600">(*)</span>
+              </Label>
               <div className="tw-w-full tw-flex tw-border tw-border-black">
                 <span className="tw-bg-gray-400 tw-text-gray-800 tw-flex tw-items-center tw-px-2 tw-text-sm tw-font-bold tw-border-r tw-border-black tw-w-12 tw-justify-center">
                   +57
@@ -161,6 +166,7 @@ export default function MainLayout({ children }) {
 
         .description {
           resize: none;
+          height: 100px;
         }
       `}</style>
     </main>

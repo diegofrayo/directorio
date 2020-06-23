@@ -69,7 +69,7 @@ function CloseButton() {
 
   return (
     <button className="close-button" onClick={onCloseModalHandler}>
-      <span className="tw-font-bold tw-text-3xl">X</span>
+      <span className="tw-font-bold tw-text-3xl">x</span>
 
       <style jsx>{`
         .close-button {

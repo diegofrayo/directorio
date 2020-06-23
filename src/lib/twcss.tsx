@@ -1,15 +1,3 @@
-export default function twcss(Tag) {
-  return function(styles) {
-    return function({ children, className, ...rest }) {
-      return (
-        <Tag className={`${styles} ${className || ''}`} {...rest}>
-          {children}
-        </Tag>
-      );
-    };
-  };
-}
-
 const HTML_TAGS = [
   'a',
   'abbr',
@@ -147,6 +135,22 @@ const HTML_TAGS = [
   'tspan',
 ];
 
-HTML_TAGS.forEach(tagName => {
-  twcss[tagName] = twcss(tagName);
+const twcssObject: any = {};
+
+function twcss(Tag: string) {
+  return function(styles: string) {
+    return function({ children, className, ...rest }) {
+      return (
+        <Tag className={`${styles} ${className || ''}`} {...rest}>
+          {children}
+        </Tag>
+      );
+    };
+  };
+}
+
+HTML_TAGS.forEach((tagName: string) => {
+  twcssObject[tagName] = twcss(tagName);
 });
+
+export default twcssObject;
