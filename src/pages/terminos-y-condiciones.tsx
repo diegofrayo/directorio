@@ -9,14 +9,8 @@ export default function Privacy() {
 
         <ul className="tw-text-left">
           <li>
-            este sitio web <strong>NO</strong> guarda datos personales de sus visitantes
-          </li>
-          <li>
-            <strong>NO</strong> es necesario registrarse para consultar o agregar
-            información
-          </li>
-          <li>
-            consultar y agregar información en este sitio web es <strong>GRATIS</strong>
+            consultar y agregar información en este sitio web es <strong>GRATIS</strong> y
+            sin necesidad de registro
           </li>
           <li>
             este sitio web fue construido <strong>SIN</strong> fines de lucro
@@ -30,9 +24,8 @@ export default function Privacy() {
             software de la ciudad de <strong>ARMENIA</strong>
           </li>
           <li>
-            la información añadida por los visitantes es primero
-            <strong> CONFIRMADA</strong> y <strong>ACEPTADA</strong> por el desarrollador
-            antes de ser publicada
+            la información añadida es primero <strong>VALIDADA</strong> y
+            <strong>ACEPTADA</strong> por el administrador antes de ser publicada
           </li>
           <li>
             este sitio web usa <strong>COOKIES</strong> solo para contar el número de

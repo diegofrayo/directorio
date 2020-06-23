@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 import { Modal } from '~/components/primitive';
+import { ContentBox } from '~/components/pages/_shared';
 import twcss from '~/lib/twcss';
 
 export default function MainLayout({ children }) {
@@ -74,34 +75,30 @@ export default function MainLayout({ children }) {
         <section className="modal-content tw-bg-white tw-p-6 tw-relative tw-max-w-screen-md tw-w-screen-md tw-max-h-full tw-overflow-auto">
           <section className="tw-px-6 tw-pt-6">
             <Modal.CloseButton />
-            <h2 className="tw-font-bold tw-text-3xl">
-              agrega un negocio a este sitio web
-            </h2>
+            <ContentBox.Title>agrega un negocio a este sitio web</ContentBox.Title>
           </section>
 
           <section className="tw-my-6">
             <label htmlFor="name" className="tw-text-left tw-block">
-              <Label>
+              <InputLabel>
                 nombre <span className="tw-text-red-600">(*)</span>
-              </Label>
-              <input
+              </InputLabel>
+              <InputElement
                 type="text"
                 id="name"
                 name="name"
-                className="tw-w-full tw-border tw-border-black tw-border-2 tw-p-2"
+                className="input__element--name tw-border tw-border-black tw-p-2"
               />
             </label>
-            <div className="tw-my-6" />
+            <Separator className="tw-my-6" />
 
             <label htmlFor="whatsapp" className="tw-text-left tw-block">
-              <Label>
+              <InputLabel>
                 whatsapp <span className="tw-text-red-600">(*)</span>
-              </Label>
+              </InputLabel>
               <div className="tw-w-full tw-flex tw-border tw-border-black">
-                <span className="tw-bg-gray-400 tw-text-gray-800 tw-flex tw-items-center tw-px-2 tw-text-sm tw-font-bold tw-border-r tw-border-black tw-w-12 tw-justify-center">
-                  +57
-                </span>
-                <input
+                <InputIcon>+57</InputIcon>
+                <InputElement
                   type="text"
                   id="whatsapp"
                   name="whatsapp"
@@ -109,15 +106,13 @@ export default function MainLayout({ children }) {
                 />
               </div>
             </label>
-            <div className="tw-my-6" />
+            <Separator className="tw-my-6" />
 
             <label htmlFor="instagram" className="tw-text-left tw-block">
-              <Label>instagram</Label>
+              <InputLabel>instagram</InputLabel>
               <div className="tw-w-full tw-flex tw-border tw-border-black">
-                <span className="tw-bg-gray-400 tw-text-gray-800 tw-flex tw-items-center tw-px-2 tw-text-sm tw-font-bold tw-border-r tw-border-black tw-w-12 tw-justify-center">
-                  @
-                </span>
-                <input
+                <InputIcon>@</InputIcon>
+                <InputElement
                   type="text"
                   id="instagram"
                   name="instagram"
@@ -125,15 +120,13 @@ export default function MainLayout({ children }) {
                 />
               </div>
             </label>
-            <div className="tw-my-6" />
+            <Separator className="tw-my-6" />
 
             <label htmlFor="facebook" className="tw-text-left tw-block">
-              <Label>facebook</Label>
+              <InputLabel>facebook</InputLabel>
               <div className="tw-w-full tw-flex tw-border tw-border-black">
-                <span className="tw-bg-gray-400 tw-text-gray-800 tw-flex tw-items-center tw-px-2 tw-text-sm tw-font-bold tw-border-r tw-border-black tw-w-12 tw-justify-center">
-                  @
-                </span>
-                <input
+                <InputIcon>@</InputIcon>
+                <InputElement
                   type="text"
                   id="facebook"
                   name="facebook"
@@ -141,20 +134,21 @@ export default function MainLayout({ children }) {
                 />
               </div>
             </label>
-            <div className="tw-my-6" />
+            <Separator className="tw-my-6" />
 
             <label htmlFor="description" className="tw-text-left tw-block">
-              <Label>descripción</Label>
-              <textarea
+              <InputLabel>descripción</InputLabel>
+              <InputElement
+                is="textarea"
                 id="description"
                 name="description"
-                className="description tw-w-full tw-border tw-border-black tw-border-2 tw-p-2"
+                className="description tw-border tw-border-black tw-p-2"
               />
             </label>
           </section>
 
-          <button className="tw-bg-black tw-text-white tw-py-2 tw-px-4">
-            agregar negocio
+          <button className="tw-bg-black tw-text-white tw-py-4 tw-px-4 tw-w-full tw-font-bold">
+            agregar
           </button>
         </section>
       </Modal>
@@ -164,15 +158,33 @@ export default function MainLayout({ children }) {
           width: 600px;
         }
 
-        .description {
+        :global(.input__icon) {
+          height: 50px;
+          width: 60px;
+        }
+
+        :global(.input__element) {
+          height: 50px;
+          width: calc(100% - 60px);
+        }
+
+        :global(.input__element--name) {
+          width: 100%;
+        }
+
+        :global(.description) {
           resize: none;
           height: 100px;
+          width: 100%;
         }
       `}</style>
     </main>
   );
 }
 
-// --- Components ---
+// __- Components __-
 
-const Label = twcss.p`tw-mb-1 tw-font-bold tw-cursor-pointer`;
+const InputLabel = twcss.p`tw-mb-1 tw-font-bold tw-cursor-pointer`;
+const InputIcon = twcss.span`input__icon tw-bg-gray-400 tw-text-gray-800 tw-flex tw-items-center tw-text-sm tw-font-bold tw-border-r tw-border-black tw-justify-center tw-flex-shrink-0`;
+const InputElement = twcss.input`input__element tw-p-2 tw-rounded-none`;
+const Separator = twcss.hr`tw-border-0`;

@@ -139,11 +139,12 @@ const twcssObject: any = {};
 
 function twcss(Tag: string) {
   return function(styles: string) {
-    return function({ children, className, ...rest }: any) {
+    return function({ children, className, is, ...rest }: any) {
+      const Element = is || Tag;
       return (
-        <Tag className={`${styles} ${className || ''}`} {...rest}>
+        <Element className={`${styles} ${className || ''}`.trim()} {...rest}>
           {children}
-        </Tag>
+        </Element>
       );
     };
   };

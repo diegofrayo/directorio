@@ -48,7 +48,7 @@ function CategoryDetails({ category }) {
                     <span className="tw-w-12 tw-h-12 tw-block tw-mr-1 tw-bg-gray-600 tw-rounded-full tw-shadow-md tw-p-1" />
                   </section>
                   <section className="tw-flex-1 tw-text-left tw-pl-3 sm:tw-px-4">
-                    <h2 className="tw-font-bold tw-leading-tight">{item.name}</h2>
+                    <h2 className="tw-font-bold">{item.name}</h2>
                     <section>
                       <a
                         href={`https://api.whatsapp.com/send?phone=57${item.wp.replace(
