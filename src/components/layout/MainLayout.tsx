@@ -100,9 +100,20 @@ export default function MainLayout({ children }) {
             }, 3000);
           }}
         >
-          {({ values, isSubmitting, isValid }) => {
+          {({
+            values,
+            isSubmitting,
+            isValid,
+            handleSubmit,
+            errors,
+            validateForm,
+            setFieldTouched,
+          }) => {
             return (
-              <Form className="modal-content tw-bg-white tw-p-6 tw-relative tw-max-w-screen-sm tw-w-screen-md tw-max-h-full tw-overflow-auto">
+              <Form
+                className="tw-bg-white tw-p-6 tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-overflow-auto"
+                id="form-container"
+              >
                 <ModalHeader>
                   <Modal.CloseButton />
                   <Title>agrega un negocio a este sitio web</Title>
@@ -177,17 +188,20 @@ export default function MainLayout({ children }) {
                   <InputContainer htmlFor="description">
                     <InputLabel>descripción</InputLabel>
                     <Field
+                      as="textarea"
                       type="text"
                       id="description"
                       name="description"
-                      as="textarea"
-                      className="description tw-border tw-border-black tw-p-2"
+                      className="description tw-p-2 tw-rounded-none tw-border tw-border-black"
                     />
                     <ErrorMessage name="description" component={InputError} />
                   </InputContainer>
                 </section>
 
-                <ContentBox className="tw-mb-10">
+                <ContentBox
+                  className="tw-mb-12"
+                  classNameOverrides={["tw-border", "tw-border-4"]}
+                >
                   <p className="tw-font-bold tw-mb-2 tw-text-center tw-underline">
                     vista previa
                   </p>
@@ -203,11 +217,35 @@ export default function MainLayout({ children }) {
                 </ContentBox>
 
                 <SubmitButton
-                  type="submit"
+                  type="button"
                   disabled={isSubmitting || !isValid}
                   tw-states={{
                     invalid: !isValid,
                     loading: isSubmitting,
+                  }}
+                  onClick={async () => {
+                    const formErrors = await validateForm(values);
+                    const isValidForm = Object.values(formErrors).reduce((acum, curr) => {
+                      return acum && !curr;
+                    }, true);
+
+                    if (!isValidForm) {
+                      document.getElementById("form-container").scrollTop = 0;
+
+                      if (formErrors.whatsapp) {
+                        setFieldTouched("whatsapp", true);
+                        document.getElementById("whatsapp").focus();
+                      }
+
+                      if (formErrors.name) {
+                        setFieldTouched("name", true);
+                        document.getElementById("name").focus();
+                      }
+
+                      return;
+                    }
+
+                    handleSubmit();
                   }}
                 >
                   {isSubmitting ? "cargando..." : "agregar"}
@@ -219,10 +257,6 @@ export default function MainLayout({ children }) {
       </Modal>
 
       <style jsx>{`
-        :global(.modal-content) {
-          width: 100%;
-        }
-
         :global(.input__icon) {
           height: 50px;
           width: 60px;

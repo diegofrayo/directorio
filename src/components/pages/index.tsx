@@ -1,6 +1,12 @@
-export function ContentBox({ children, className = "" }) {
+import { formatPhoneNumber } from "~/utils/utils";
+
+export function ContentBox({ children, className = "", classNameOverrides = ["", ""] }) {
   return (
-    <section className={`tw-border tw-border-black tw-p-4 ${className}`.trim()}>
+    <section
+      className={`tw-border tw-border-black tw-p-4 ${className}`
+        .trim()
+        .replace(classNameOverrides[0], classNameOverrides[1])}
+    >
       {children}
     </section>
   );
@@ -29,22 +35,23 @@ export function BusinessItem({ item }) {
       </section>
       <section className="tw-flex-1 tw-text-left tw-pl-3 sm:tw-px-4">
         <h2 className="tw-font-bold">{item.name}</h2>
-        <section>
-          <a
-            href={`https://api.whatsapp.com/send?phone=57${item.whatsapp.replace(
-              / /g,
-              "",
-            )}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
-            target="_blank"
-          >
-            <img
-              src="/static/images/icons/wp.png"
-              className="tw-w-4 tw-h-4 tw-inline-block tw-mr-1"
-              alt="WhatsApp icon"
-            />
-            <span className="tw-text-sm tw-text-gray-600">{item.whatsapp}</span>
-          </a>
-        </section>
+        {item.whatsapp && (
+          <section>
+            <a
+              href={`https://api.whatsapp.com/send?phone=57${item.whatsapp}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
+              target="_blank"
+            >
+              <img
+                src="/static/images/icons/wp.png"
+                className="tw-w-4 tw-h-4 tw-inline-block tw-mr-1"
+                alt="WhatsApp icon"
+              />
+              <span className="tw-text-sm tw-text-gray-600">
+                {formatPhoneNumber(item.whatsapp)}
+              </span>
+            </a>
+          </section>
+        )}
       </section>
       <section className="tw-flex tw-flex-row tw-items-center tw-w-full sm:tw-w-auto tw-justify-end tw-pt-2 sm:tw-pt-0">
         {item.instagram && (

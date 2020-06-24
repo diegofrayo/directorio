@@ -9,7 +9,7 @@ function CategoryDetails({ category }) {
   const ITEMS = createArray(7).map(index => {
     return {
       name: "El nombre de tu negocio...",
-      whatsapp: "311 372 8898",
+      whatsapp: "3113728898",
       instagram: "nombre_de_tu_negocio",
       facebook: index % 3 === 0 ? "nombre_de_tu_negocio" : "",
       description: "Descripcion de tu negocio",

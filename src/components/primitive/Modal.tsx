@@ -69,7 +69,7 @@ function CloseButton() {
 
   return (
     <button onClick={onCloseModalHandler}>
-      <span className="tw-font-thin tw-text-2xl">x</span>
+      <span className="tw-font-thin tw-font-bold tw-text-4xl">x</span>
 
       <style jsx>{`
         button {
@@ -77,9 +77,8 @@ function CloseButton() {
           opacity: 0.2;
           position: absolute;
           right: 20px;
-          top: 10px;
+          top: 5px;
           z-index: 30;
-          font-family: Tahoma;
         }
       `}</style>
     </button>
