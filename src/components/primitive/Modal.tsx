@@ -1,4 +1,4 @@
-import { useRef, createContext, useContext } from 'react';
+import { useRef, createContext, useContext } from "react";
 
 function Modal({ children, visible, onCloseHandler }) {
   function closeModal() {

@@ -1,8 +1,8 @@
-import '../styles.css';
+import "../styles.css";
 
-import App from 'next/app';
+import App from "next/app";
 
-import { Page } from '~/components/layout';
+import { Page } from "~/components/layout";
 
 class CustomApp extends App {
   state = { error: null };
@@ -10,7 +10,7 @@ class CustomApp extends App {
   componentDidMount() {}
 
   componentDidCatch(error, info) {
-    console.group('componentDidCatch');
+    console.group("componentDidCatch");
     console.error(error);
     console.error(info);
     console.groupEnd();

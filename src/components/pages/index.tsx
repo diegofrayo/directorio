@@ -1,4 +1,4 @@
-export function ContentBox({ children, className = '' }) {
+export function ContentBox({ children, className = "" }) {
   return (
     <section className={`tw-border tw-border-black tw-p-4 ${className}`.trim()}>
       {children}
@@ -6,7 +6,7 @@ export function ContentBox({ children, className = '' }) {
   );
 }
 
-export function Title({ children, is: Element = 'h2' }: any) {
+export function Title({ children, is: Element = "h2" }: any) {
   return (
     <Element className="tw-font-bold tw-underline tw-mb-6 tw-text-3xl sm:text-5xl">
       {children}
@@ -31,9 +31,9 @@ export function BusinessItem({ item }) {
         <h2 className="tw-font-bold">{item.name}</h2>
         <section>
           <a
-            href={`https://api.whatsapp.com/send?phone=57${item.wp.replace(
+            href={`https://api.whatsapp.com/send?phone=57${item.whatsapp.replace(
               / /g,
-              '',
+              "",
             )}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
             target="_blank"
           >
@@ -42,14 +42,14 @@ export function BusinessItem({ item }) {
               className="tw-w-4 tw-h-4 tw-inline-block tw-mr-1"
               alt="WhatsApp icon"
             />
-            <span className="tw-text-sm tw-text-gray-600">{item.wp}</span>
+            <span className="tw-text-sm tw-text-gray-600">{item.whatsapp}</span>
           </a>
         </section>
       </section>
       <section className="tw-flex tw-flex-row tw-items-center tw-w-full sm:tw-w-auto tw-justify-end tw-pt-2 sm:tw-pt-0">
-        {item.ig && (
+        {item.instagram && (
           <a
-            href={`https://instagram.com/${item.ig}`}
+            href={`https://instagram.com/${item.instagram}`}
             target="_blank"
             className="tw-inline-block tw-mx-1"
           >
@@ -60,9 +60,9 @@ export function BusinessItem({ item }) {
             />
           </a>
         )}
-        {item.fb && (
+        {item.facebook && (
           <a
-            href={`https://facebook.com/${item.fb}`}
+            href={`https://facebook.com/${item.facebook}`}
             target="_blank"
             className="tw-inline-block tw-mx-1"
           >

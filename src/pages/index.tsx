@@ -1,5 +1,5 @@
-import { MainLayout } from '~/components/layout';
-import { ContentBox, Title } from '~/components/pages';
+import { MainLayout } from "~/components/layout";
+import { ContentBox, Title } from "~/components/pages";
 
 export default function Home() {
   return (

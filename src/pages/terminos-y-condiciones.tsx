@@ -1,5 +1,5 @@
-import { MainLayout } from '~/components/layout';
-import { ContentBox, Title } from '~/components/pages';
+import { MainLayout } from "~/components/layout";
+import { ContentBox, Title } from "~/components/pages";
 
 export default function Privacy() {
   return (
@@ -37,7 +37,7 @@ export default function Privacy() {
 
       <style jsx>{`
         li:before {
-          content: '👁️‍🗨️ ';
+          content: "👁️‍🗨️ ";
         }
       `}</style>
     </MainLayout>

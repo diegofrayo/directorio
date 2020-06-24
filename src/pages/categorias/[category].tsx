@@ -1,18 +1,18 @@
-import { Fragment } from 'react';
-import Link from 'next/link';
+import { Fragment } from "react";
+import Link from "next/link";
 
-import { MainLayout } from '~/components/layout';
-import { ContentBox, Title, BusinessItem } from '~/components/pages';
-import { createArray } from '~/utils/utils';
+import { MainLayout } from "~/components/layout";
+import { ContentBox, Title, BusinessItem } from "~/components/pages";
+import { createArray } from "~/utils/utils";
 
 function CategoryDetails({ category }) {
   const ITEMS = createArray(7).map(index => {
     return {
-      name: 'El nombre de tu negocio...',
-      wp: '311 372 8898',
-      ig: 'nombre_de_tu_negocio',
-      fb: index % 3 === 0 ? 'nombre_de_tu_negocio' : '',
-      description: 'Descripcion de tu negocio',
+      name: "El nombre de tu negocio...",
+      whatsapp: "311 372 8898",
+      instagram: "nombre_de_tu_negocio",
+      facebook: index % 3 === 0 ? "nombre_de_tu_negocio" : "",
+      description: "Descripcion de tu negocio",
     };
   });
 
