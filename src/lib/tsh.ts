@@ -24,7 +24,6 @@ class API {
   constructor(baseUrl = "") {
     this.baseUrl = baseUrl;
     this.request = null;
-    this.baseUrl = "";
     this.defaultHeaders = {
       "Content-Type": "application/json",
     };

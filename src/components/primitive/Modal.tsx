@@ -39,7 +39,7 @@ function Backdrop({ children, closeModalHandler }) {
 
   return (
     <div
-      className="root tw-p-2 sm:tw-p-4"
+      className="root tw-p-4 sm:tw-p-6"
       ref={backdropRef}
       onClick={handleBackdropClick}
     >

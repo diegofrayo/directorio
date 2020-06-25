@@ -1,5 +1,6 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import firebase from "firebase/app";
-import("firebase/database");
+import "firebase/database";
 
 const FIREBASE_CONFIG = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -8,26 +9,29 @@ const FIREBASE_CONFIG = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
 };
 
-if (firebase.apps.length === 0) firebase.initializeApp(FIREBASE_CONFIG);
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(FIREBASE_CONFIG);
+}
 
 export default async function BusinessController(
-  req: { body: Record<string, unknown> },
-  res: { statusCode: number; json: any },
+  req: NextApiRequest,
+  res: NextApiResponse,
 ): Promise<any> {
   try {
     const database = firebase.database();
+
     await database.ref("business").push({
       ...req.body,
+      facebook: req.body.facebook.toLowerCase(),
+      instagram: req.body.instagram.toLowerCase(),
       picture: "",
       created_at: new Date().toISOString(),
       approved: false,
     });
 
-    res.statusCode = 200;
-    res.json({ success: true });
+    res.status(200).json({ success: true });
   } catch (e) {
     console.log(e);
-    res.statusCode = 500;
-    res.json({ success: false });
+    res.status(500).json({ success: false });
   }
 }

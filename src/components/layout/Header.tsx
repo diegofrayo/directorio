@@ -80,8 +80,8 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
     >
       <Formik
         initialValues={{
-          name: "",
-          whatsapp: "",
+          name: "nombre",
+          whatsapp: "3114567890",
           instagram: "",
           facebook: "",
           description: "",
@@ -102,7 +102,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
         }}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
-            await tsh("/api").post("/business", { body: values });
+            await tsh("/api").post("/business", { body: values }).json();
             alert("el negocio ha sido agregado");
             resetForm();
           } catch (e) {
