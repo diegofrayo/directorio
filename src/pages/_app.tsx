@@ -1,5 +1,6 @@
 import "../styles.css";
 
+import React from "react";
 import App from "next/app";
 
 import { Page } from "~/components/layout";
@@ -7,9 +8,9 @@ import { Page } from "~/components/layout";
 class CustomApp extends App {
   state = { error: null };
 
-  componentDidMount() {}
+  // componentDidMount() {}
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error, info): void {
     console.group("componentDidCatch");
     console.error(error);
     console.error(info);
@@ -18,7 +19,7 @@ class CustomApp extends App {
     this.setState({ error });
   }
 
-  render() {
+  render(): any {
     const { Component, pageProps } = this.props;
 
     return (

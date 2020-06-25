@@ -1,7 +1,7 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import Head from "next/head";
 
-function Page({ children }) {
+function Page({ children }: Record<string, unknown>): any {
   return (
     <Fragment>
       <Head>

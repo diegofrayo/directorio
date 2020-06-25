@@ -1,3 +1,5 @@
+import React from "react";
+
 const HTML_TAGS = [
   "a",
   "abbr",
@@ -135,19 +137,23 @@ const HTML_TAGS = [
   "tspan",
 ];
 
-const twcssObject: any = {};
+const twcssObject: Record<string, any> = {};
 
-function twcss(Tag: string) {
-  return function (styles: string | object) {
-    return function ({
+function twcss(Tag: string): any {
+  return function (styles: string | Record<string, string>): any {
+    return function TWCSS_Component({
       children,
       className = "",
       is,
-      ["tw-states"]: twStates,
+      ["tw-variant"]: twVariant,
+      ["tw-classnames-overrides"]: twClassNamesOverrides,
       ...rest
-    }: any) {
-      const Element = is || Tag;
-      const finalClassName = getClassName(styles, className, twStates);
+    }: Record<string, unknown>): any {
+      const Element: any = is || Tag;
+      const finalClassName = applyOverridesToClassNames(
+        generateClassName(styles, className, twVariant),
+        twClassNamesOverrides,
+      );
 
       return (
         <Element className={finalClassName} {...rest}>
@@ -158,28 +164,45 @@ function twcss(Tag: string) {
   };
 }
 
-function getClassName(styles, className, twStates) {
+function generateClassName(styles, className, twVariant) {
   if (Array.isArray(styles)) {
     return `${styles} ${className}`.trim();
   }
 
   if (typeof styles === "object") {
-    const twStatesStyles = Object.keys(twStates)
-      .reduce((acum, curr) => {
-        if (twStates[curr] === true && styles[curr]) {
-          return acum + styles[curr] + " ";
-        }
+    if (typeof twVariant === "object") {
+      const twVariantStyles = Object.keys(twVariant)
+        .reduce((acum, curr) => {
+          if (twVariant[curr] === true && styles[curr]) {
+            return acum + styles[curr] + " ";
+          }
 
-        return acum;
-      }, "")
-      .trim();
+          return acum;
+        }, "")
+        .trim();
 
-    return `${styles.__base || ""} ${
-      twStatesStyles || styles.initial
-    } ${className}`.trim();
+      return `${styles.__base || ""} ${
+        twVariantStyles || styles.initial
+      } ${className}`.trim();
+    }
+
+    if (typeof twVariant === "string") {
+      return `${styles.__base || ""} ${styles[twVariant] || ""} ${className}`.trim();
+    }
   }
 
   return className.trim();
+}
+
+function applyOverridesToClassNames(className, twClassNamesOverrides) {
+  if (!twClassNamesOverrides) return className;
+
+  return Object.keys(twClassNamesOverrides)
+    .reduce((acum, curr) => {
+      acum = acum.replace(curr, twClassNamesOverrides[curr]);
+      return acum;
+    }, className)
+    .trim();
 }
 
 HTML_TAGS.forEach((tagName: string) => {

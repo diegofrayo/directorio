@@ -1,9 +1,10 @@
+import React from "react";
 import Link from "next/link";
 
 import { MainLayout } from "~/components/layout";
 import { ContentBox, Title } from "~/components/pages";
 
-export default function Categories() {
+const Categories: React.FunctionComponent = function Categories() {
   const CATEGORIES = [
     {
       slug: "comidas",
@@ -75,4 +76,6 @@ export default function Categories() {
       `}</style>
     </MainLayout>
   );
-}
+};
+
+export default Categories;

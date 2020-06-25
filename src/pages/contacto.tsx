@@ -1,7 +1,9 @@
+import React from "react";
+
 import { MainLayout } from "~/components/layout";
 import { ContentBox, Title } from "~/components/pages";
 
-export default function WhoUs() {
+const Contact: React.FunctionComponent = function Contact() {
   return (
     <MainLayout>
       <ContentBox>
@@ -22,4 +24,6 @@ export default function WhoUs() {
       </ContentBox>
     </MainLayout>
   );
-}
+};
+
+export default Contact;

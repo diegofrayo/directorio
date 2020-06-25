@@ -1,7 +1,9 @@
+import React from "react";
+
 import { MainLayout } from "~/components/layout";
 import { ContentBox, Title } from "~/components/pages";
 
-export default function Home() {
+const Home: React.FunctionComponent = function Home() {
   return (
     <MainLayout>
       <ContentBox>
@@ -16,4 +18,6 @@ export default function Home() {
       </ContentBox>
     </MainLayout>
   );
-}
+};
+
+export default Home;

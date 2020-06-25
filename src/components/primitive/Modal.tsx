@@ -1,6 +1,6 @@
-import { useRef, createContext, useContext } from "react";
+import React, { useRef, createContext, useContext } from "react";
 
-function Modal({ children, visible, onCloseHandler }) {
+function Modal({ children, visible, onCloseHandler }: Record<string, any>): any {
   function closeModal() {
     onCloseHandler(false);
   }
@@ -18,7 +18,11 @@ function Modal({ children, visible, onCloseHandler }) {
 
 // --- Context ---
 
-const Context = createContext({ onCloseModalHandler: () => {} });
+const Context = createContext({
+  onCloseModalHandler: () => {
+    // empty
+  },
+});
 
 Modal.Context = Context;
 

@@ -1,7 +1,9 @@
+import React from "react";
+
 import { MainLayout } from "~/components/layout";
 import { ContentBox, Title } from "~/components/pages";
 
-export default function Privacy() {
+const TermsAndConditions: React.FunctionComponent = function TermsAndConditions() {
   return (
     <MainLayout>
       <ContentBox>
@@ -42,4 +44,6 @@ export default function Privacy() {
       `}</style>
     </MainLayout>
   );
-}
+};
+
+export default TermsAndConditions;

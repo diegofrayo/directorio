@@ -32,3 +32,4 @@ yarn-error.log*
 # mine
 package-lock.json
 notes.md
+.env

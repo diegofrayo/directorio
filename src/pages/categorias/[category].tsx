@@ -1,11 +1,14 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { MainLayout } from "~/components/layout";
 import { ContentBox, Title, BusinessItem } from "~/components/pages";
 import { createArray } from "~/utils/utils";
 
-function CategoryDetails({ category }) {
+const CategoryDetails: React.FunctionComponent = function CategoryDetails() {
+  const { query } = useRouter();
+
   const ITEMS = createArray(7).map(index => {
     return {
       name: "El nombre de tu negocio...",
@@ -30,7 +33,7 @@ function CategoryDetails({ category }) {
           </Link>
         </section>
 
-        <Title>{category}</Title>
+        <Title>{query.category}</Title>
 
         <section>
           {ITEMS.map((item, index) => {
@@ -51,10 +54,6 @@ function CategoryDetails({ category }) {
       `}</style>
     </MainLayout>
   );
-}
-
-CategoryDetails.getInitialProps = ({ query }) => {
-  return { category: query.category };
 };
 
 export default CategoryDetails;
