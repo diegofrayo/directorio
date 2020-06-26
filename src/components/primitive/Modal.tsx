@@ -54,7 +54,7 @@ function Backdrop({ children, closeModalHandler }) {
             display: flex;
             justify-content: center;
             left: 0;
-            overflow: auto;
+            overflow: hidden;
             position: fixed;
             right: 0;
             top: 0;
@@ -68,23 +68,12 @@ function Backdrop({ children, closeModalHandler }) {
 
 Modal.Backdrop = Backdrop;
 
-function CloseButton() {
+function CloseButton({ className = "" }) {
   const { onCloseModalHandler } = useContext(Context);
 
   return (
-    <button onClick={onCloseModalHandler}>
-      <span className="tw-font-thin tw-font-bold tw-text-4xl">x</span>
-
-      <style jsx>{`
-        button {
-          height: auto;
-          opacity: 0.2;
-          position: absolute;
-          right: 20px;
-          top: 5px;
-          z-index: 30;
-        }
-      `}</style>
+    <button className={className} onClick={onCloseModalHandler}>
+      <span className="tw-font-bold tw-text-2xl sm:tw-text-4xl tw-leading-none">x</span>
     </button>
   );
 }

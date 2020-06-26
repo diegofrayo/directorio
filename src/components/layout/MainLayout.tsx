@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
 
 import twcss from "~/lib/twcss";
@@ -7,11 +7,14 @@ import Header from "./Header";
 
 export default function MainLayout({ children }: Record<string, unknown>): any {
   return (
-    <Main>
-      <Header />
-      <Body>{children}</Body>
-      <Footer />
-    </Main>
+    <Fragment>
+      <Main>
+        <Header />
+        <Body>{children}</Body>
+        <Footer />
+      </Main>
+      <section id="modals-portal-container" />
+    </Fragment>
   );
 }
 

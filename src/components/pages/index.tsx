@@ -5,19 +5,11 @@ import twcss from "~/lib/twcss";
 
 export const ContentBox = twcss.section`tw-border tw-border-black tw-p-4`;
 
-export function Title({ children, is = "h2" }: Record<string, any>): any {
-  const Element = is;
-
-  return (
-    <Element className="tw-font-bold tw-underline tw-mb-6 tw-text-3xl sm:text-5xl">
-      {children}
-    </Element>
-  );
-}
+export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:tw-text-4xl`;
 
 export function BusinessItem({ item }: Record<string, any>): any {
   return (
-    <article className="site tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-w-full hover:tw-bg-yellow-200 tw-px-2">
+    <article className="tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-w-full hover:tw-bg-yellow-200 tw-px-2">
       <section>
         {/*
           <img

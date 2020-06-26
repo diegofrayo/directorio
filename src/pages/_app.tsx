@@ -10,7 +10,7 @@ class CustomApp extends App {
 
   // componentDidMount() {}
 
-  componentDidCatch(error, info): void {
+  componentDidCatch(error: Error, info: React.ErrorInfo): void {
     console.group("componentDidCatch");
     console.error(error);
     console.error(info);

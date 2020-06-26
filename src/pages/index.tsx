@@ -13,7 +13,12 @@ const Home: React.FunctionComponent = function Home() {
           el objetivo de este sitio web es dar a conocer de manera fácil y rápida el
           número de contacto y links de redes sociales de los negocios, pequeñas empresas
           o personas particulares que venden sus productos o servicios a través de redes
-          sociales o whatsapp
+          sociales o whatsapp.
+        </p>
+        <br />
+        <p className="tw-text-justify">
+          puedes agregar un negocio a este sitio web <strong>GRATIS</strong> y sin
+          necesidad de registrarte.
         </p>
       </ContentBox>
     </MainLayout>

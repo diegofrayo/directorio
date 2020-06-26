@@ -22,7 +22,7 @@ const TermsAndConditions: React.FunctionComponent = function TermsAndConditions(
             estatal
           </li>
           <li>
-            este sitio web fue desarrollado y ahora administrado por un desarrollador de
+            este sitio web fue construido y ahora administrado por un desarrollador de
             software de la ciudad de <strong>ARMENIA</strong>
           </li>
           <li>
