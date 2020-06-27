@@ -40,32 +40,19 @@ export default async function BusinessController(
 }
 
 async function GET_Handler(database, category, res) {
-  const response = (
-    await database
-      .ref("business")
-      .orderByChild("category")
-      .equalTo(category)
-      .once("value")
-  ).val();
+  const response = (await database.ref(`business/${category}`).once("value")).val();
 
-  res
-    .status(200)
-    .send(
-      Object.values(response || {}).filter(
-        (item: Record<string, string | boolean>) => item.approved,
-      ),
-    );
+  res.status(200).send(Object.values(response || {}));
 }
 
 async function POST_Handler(database, body, res) {
-  await database.ref("business").push({
+  await database.ref("TO_APPROVE").push({
     ...body,
     facebook: body.facebook.toLowerCase(),
     instagram: body.instagram.toLowerCase(),
     logo: "",
-    created_at: new Date().toISOString(),
-    approved: false,
     category: "",
+    created_at: new Date().toISOString(),
   });
 
   res.status(200).json({ success: true });

@@ -93,6 +93,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           whatsapp: "",
           instagram: "",
           facebook: "",
+          email: "",
           description: "",
         }}
         validate={values => {
@@ -102,7 +103,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             errors.name = "el nombre debe tener al menos 2 carácteres";
           }
 
-          if (values.whatsapp.length !== 10 || !/^[0-9]*$/.test(values.whatsapp)) {
+          if (values.whatsapp.length >= 10 || !/^[0-9]*$/.test(values.whatsapp)) {
             errors.whatsapp =
               "el teléfono debe tener 10 carácteres y solo debe contener números";
           }
@@ -112,13 +113,15 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             await tsh("/api").post("/business", { body: values }).json();
-            alert("el negocio ha sido agregado");
-            resetForm();
-            document.getElementById("modal-body").scrollTop = 0;
+            alert(
+              "el negocio ha sido agregado correctamente. el administrador en unos momentos lo publicará en el sitio",
+            );
+            setIsModalVisible(false);
           } catch (e) {
             console.trace(e);
-            alert("error");
-          } finally {
+            alert(
+              "lo sentimos, ha ocurrido un error, estamos trabajando para solucionarlo",
+            );
             setSubmitting(false);
           }
         }}
@@ -132,12 +135,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           setFieldTouched,
         }) => {
           return (
-            <form
-              className="tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6"
-              onSubmit={e => {
-                e.preventDefault();
-              }}
-            >
+            <section className="tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6">
               <div className="tw-flex-shrink-0 tw-px-6 tw-pb-6 tw-mb-6 tw-flex tw-border-b tw-border-black">
                 <div className="tw-w-10/12 sm:tw-w-11/12 tw-items-center">
                   <Title
@@ -153,139 +151,159 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
               </div>
 
               <section id="modal-body" className="tw-flex-1 tw-px-6 tw-overflow-auto">
-                <section>
-                  <InputContainer htmlFor="name">
-                    <InputLabel>
-                      nombre <span className="tw-text-red-600">(*)</span>
-                    </InputLabel>
-                    <Field
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="input__element--name tw-border tw-border-black tw-p-2"
-                      as={InputElement}
-                      minLength={2}
-                    />
-                    <ErrorMessage name="name" component={InputError} />
-                  </InputContainer>
-                  <Separator />
-
-                  <InputContainer htmlFor="whatsapp">
-                    <InputLabel>
-                      whatsapp <span className="tw-text-red-600">(*)</span>
-                    </InputLabel>
-                    <InputGroup>
-                      <InputIcon>+57</InputIcon>
-                      <Field
-                        type="text"
-                        id="whatsapp"
-                        name="whatsapp"
-                        as={InputElement}
-                        minLength={10}
-                        maxLength={10}
-                      />
-                    </InputGroup>
-                    <ErrorMessage name="whatsapp" component={InputError} />
-                  </InputContainer>
-                  <Separator />
-
-                  <InputContainer htmlFor="instagram">
-                    <InputLabel>instagram</InputLabel>
-                    <InputGroup>
-                      <InputIcon>@</InputIcon>
-                      <Field
-                        type="text"
-                        id="instagram"
-                        name="instagram"
-                        as={InputElement}
-                      />
-                    </InputGroup>
-                    <ErrorMessage name="instagram" component={InputError} />
-                  </InputContainer>
-                  <Separator />
-
-                  <InputContainer htmlFor="facebook">
-                    <InputLabel>facebook</InputLabel>
-                    <InputGroup>
-                      <InputIcon>@</InputIcon>
-                      <Field
-                        type="text"
-                        id="facebook"
-                        name="facebook"
-                        as={InputElement}
-                      />
-                    </InputGroup>
-                    <ErrorMessage name="facebook" component={InputError} />
-                  </InputContainer>
-                  <Separator />
-
-                  <InputContainer htmlFor="description">
-                    <InputLabel>descripción</InputLabel>
-                    <Field
-                      as="textarea"
-                      type="text"
-                      id="description"
-                      name="description"
-                      className="input__element--description tw-p-2 tw-rounded-none tw-border tw-border-black"
-                    />
-                    <ErrorMessage name="description" component={InputError} />
-                  </InputContainer>
-                </section>
-
-                <ContentBox
-                  className="tw-mt-4 tw-mb-6"
-                  tw-classnames-overrides={{ "tw-border": "tw-border-4" }}
+                <form
+                  onSubmit={e => {
+                    e.preventDefault();
+                  }}
                 >
-                  <p className="tw-font-bold tw-mb-2 tw-text-center tw-underline">
-                    vista previa
-                  </p>
-                  <BusinessItem
-                    item={{
-                      name: values.name,
-                      whatsapp: values.whatsapp,
-                      instagram: values.instagram,
-                      facebook: values.facebook,
-                      description: values.description,
+                  <section>
+                    <InputContainer htmlFor="name">
+                      <InputLabel>
+                        nombre <span className="tw-text-red-600">(*)</span>
+                      </InputLabel>
+                      <Field
+                        type="text"
+                        id="name"
+                        name="name"
+                        className="input__element--name tw-border tw-border-black tw-p-2"
+                        as={InputElement}
+                        minLength={2}
+                      />
+                      <ErrorMessage name="name" component={InputError} />
+                    </InputContainer>
+                    <Separator />
+
+                    <InputContainer htmlFor="whatsapp">
+                      <InputLabel>
+                        whatsapp <span className="tw-text-red-600">(*)</span>
+                      </InputLabel>
+                      <InputGroup>
+                        <InputIcon>+57</InputIcon>
+                        <Field
+                          type="text"
+                          id="whatsapp"
+                          name="whatsapp"
+                          as={InputElement}
+                          minLength={10}
+                          maxLength={10}
+                        />
+                      </InputGroup>
+                      <ErrorMessage name="whatsapp" component={InputError} />
+                    </InputContainer>
+                    <Separator />
+
+                    <InputContainer htmlFor="instagram">
+                      <InputLabel>instagram</InputLabel>
+                      <InputGroup>
+                        <InputIcon>@</InputIcon>
+                        <Field
+                          type="text"
+                          id="instagram"
+                          name="instagram"
+                          as={InputElement}
+                        />
+                      </InputGroup>
+                      <ErrorMessage name="instagram" component={InputError} />
+                    </InputContainer>
+                    <Separator />
+
+                    <InputContainer htmlFor="facebook">
+                      <InputLabel>facebook</InputLabel>
+                      <InputGroup>
+                        <InputIcon>@</InputIcon>
+                        <Field
+                          type="text"
+                          id="facebook"
+                          name="facebook"
+                          as={InputElement}
+                        />
+                      </InputGroup>
+                      <ErrorMessage name="facebook" component={InputError} />
+                    </InputContainer>
+                    <Separator />
+
+                    <InputContainer htmlFor="email">
+                      <InputLabel>email</InputLabel>
+                      <InputGroup>
+                        <InputIcon>✉️</InputIcon>
+                        <Field type="email" id="email" name="email" as={InputElement} />
+                      </InputGroup>
+                      <ErrorMessage name="email" component={InputError} />
+                    </InputContainer>
+                    <Separator />
+
+                    <InputContainer htmlFor="description">
+                      <InputLabel>descripción</InputLabel>
+                      <Field
+                        as="textarea"
+                        type="text"
+                        id="description"
+                        name="description"
+                        className="input__element--description tw-p-2 tw-rounded-none tw-border tw-border-black"
+                      />
+                      <ErrorMessage name="description" component={InputError} />
+                    </InputContainer>
+                  </section>
+
+                  <ContentBox
+                    className="tw-mt-4 tw-mb-6"
+                    tw-classnames-overrides={{ "tw-border": "tw-border-4" }}
+                  >
+                    <p className="tw-font-bold tw-mb-2 tw-text-center tw-underline">
+                      vista previa
+                    </p>
+                    <BusinessItem
+                      item={{
+                        name: values.name,
+                        whatsapp: values.whatsapp,
+                        instagram: values.instagram,
+                        facebook: values.facebook,
+                        email: values.email,
+                        description: values.description,
+                      }}
+                    />
+                  </ContentBox>
+
+                  <SubmitButton
+                    type="button"
+                    disabled={isSubmitting || !isValid}
+                    tw-variant={{
+                      invalid: !isValid,
+                      loading: isSubmitting,
                     }}
-                  />
-                </ContentBox>
+                    onClick={async () => {
+                      const formErrors = await validateForm(values);
+                      const isValidForm = Object.values(formErrors).reduce(
+                        (acum, curr) => {
+                          return acum && !curr;
+                        },
+                        true,
+                      );
 
-                <SubmitButton
-                  type="button"
-                  disabled={isSubmitting || !isValid}
-                  tw-variant={{
-                    invalid: !isValid,
-                    loading: isSubmitting,
-                  }}
-                  onClick={async () => {
-                    const formErrors = await validateForm(values);
-                    const isValidForm = Object.values(formErrors).reduce((acum, curr) => {
-                      return acum && !curr;
-                    }, true);
+                      if (!isValidForm) {
+                        document.getElementById("modal-body").scrollTop = 0;
 
-                    if (!isValidForm) {
-                      document.getElementById("modal-body").scrollTop = 0;
+                        if (formErrors.whatsapp) {
+                          setFieldTouched("whatsapp", true);
+                          document.getElementById("whatsapp").focus();
+                        }
 
-                      if (formErrors.whatsapp) {
-                        setFieldTouched("whatsapp", true);
-                        document.getElementById("whatsapp").focus();
+                        if (formErrors.name) {
+                          setFieldTouched("name", true);
+                          document.getElementById("name").focus();
+                        }
+
+                        return;
                       }
 
-                      if (formErrors.name) {
-                        setFieldTouched("name", true);
-                        document.getElementById("name").focus();
-                      }
-
-                      return;
-                    }
-
-                    handleSubmit();
-                  }}
-                >
-                  {isSubmitting ? "cargando..." : "agregar"}
-                </SubmitButton>
+                      handleSubmit();
+                    }}
+                  >
+                    {isSubmitting ? "cargando..." : "agregar"}
+                  </SubmitButton>
+                </form>
               </section>
-            </form>
+            </section>
           );
         }}
       </Formik>
@@ -325,7 +343,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
 const InputContainer = twcss.label`tw-text-left tw-block`;
 const InputLabel = twcss.p`tw-mb-1 tw-font-bold tw-cursor-pointer`;
 const InputGroup = twcss.div`tw-w-full tw-flex tw-border tw-border-black`;
-const InputIcon = twcss.span`input__icon tw-bg-gray-400 tw-text-gray-800 tw-flex tw-items-center tw-text-sm tw-font-bold tw-border-r tw-border-black tw-justify-center tw-flex-shrink-0`;
+const InputIcon = twcss.span`input__icon tw-bg-gray-600 tw-text-gray-100 tw-flex tw-items-center tw-font-bold tw-border-r tw-border-black tw-justify-center tw-flex-shrink-0`;
 const InputElement = twcss.input`input__element tw-p-2 tw-rounded-none`;
 const InputError = twcss.p`tw-text-red-600 tw-text-sm tw-text-right tw-pl-6 tw-mt-1`;
 const SubmitButton = twcss.button({

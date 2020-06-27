@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --ext .ts,.tsx --fix",
-    "style": "prettier --write \"src/**/*.{ts,tsx}\""
+    "style": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "data:approve-business": "node src/scripts/approve-business.js"
   },
   "dependencies": {
     "firebase": "^7.15.4",
@@ -30,7 +31,8 @@
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "yargs": "^15.3.1"
   },
   "husky": {
     "hooks": {

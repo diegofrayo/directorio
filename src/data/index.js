@@ -1,21 +1,15 @@
 const CATEGORIES = [
   {
-    slug: "comidas",
-    name: "comidas",
-    icon: "🥘",
-    total: 5,
+    slug: "alimentos",
+    name: "alimentos",
+    icon: "🥑",
+    total: 1,
   },
   {
-    slug: "licorerias",
-    name: "licorerías",
-    icon: "🍺",
-    total: 4,
-  },
-  {
-    slug: "ropa",
-    name: "ropa",
-    icon: "👗|👔",
-    total: 3,
+    slug: "productos-de-belleza",
+    name: "productos de belleza",
+    icon: "💅",
+    total: 1,
   },
 ].sort((a, b) => (a.name > b.name ? 1 : -1));
 

@@ -73,6 +73,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
           </a>
         )}
         <button
+          type="button"
           className="tw-bg-black tw-text-white tw-px-4 tw-py-1 tw-text-sm tw-inline-block tw-ml-auto sm:tw-ml-1 tw-font-bold"
           onClick={() => {
             setShowModal(true);
@@ -157,10 +158,28 @@ export function BusinessItem({ item }: Record<string, any>): any {
                 </a>
               )}
 
+              {item.email && (
+                <a
+                  href={`mailto:${item.email}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+                >
+                  <img
+                    src="/static/images/icons/email.svg"
+                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
+                    alt="Email icon"
+                  />
+                  <span className="tw-text-black tw-font-bold tw-leading-snug tw-text-left">
+                    {item.email}
+                  </span>
+                </a>
+              )}
+
               {item.description && (
-                <p className="tw-bg-gray-200 tw-p-4 tw-mt-4 tw-text-left">
+                <pre className="tw-bg-gray-200 tw-p-4 tw-mt-4 tw-text-left tw-whitespace-pre-line">
                   {item.description}
-                </p>
+                </pre>
               )}
             </ContentBox>
           </section>

@@ -15,6 +15,8 @@ const Contact: React.FunctionComponent = function Contact() {
             en
             <a
               href="mailto:dev.apps.armenia@gmail.com"
+              target="_blank"
+              rel="noreferrer"
               className="tw-mx-1 tw-font-bold tw-underline tw-text-yellow-600"
             >
               dev.apps.armenia@gmail.com

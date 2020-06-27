@@ -10,8 +10,7 @@ function Page({ children }: Record<string, unknown>): any {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1, maximum-scale=1"
         />
-        <meta name="robots" content="noindex" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       {children}

@@ -11,7 +11,7 @@ export function generateCategoryBusinessList(): Array<Record<string, string | bo
       whatsapp: "3113728898",
       instagram: "nombre_de_tu_negocio",
       facebook: index % 3 === 0 ? "nombre_de_tu_negocio" : "",
-      description: "Descripcion de tu negocio",
+      description: "Descripción de tu negocio...",
       logo: "/static/images/logos/example.png",
     };
   });
