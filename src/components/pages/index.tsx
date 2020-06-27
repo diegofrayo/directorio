@@ -99,7 +99,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
                 alt="Business logo"
                 className="tw-w-32 tw-h-32 tw-rounded-full tw-shadow-md tw-p-1 tw-mx-auto tw-mb-2"
               />
-              <h2 className="tw-font-bold tw-text-2xl">{item.name}</h2>
+              <h2 className="tw-font-bold tw-text-2xl tw-text-center">{item.name}</h2>
             </section>
 
             <ContentBox>
@@ -158,7 +158,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
               )}
 
               {item.description && (
-                <p className="tw-bg-gray-200 tw-p-4 tw-mt-4">{item.description}</p>
+                <p className="tw-bg-gray-200 tw-p-4 tw-mt-4 tw-text-left">
+                  {item.description}
+                </p>
               )}
             </ContentBox>
           </section>

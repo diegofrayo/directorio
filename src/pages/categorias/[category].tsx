@@ -1,24 +1,43 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { MainLayout } from "~/components/layout";
 import { ContentBox, Title, BusinessItem } from "~/components/pages";
-import { createArray } from "~/utils/utils";
+import { isDevelopmentEnvironment } from "~/utils/utils";
+import {
+  CATEGORIES,
+  fetchCategoryBusinessList,
+  generateCategoryBusinessList,
+} from "~/utils/data";
 
 const CategoryDetails: React.FunctionComponent = function CategoryDetails() {
-  const { query } = useRouter();
+  const router = useRouter();
 
-  const ITEMS = createArray(7).map(index => {
-    return {
-      name: "El nombre de tu negocio...",
-      whatsapp: "3113728898",
-      instagram: "nombre_de_tu_negocio",
-      facebook: index % 3 === 0 ? "nombre_de_tu_negocio" : "",
-      description: "Descripcion de tu negocio",
-      logo: "/static/images/logos/example.png",
-    };
-  });
+  const [businessList, setBussinessList] = useState(undefined);
+  const [category, setCategory] = useState(undefined);
+
+  useEffect(() => {
+    if (!router.query.category) return;
+
+    setCategory(CATEGORIES.find(item => item.slug === router.query.category));
+    fetchData();
+  }, [router.query]);
+
+  async function fetchData() {
+    try {
+      if (isDevelopmentEnvironment()) {
+        setBussinessList(generateCategoryBusinessList());
+      } else {
+        const response = await fetchCategoryBusinessList(router.query.category);
+        setBussinessList(response);
+      }
+    } catch (e) {
+      console.trace(e);
+    }
+  }
+
+  if (!businessList || !category) return null;
 
   return (
     <MainLayout>
@@ -34,10 +53,18 @@ const CategoryDetails: React.FunctionComponent = function CategoryDetails() {
           </Link>
         </section>
 
-        <Title>{query.category}</Title>
+        <section className="tw-flex tw-flex-no-wrap tw-justify-center tw-items-center tw-mb-6">
+          <span className="emoji tw-text-2xl tw-mr-2">{category.icon}</span>
+          <Title
+            className="tw-text-left tw-inline-block"
+            tw-classnames-overrides={{ "tw-mb-6": "tw-mb-0" }}
+          >
+            {category.name}
+          </Title>
+        </section>
 
         <section>
-          {ITEMS.map((item, index) => {
+          {businessList.map((item, index) => {
             return (
               <Fragment key={`item-${index}`}>
                 <BusinessItem item={item} />

@@ -20,18 +20,53 @@ export default async function BusinessController(
   try {
     const database = firebase.database();
 
-    await database.ref("business").push({
-      ...req.body,
-      facebook: req.body.facebook.toLowerCase(),
-      instagram: req.body.instagram.toLowerCase(),
-      logo: "/static/images/logos/example.png",
-      created_at: new Date().toISOString(),
-      approved: false,
-    });
+    switch (req.method) {
+      case "GET":
+        await GET_Handler(database, req.query.category, res);
+        break;
 
-    res.status(200).json({ success: true });
+      case "POST":
+        await POST_Handler(database, req.body, res);
+        break;
+
+      default:
+        res.status(404).send("Method not allowed");
+        break;
+    }
   } catch (e) {
     console.log(e);
     res.status(500).json({ success: false });
   }
+}
+
+async function GET_Handler(database, category, res) {
+  const response = (
+    await database
+      .ref("business")
+      .orderByChild("category")
+      .equalTo(category)
+      .once("value")
+  ).val();
+
+  res
+    .status(200)
+    .send(
+      Object.values(response || {}).filter(
+        (item: Record<string, string | boolean>) => item.approved,
+      ),
+    );
+}
+
+async function POST_Handler(database, body, res) {
+  await database.ref("business").push({
+    ...body,
+    facebook: body.facebook.toLowerCase(),
+    instagram: body.instagram.toLowerCase(),
+    logo: "",
+    created_at: new Date().toISOString(),
+    approved: false,
+    category: "",
+  });
+
+  res.status(200).json({ success: true });
 }

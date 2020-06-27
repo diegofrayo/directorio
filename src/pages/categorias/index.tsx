@@ -3,35 +3,9 @@ import Link from "next/link";
 
 import { MainLayout } from "~/components/layout";
 import { ContentBox, Title } from "~/components/pages";
+import { CATEGORIES } from "~/utils/data";
 
 const Categories: React.FunctionComponent = function Categories() {
-  const CATEGORIES = [
-    {
-      slug: "comidas",
-      name: "comidas",
-      icon: "🥘",
-      total: 9,
-    },
-    {
-      slug: "licorerias",
-      name: "licorerías",
-      icon: "🍺",
-      total: 2,
-    },
-    {
-      slug: "servicio-de-domicilio",
-      name: "servicio de domicilio",
-      icon: "🛵",
-      total: 5,
-    },
-    {
-      slug: "ropa",
-      name: "ropa",
-      icon: "👗",
-      total: 4,
-    },
-  ].sort((a, b) => (a.name > b.name ? 1 : -1));
-
   return (
     <MainLayout>
       <ContentBox>

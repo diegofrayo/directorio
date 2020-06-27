@@ -9,7 +9,7 @@ export function formatPhoneNumber(phoneNumber: string): string {
   )} ${phoneNumber.substring(6, 10)}`;
 }
 
-export const createQueryFromObject = (object: Record<string, string>): string => {
+export function createQueryFromObject(object: Record<string, string>): string {
   const result = Object.entries(object)
     .map(([key, value]) => {
       if (value === "" || value === null || value === undefined) {
@@ -22,4 +22,8 @@ export const createQueryFromObject = (object: Record<string, string>): string =>
     .join("&");
 
   return result;
-};
+}
+
+export function isDevelopmentEnvironment(): boolean {
+  return window.location.href.includes("localhost");
+}
