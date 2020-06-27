@@ -11,11 +11,13 @@ export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:t
 export function BusinessItem({ item }: Record<string, any>): any {
   const [showModal, setShowModal] = useState(false);
 
+  const logo = item.logo || "/static/images/logos/example.png";
+
   return (
     <article className="tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-w-full hover:tw-bg-yellow-200 tw-px-2">
       <section>
         <img
-          src={item.logo}
+          src={logo}
           className="tw-w-12 tw-h-12 tw-rounded-full tw-shadow-md tw-p-1"
           alt="Business logo"
         />
@@ -93,7 +95,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
           <section className="tw-flex-1 tw-px-6 tw-overflow-auto">
             <section className="tw-mb-8">
               <img
-                src={item.logo}
+                src={logo}
                 alt="Business logo"
                 className="tw-w-32 tw-h-32 tw-rounded-full tw-shadow-md tw-p-1 tw-mx-auto tw-mb-2"
               />
