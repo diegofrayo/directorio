@@ -1,9 +1,17 @@
-import React, { useRef, createContext, useContext } from "react";
+import React, { useRef, createContext, useContext, useEffect } from "react";
 
 function Modal({ children, visible, onCloseHandler }: Record<string, any>): any {
   function closeModal() {
     onCloseHandler(false);
   }
+
+  useEffect(() => {
+    if (visible) {
+      document.body.classList.add("modal-opened");
+    } else {
+      document.body.classList.remove("modal-opened");
+    }
+  }, [visible]);
 
   if (!visible) {
     return null;

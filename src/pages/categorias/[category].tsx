@@ -16,6 +16,7 @@ const CategoryDetails: React.FunctionComponent = function CategoryDetails() {
       instagram: "nombre_de_tu_negocio",
       facebook: index % 3 === 0 ? "nombre_de_tu_negocio" : "",
       description: "Descripcion de tu negocio",
+      logo: "/static/images/logos/example.png",
     };
   });
 

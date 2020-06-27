@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Link from "next/link";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 
 import { Modal } from "~/components/primitive";
 import { ContentBox, Title, BusinessItem } from "~/components/pages";
@@ -114,6 +114,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             await tsh("/api").post("/business", { body: values }).json();
             alert("el negocio ha sido agregado");
             resetForm();
+            document.getElementById("modal-body").scrollTop = 0;
           } catch (e) {
             console.trace(e);
             alert("error");
@@ -131,7 +132,12 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           setFieldTouched,
         }) => {
           return (
-            <Form className="tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6">
+            <form
+              className="tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6"
+              onSubmit={e => {
+                e.preventDefault();
+              }}
+            >
               <div className="tw-flex-shrink-0 tw-px-6 tw-pb-6 tw-mb-6 tw-flex tw-border-b tw-border-black">
                 <div className="tw-w-10/12 sm:tw-w-11/12 tw-items-center">
                   <Title
@@ -147,7 +153,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
               </div>
 
               <section id="modal-body" className="tw-flex-1 tw-px-6 tw-overflow-auto">
-                <section className="tw-mb-10">
+                <section>
                   <InputContainer htmlFor="name">
                     <InputLabel>
                       nombre <span className="tw-text-red-600">(*)</span>
@@ -227,7 +233,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                 </section>
 
                 <ContentBox
-                  className="tw-mb-12"
+                  className="tw-mt-4 tw-mb-6"
                   tw-classnames-overrides={{ "tw-border": "tw-border-4" }}
                 >
                   <p className="tw-font-bold tw-mb-2 tw-text-center tw-underline">
@@ -279,7 +285,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                   {isSubmitting ? "cargando..." : "agregar"}
                 </SubmitButton>
               </section>
-            </Form>
+            </form>
           );
         }}
       </Formik>

@@ -24,7 +24,7 @@ export default async function BusinessController(
       ...req.body,
       facebook: req.body.facebook.toLowerCase(),
       instagram: req.body.instagram.toLowerCase(),
-      picture: "",
+      logo: "/static/images/logos/example.png",
       created_at: new Date().toISOString(),
       approved: false,
     });
