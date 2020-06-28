@@ -104,10 +104,12 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             errors.name = "el nombre debe tener al menos 2 carácteres";
           }
 
+          /*
           if (values.whatsapp.length < 10 || !/^[0-9]*$/.test(values.whatsapp)) {
             errors.whatsapp =
               "el teléfono debe tener 10 carácteres y solo debe contener números";
           }
+          */
 
           return errors;
         }}
@@ -175,9 +177,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                     <Separator />
 
                     <InputContainer htmlFor="whatsapp">
-                      <InputLabel>
-                        whatsapp <span className="tw-text-red-600">(*)</span>
-                      </InputLabel>
+                      <InputLabel>whatsapp</InputLabel>
                       <InputGroup>
                         <InputIcon>+57</InputIcon>
                         <Field

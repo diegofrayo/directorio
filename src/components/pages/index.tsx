@@ -212,7 +212,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
               )}
 
               {description && (
-                <pre className="tw-bg-gray-200 tw-p-4 tw-mt-4 tw-text-left tw-whitespace-pre-line">
+                <pre className="tw-bg-gray-200 tw-p-4 tw-mt-4 tw-text-left tw-whitespace-pre-line tw-text-base">
                   {description}
                 </pre>
               )}

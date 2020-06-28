@@ -21,6 +21,12 @@ const CATEGORIES = [
     slug: "comidas-rapidas",
     name: "comidas rápidas",
     icon: "🍔",
+    total: 2,
+  },
+  {
+    slug: "regalos",
+    name: "regalos",
+    icon: "🎁",
     total: 1,
   },
 ].sort((a, b) => (a.name > b.name ? 1 : -1));
