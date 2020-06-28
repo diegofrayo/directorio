@@ -25,5 +25,6 @@ export function createQueryFromObject(object: Record<string, string>): string {
 }
 
 export function isDevelopmentEnvironment(): boolean {
+  // return false;
   return !window.location.href.includes(".vercel.app");
 }

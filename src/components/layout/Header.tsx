@@ -93,7 +93,8 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           whatsapp: "",
           instagram: "",
           facebook: "",
-          email: "",
+          // email: "",
+          location: "",
           description: "",
         }}
         validate={values => {
@@ -110,7 +111,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
 
           return errors;
         }}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
+        onSubmit={async (values, { setSubmitting }) => {
           try {
             await tsh("/api").post("/business", { body: values }).json();
             alert(
@@ -203,7 +204,13 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                           as={InputElement}
                         />
                       </InputGroup>
-                      <ErrorMessage name="instagram" component={InputError} />
+                      {values.instagram && (
+                        <URLPreview
+                          href={`https://instagram.com/${values.instagram}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >{`https://instagram.com/${values.instagram}`}</URLPreview>
+                      )}
                     </InputContainer>
                     <Separator />
 
@@ -218,10 +225,17 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                           as={InputElement}
                         />
                       </InputGroup>
-                      <ErrorMessage name="facebook" component={InputError} />
+                      {values.facebook && (
+                        <URLPreview
+                          href={`https://facebook.com/${values.facebook}`}
+                          target="_blank"
+                          rel="noreferrer"
+                        >{`https://facebook.com/${values.facebook}`}</URLPreview>
+                      )}
                     </InputContainer>
                     <Separator />
 
+                    {/*
                     <InputContainer htmlFor="email">
                       <InputLabel>email</InputLabel>
                       <InputGroup>
@@ -229,6 +243,24 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                         <Field type="email" id="email" name="email" as={InputElement} />
                       </InputGroup>
                       <ErrorMessage name="email" component={InputError} />
+                    </InputContainer>
+                    <Separator />
+                    */}
+
+                    <InputContainer htmlFor="location">
+                      <InputLabel>ubicación</InputLabel>
+                      <InputGroup>
+                        <InputIcon>
+                          <span className="tw-rounded-full tw-bg-white tw-px-1">📍</span>
+                        </InputIcon>
+                        <Field
+                          type="text"
+                          id="location"
+                          name="location"
+                          placeholder="https://goo.gl/maps/ceQd3o4pTbsDyMrG8"
+                          as={InputElement}
+                        />
+                      </InputGroup>
                     </InputContainer>
                     <Separator />
 
@@ -241,7 +273,6 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                         name="description"
                         className="input__element--description tw-p-2 tw-rounded-none tw-border tw-border-black"
                       />
-                      <ErrorMessage name="description" component={InputError} />
                     </InputContainer>
                   </section>
 
@@ -258,7 +289,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                         whatsapp: values.whatsapp,
                         instagram: values.instagram,
                         facebook: values.facebook,
-                        email: values.email,
+                        // email: values.email,
                         description: values.description,
                       }}
                     />
@@ -340,10 +371,11 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
   );
 }
 
+const URLPreview = twcss.a`tw-text-right tw-block tw-text-gray-500 tw-text-sm tw-mt-1 tw-font-bold tw-underline`;
 const InputContainer = twcss.label`tw-text-left tw-block`;
 const InputLabel = twcss.p`tw-mb-1 tw-font-bold tw-cursor-pointer`;
 const InputGroup = twcss.div`tw-w-full tw-flex tw-border tw-border-black`;
-const InputIcon = twcss.span`input__icon tw-bg-gray-600 tw-text-gray-100 tw-flex tw-items-center tw-font-bold tw-border-r tw-border-black tw-justify-center tw-flex-shrink-0`;
+const InputIcon = twcss.span`input__icon tw-bg-gray-600 tw-text-white tw-flex tw-items-center tw-font-bold tw-border-r tw-border-black tw-justify-center tw-flex-shrink-0`;
 const InputElement = twcss.input`input__element tw-p-2 tw-rounded-none`;
 const InputError = twcss.p`tw-text-red-600 tw-text-sm tw-text-right tw-pl-6 tw-mt-1`;
 const SubmitButton = twcss.button({

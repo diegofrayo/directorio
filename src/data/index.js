@@ -11,6 +11,18 @@ const CATEGORIES = [
     icon: "💅",
     total: 1,
   },
+  {
+    slug: "asados-y-arepas",
+    name: "asados y arepas",
+    icon: "🍲",
+    total: 1,
+  },
+  {
+    slug: "comidas-rapidas",
+    name: "comidas rápidas",
+    icon: "🍔",
+    total: 1,
+  },
 ].sort((a, b) => (a.name > b.name ? 1 : -1));
 
 module.exports = {
