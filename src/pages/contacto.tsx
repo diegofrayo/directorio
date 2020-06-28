@@ -9,17 +9,18 @@ const Contact: React.FunctionComponent = function Contact() {
       <ContentBox>
         <Title>contacto</Title>
 
-        <section className="tw-text-left">
-          <p>
-            si tiene alguna duda, reclamo, sugerencia o idea de mejora puede contactarme
-            en
+        <section>
+          <p className="tw-text-left">
+            si tiene alguna duda, sugerencia, idea de mejora o quiere modificar la
+            información de su negocio, puede contactarme mediante
+            <strong className="tw-text-green-700"> whatsapp</strong> dando click{" "}
             <a
-              href="mailto:dev.apps.armenia@gmail.com"
+              href={`https://api.whatsapp.com/send?phone=573113728898&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
               target="_blank"
               rel="noreferrer"
-              className="tw-mx-1 tw-font-bold tw-underline tw-text-yellow-600"
+              className="tw-font-bold tw-underline"
             >
-              dev.apps.armenia@gmail.com
+              AQUÍ
             </a>
           </p>
         </section>

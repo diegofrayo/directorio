@@ -103,7 +103,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             errors.name = "el nombre debe tener al menos 2 carácteres";
           }
 
-          if (values.whatsapp.length >= 10 || !/^[0-9]*$/.test(values.whatsapp)) {
+          if (values.whatsapp.length < 10 || !/^[0-9]*$/.test(values.whatsapp)) {
             errors.whatsapp =
               "el teléfono debe tener 10 carácteres y solo debe contener números";
           }
@@ -185,7 +185,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                           name="whatsapp"
                           as={InputElement}
                           minLength={10}
-                          maxLength={10}
+                          maxLength={20}
                         />
                       </InputGroup>
                       <ErrorMessage name="whatsapp" component={InputError} />

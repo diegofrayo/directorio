@@ -11,7 +11,7 @@ export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:t
 export function BusinessItem({ item }: Record<string, any>): any {
   const [showModal, setShowModal] = useState(false);
 
-  const logo = item.logo || "/static/images/logos/example.png";
+  const logo = item.logo || "/static/images/example-business-logo.png";
 
   return (
     <article className="tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-w-full hover:tw-bg-yellow-200 tw-px-2">
@@ -116,7 +116,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
                     className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
                     alt="WhatsApp icon"
                   />
-                  <span className="tw-text-green-500 tw-font-bold tw-leading-snug tw-text-left">
+                  <span className="tw-text-green-500 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
                     {formatPhoneNumber(item.whatsapp)}
                   </span>
                 </a>
@@ -134,7 +134,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
                     className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
                     alt="Instagram icon"
                   />
-                  <span className="tw-text-pink-600 tw-font-bold tw-leading-snug tw-text-left">
+                  <span className="tw-text-pink-600 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
                     {`@${item.instagram}`}
                   </span>
                 </a>
@@ -152,7 +152,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
                     className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
                     alt="Facebook icon"
                   />
-                  <span className="tw-text-blue-700 tw-font-bold tw-leading-snug tw-text-left">
+                  <span className="tw-text-blue-700 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
                     {`@${item.facebook}`}
                   </span>
                 </a>
@@ -170,7 +170,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
                     className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
                     alt="Email icon"
                   />
-                  <span className="tw-text-black tw-font-bold tw-leading-snug tw-text-left">
+                  <span className="tw-text-black tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
                     {item.email}
                   </span>
                 </a>

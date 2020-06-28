@@ -12,7 +12,7 @@ export function generateCategoryBusinessList(): Array<Record<string, string | bo
       instagram: "nombre_de_tu_negocio",
       facebook: index % 3 === 0 ? "nombre_de_tu_negocio" : "",
       description: "Descripción de tu negocio...",
-      logo: "/static/images/logos/example.png",
+      logo: "",
     };
   });
 }
