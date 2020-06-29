@@ -14,7 +14,7 @@ const CATEGORIES = [
   {
     slug: "asados-y-arepas",
     name: "asados y arepas",
-    icon: "🍲",
+    icon: "🥘",
     total: 1,
   },
   {

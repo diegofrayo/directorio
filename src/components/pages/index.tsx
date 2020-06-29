@@ -11,7 +11,7 @@ export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:t
 export function BusinessItem({ item }: Record<string, any>): any {
   const [showModal, setShowModal] = useState(false);
 
-  const { name, whatsapp, instagram, facebook, location, description } = item;
+  const { name, whatsapp, instagram, facebook, location, description, address } = item;
   const logo = item.logo || "/static/images/example-business-logo.png";
 
   return (
@@ -128,7 +128,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
                 >
                   <img
                     src="/static/images/icons/whatsapp.svg"
-                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
+                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="WhatsApp icon"
                   />
                   <span className="tw-text-green-500 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
@@ -146,7 +146,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
                 >
                   <img
                     src="/static/images/icons/instagram.svg"
-                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
+                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="Instagram icon"
                   />
                   <span className="tw-text-pink-600 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
@@ -164,7 +164,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
                 >
                   <img
                     src="/static/images/icons/facebook.svg"
-                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
+                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="Facebook icon"
                   />
                   <span className="tw-text-blue-700 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
@@ -183,7 +183,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
                 >
                   <img
                     src="/static/images/icons/email.svg"
-                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
+                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="Email icon"
                   />
                   <span className="tw-text-black tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
@@ -202,13 +202,24 @@ export function BusinessItem({ item }: Record<string, any>): any {
                 >
                   <img
                     src="/static/images/icons/google-maps.svg"
-                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3"
+                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="Google maps icon"
                   />
                   <span className="tw-text-red-600 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
                     {location}
                   </span>
                 </a>
+              )}
+
+              {address && (
+                <section className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2">
+                  <span className="tw-rounded-full tw-bg-black tw-text-center tw-w-6 tw-h-6  tw-inline-block tw-mr-3 tw-flex-shrink-0">
+                    📍
+                  </span>
+                  <span className="tw-text-black tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
+                    {address}
+                  </span>
+                </section>
               )}
 
               {description && (

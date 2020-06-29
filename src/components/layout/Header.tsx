@@ -94,6 +94,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           instagram: "",
           facebook: "",
           // email: "",
+          address: "",
           location: "",
           description: "",
         }}
@@ -104,12 +105,13 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             errors.name = "el nombre debe tener al menos 2 carácteres";
           }
 
-          /*
-          if (values.whatsapp.length < 10 || !/^[0-9]*$/.test(values.whatsapp)) {
+          if (
+            (values.whatsapp.trim().length !== 0 && values.whatsapp.length < 10) ||
+            !/^[0-9]*$/.test(values.whatsapp)
+          ) {
             errors.whatsapp =
               "el teléfono debe tener 10 carácteres y solo debe contener números";
           }
-          */
 
           return errors;
         }}
@@ -247,8 +249,25 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                     <Separator />
                     */}
 
+                    <InputContainer htmlFor="address">
+                      <InputLabel>dirección</InputLabel>
+                      <InputGroup>
+                        <InputIcon>
+                          <span className="tw-rounded-full tw-bg-white tw-px-1">📍</span>
+                        </InputIcon>
+                        <Field
+                          type="text"
+                          id="address"
+                          name="address"
+                          placeholder="Calle 18 #16-1 | Barrio Nueva Cecicila"
+                          as={InputElement}
+                        />
+                      </InputGroup>
+                    </InputContainer>
+                    <Separator />
+
                     <InputContainer htmlFor="location">
-                      <InputLabel>ubicación</InputLabel>
+                      <InputLabel>ubicación [google maps]</InputLabel>
                       <InputGroup>
                         <InputIcon>
                           <span className="tw-rounded-full tw-bg-white tw-px-1">📍</span>
@@ -283,16 +302,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                     <p className="tw-font-bold tw-mb-2 tw-text-center tw-underline">
                       vista previa
                     </p>
-                    <BusinessItem
-                      item={{
-                        name: values.name,
-                        whatsapp: values.whatsapp,
-                        instagram: values.instagram,
-                        facebook: values.facebook,
-                        // email: values.email,
-                        description: values.description,
-                      }}
-                    />
+                    <BusinessItem item={values} />
                   </ContentBox>
 
                   <SubmitButton
@@ -371,7 +381,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
   );
 }
 
-const URLPreview = twcss.a`tw-text-right tw-block tw-text-gray-500 tw-text-sm tw-mt-1 tw-font-bold tw-underline`;
+const URLPreview = twcss.a`tw-pl-6 tw-text-right tw-block tw-text-gray-500 tw-text-sm tw-mt-1 tw-font-bold tw-underline`;
 const InputContainer = twcss.label`tw-text-left tw-block`;
 const InputLabel = twcss.p`tw-mb-1 tw-font-bold tw-cursor-pointer`;
 const InputGroup = twcss.div`tw-w-full tw-flex tw-border tw-border-black`;

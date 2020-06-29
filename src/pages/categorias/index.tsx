@@ -19,7 +19,7 @@ const Categories: React.FunctionComponent = function Categories() {
                 className="category tw-mb-2 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-yellow-200"
               >
                 <Link href={`/categorias/${category.slug}`}>
-                  <a className="tw-block tw-p-4 tw-w-full tw-flex tw-flex-row tw-items-center">
+                  <a className="tw-block tw-p-4 tw-w-full tw-h-full tw-flex tw-flex-row tw-items-center">
                     <span className="emoji tw-text-3xl">{category.icon}</span>
                     <span className="tw-ml-3 tw-mr-4 tw-flex-1 tw-text-left">
                       {category.name}
