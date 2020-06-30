@@ -141,7 +141,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
         }) => {
           return (
             <section className="tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6">
-              <div className="tw-flex-shrink-0 tw-px-6 tw-pb-6 tw-mb-6 tw-flex tw-border-b tw-border-black">
+              <div className="tw-flex-shrink-0 tw-px-6 tw-pb-6 tw-mb-6 tw-flex tw-border-b">
                 <div className="tw-w-10/12 sm:tw-w-11/12 tw-items-center">
                   <Title
                     className="tw-text-left"
@@ -296,7 +296,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                   </section>
 
                   <ContentBox
-                    className="tw-mt-4 tw-mb-6"
+                    className="tw-mt-4"
                     tw-classnames-overrides={{ "tw-border": "tw-border-4" }}
                   >
                     <p className="tw-font-bold tw-mb-2 tw-text-center tw-underline">
@@ -304,6 +304,11 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                     </p>
                     <BusinessItem item={values} />
                   </ContentBox>
+
+                  <p className="tw-my-6 tw-text-sm tw-bg-gray-100 tw-text-gray-600 tw-p-2 tw-text-center tw-border">
+                    el logo de tu negocio será obtenido de alguno de los perfiles que
+                    ingresaste previamente [whatsapp, instagram o facebook]
+                  </p>
 
                   <SubmitButton
                     type="button"

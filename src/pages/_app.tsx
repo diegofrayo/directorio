@@ -2,13 +2,18 @@ import "../styles.css";
 
 import React from "react";
 import App from "next/app";
+import Router from "next/router";
 
 import { Page } from "~/components/layout";
 
 class CustomApp extends App {
   state = { error: null };
 
-  // componentDidMount() {}
+  componentDidMount() {
+    Router.events.on("routeChangeComplete", () => {
+      document.getElementById("__next").scrollTop = 0;
+    });
+  }
 
   componentDidCatch(error: Error, info: React.ErrorInfo): void {
     console.group("componentDidCatch");

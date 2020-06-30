@@ -14,6 +14,7 @@ async function approveBusiness(business) {
 
   const response = await database.ref(`business/${business.category}`).push({
     ...business,
+    created_at: new Date(business.created_at),
     approved_at: new Date().toISOString(),
   });
 

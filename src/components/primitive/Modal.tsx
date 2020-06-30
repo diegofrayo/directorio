@@ -81,7 +81,9 @@ function CloseButton({ className = "" }) {
 
   return (
     <button className={className} onClick={onCloseModalHandler}>
-      <span className="tw-font-bold tw-text-2xl sm:tw-text-4xl tw-leading-none">x</span>
+      <span className="tw-font-bold tw-text-2xl sm:tw-text-4xl tw-leading-none hover:tw-opacity-50">
+        x
+      </span>
     </button>
   );
 }

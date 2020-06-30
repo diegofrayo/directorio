@@ -52,7 +52,7 @@ async function POST_Handler(database, body, res) {
     instagram: body.instagram.toLowerCase(),
     logo: "",
     category: "",
-    created_at: new Date().toISOString(),
+    created_at: Date.now(),
   });
 
   res.status(200).json({ success: true });

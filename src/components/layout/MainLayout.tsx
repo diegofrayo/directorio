@@ -39,6 +39,18 @@ function Footer() {
           </Link>
         </li>
       </ul>
+
+      <p className="tw-text-sm tw-mt-8 tw-text-gray-700">
+        hecho con <span className="emoji">❤️</span> en{" "}
+        <a
+          href="https://goo.gl/maps/sMdcnQHsSG76d73A9"
+          target="_blank"
+          rel="noreferrer"
+          className="tw-font-bold tw-underline"
+        >
+          armenia, quindío
+        </a>
+      </p>
     </footer>
   );
 }
