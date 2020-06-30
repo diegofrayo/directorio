@@ -11,7 +11,16 @@ export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:t
 export function BusinessItem({ item }: Record<string, any>): any {
   const [showModal, setShowModal] = useState(false);
 
-  const { name, whatsapp, instagram, facebook, location, description, address } = item;
+  const {
+    name,
+    whatsapp,
+    instagram,
+    facebook,
+    location,
+    description,
+    address,
+    menu,
+  } = item;
   const logo = item.logo || "/static/images/example-business-logo.png";
 
   return (
@@ -126,14 +135,13 @@ export function BusinessItem({ item }: Record<string, any>): any {
                   rel="noreferrer"
                   className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-0"
                 >
-                  <img
+                  <ModalDetailsIcon
                     src="/static/images/icons/whatsapp.svg"
-                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="WhatsApp icon"
                   />
-                  <span className="tw-text-green-500 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
+                  <ModalDetailsItem className="tw-text-green-500">
                     {formatPhoneNumber(whatsapp)}
-                  </span>
+                  </ModalDetailsItem>
                 </a>
               )}
 
@@ -144,14 +152,13 @@ export function BusinessItem({ item }: Record<string, any>): any {
                   rel="noreferrer"
                   className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
                 >
-                  <img
+                  <ModalDetailsIcon
                     src="/static/images/icons/instagram.svg"
-                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="Instagram icon"
                   />
-                  <span className="tw-text-pink-600 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
+                  <ModalDetailsItem className="tw-text-pink-600">
                     {`@${instagram}`}
-                  </span>
+                  </ModalDetailsItem>
                 </a>
               )}
 
@@ -162,14 +169,13 @@ export function BusinessItem({ item }: Record<string, any>): any {
                   rel="noreferrer"
                   className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
                 >
-                  <img
+                  <ModalDetailsIcon
                     src="/static/images/icons/facebook.svg"
-                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="Facebook icon"
                   />
-                  <span className="tw-text-blue-700 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
+                  <ModalDetailsItem className="tw-text-blue-700">
                     {`@${facebook}`}
-                  </span>
+                  </ModalDetailsItem>
                 </a>
               )}
 
@@ -186,12 +192,32 @@ export function BusinessItem({ item }: Record<string, any>): any {
                     className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="Email icon"
                   />
-                  <span className="tw-text-black tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
+                  <ModalDetailsItem className="tw-text-black">
                     {item.email}
-                  </span>
+                  </ModalDetailsItem>
                 </a>
               )}
               */}
+
+              {menu && (
+                <a
+                  href={menu}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+                >
+                  <ModalDetailsIcon
+                    className="tw-bg-yellow-600 tw-rounded-sm"
+                    tw-classnames-overrides={{ "tw-h-6": "tw-h-auto" }}
+                    is="span"
+                  >
+                    🗒️
+                  </ModalDetailsIcon>
+                  <ModalDetailsItem className="tw-text-yellow-600 tw-underline">
+                    presiona para ver el catálogo de productos
+                  </ModalDetailsItem>
+                </a>
+              )}
 
               {location && (
                 <a
@@ -200,25 +226,28 @@ export function BusinessItem({ item }: Record<string, any>): any {
                   rel="noreferrer"
                   className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
                 >
-                  <img
+                  <ModalDetailsIcon
                     src="/static/images/icons/google-maps.svg"
-                    className="tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0"
                     alt="Google maps icon"
                   />
-                  <span className="tw-text-red-600 tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
+                  <ModalDetailsItem className="tw-text-red-600">
                     {location}
-                  </span>
+                  </ModalDetailsItem>
                 </a>
               )}
 
               {address && (
                 <section className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2">
-                  <span className="tw-rounded-full tw-bg-black tw-text-center tw-w-6 tw-h-6  tw-inline-block tw-mr-3 tw-flex-shrink-0">
+                  <ModalDetailsIcon
+                    className="tw-rounded-sm tw-bg-purple-200"
+                    tw-classnames-overrides={{ "tw-h-6": "tw-h-auto" }}
+                    is="span"
+                  >
                     📍
-                  </span>
-                  <span className="tw-text-black tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base">
+                  </ModalDetailsIcon>
+                  <ModalDetailsItem className="tw-text-purple-800">
                     {address}
-                  </span>
+                  </ModalDetailsItem>
                 </section>
               )}
 
@@ -234,3 +263,6 @@ export function BusinessItem({ item }: Record<string, any>): any {
     </article>
   );
 }
+
+const ModalDetailsIcon = twcss.img`tw-w-6 tw-h-6 tw-inline-block tw-mr-3 tw-flex-shrink-0 tw-text-center`;
+const ModalDetailsItem = twcss.span`tw-font-bold tw-leading-snug tw-text-left tw-text-sm sm:tw-text-base`;

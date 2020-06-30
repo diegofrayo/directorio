@@ -14,6 +14,8 @@ export function generateCategoryBusinessList(): Array<Record<string, string | bo
       description: "Descripción de tu negocio...",
       logo: "",
       location: index % 2 === 0 ? "https://goo.gl/maps/QEwtRjpK8Qe7JHPN6" : "",
+      address: index % 3 === 0 ? "Direccion #123 89-34" : "",
+      menu: index % 3 === 0 ? "https://goo.gl/maps/QEwtRjpK8Qe7JHPN6" : "",
     };
   });
 }
