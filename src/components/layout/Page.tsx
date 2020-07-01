@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
 
+import { ANALYTICS_TRACKING_ID } from "~/utils/analytics";
+
 function Page({ children }: Record<string, unknown>): any {
   return (
     <Fragment>
@@ -25,8 +27,22 @@ function Page({ children }: Record<string, unknown>): any {
         <meta property="og:url" content="https://directorio-armenia.vercel.app" />
         <meta property="og:site_name" content="directorio ARMENIA" />
       </Head>
-
       {children}
+
+      <script
+        src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_TRACKING_ID}`}
+        async
+      />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${ANALYTICS_TRACKING_ID}');
+          `,
+        }}
+      />
     </Fragment>
   );
 }

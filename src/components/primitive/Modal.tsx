@@ -1,5 +1,7 @@
 import React, { useRef, createContext, useContext, useEffect } from "react";
 
+import { trackEvent } from "~/utils/analytics";
+
 function Modal({ children, visible, onCloseHandler }: Record<string, any>): any {
   function closeModal() {
     onCloseHandler(false);
@@ -42,6 +44,7 @@ function Backdrop({ children, closeModalHandler }) {
   function handleBackdropClick(e) {
     if (backdropRef && backdropRef.current === e.target) {
       closeModalHandler();
+      trackEvent({ category: "modal", value: "backdrop" });
     }
   }
 
@@ -80,7 +83,13 @@ function CloseButton({ className = "" }) {
   const { onCloseModalHandler } = useContext(Context);
 
   return (
-    <button className={className} onClick={onCloseModalHandler}>
+    <button
+      className={className}
+      onClick={() => {
+        trackEvent({ category: "modal", value: "close button" });
+        onCloseModalHandler();
+      }}
+    >
       <span className="tw-font-bold tw-text-2xl sm:tw-text-4xl tw-leading-none hover:tw-opacity-50">
         x
       </span>

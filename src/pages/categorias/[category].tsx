@@ -2,9 +2,10 @@ import React, { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { MainLayout } from "~/components/layout";
 import { ContentBox, Title, BusinessItem } from "~/components/pages";
 import { isDevelopmentEnvironment } from "~/utils/utils";
+import { MainLayout } from "~/components/layout";
+import { trackEvent } from "~/utils/analytics";
 import {
   CATEGORIES,
   fetchCategoryBusinessList,
@@ -34,6 +35,7 @@ const CategoryDetails: React.FunctionComponent = function CategoryDetails() {
       }
     } catch (e) {
       console.trace(e);
+      trackEvent({ category: "errors", value: e.message });
     }
   }
 
@@ -43,8 +45,16 @@ const CategoryDetails: React.FunctionComponent = function CategoryDetails() {
     <MainLayout>
       <ContentBox>
         <section className="tw-text-left tw-mb-4">
-          <Link href="/categorias">
-            <a className="tw-text-sm tw-text-gray-800">
+          <Link href="/categorias" passHref>
+            <a
+              className="tw-text-sm tw-text-gray-800"
+              onClick={() => {
+                trackEvent({
+                  category: "categorias",
+                  value: "volver al listado de categorías",
+                });
+              }}
+            >
               <span>◀️</span>
               <span className="tw-ml-1 tw-underline">
                 volver al listado de categorías

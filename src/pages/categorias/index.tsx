@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
-import { MainLayout } from "~/components/layout";
-import { ContentBox, Title } from "~/components/pages";
 import { CATEGORIES } from "~/utils/data";
+import { ContentBox, Title } from "~/components/pages";
+import { MainLayout } from "~/components/layout";
+import { trackEvent } from "~/utils/analytics";
 
 const Categories: React.FunctionComponent = function Categories() {
   return (
@@ -19,7 +20,12 @@ const Categories: React.FunctionComponent = function Categories() {
                 className="category tw-mb-2 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-yellow-200"
               >
                 <Link href={`/categorias/${category.slug}`}>
-                  <a className="tw-block tw-p-4 tw-w-full tw-h-full tw-flex tw-flex-row tw-items-center">
+                  <a
+                    className="tw-block tw-p-4 tw-w-full tw-h-full tw-flex tw-flex-row tw-items-center"
+                    onClick={() => {
+                      trackEvent({ category: "category", value: category.name });
+                    }}
+                  >
                     <span className="emoji tw-text-3xl">{category.icon}</span>
                     <span className="tw-ml-3 tw-mr-4 tw-flex-1 tw-text-left">
                       {category.name}

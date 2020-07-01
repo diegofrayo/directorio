@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-import { Modal } from "~/components/primitive";
-import { formatPhoneNumber } from "~/utils/utils";
 import twcss from "~/lib/twcss";
+import { formatPhoneNumber } from "~/utils/utils";
+import { Modal } from "~/components/primitive";
+import { trackEvent } from "~/utils/analytics";
 
 export const ContentBox = twcss.section`tw-border tw-border-black tw-p-4`;
 
@@ -30,6 +31,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
           src={logo}
           className="tw-w-12 tw-h-12 tw-rounded-full tw-shadow-md tw-p-1"
           alt="Business logo"
+          onClick={() => {
+            trackEvent({ category: "business", value: "logo" });
+          }}
         />
       </section>
       <section className="tw-flex-1 tw-text-left tw-pl-3 sm:tw-px-4">
@@ -40,6 +44,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
               href={`https://api.whatsapp.com/send?phone=57${whatsapp}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
               target="_blank"
               rel="noreferrer"
+              onClick={() => {
+                trackEvent({ category: "business", value: "whatsapp icon" });
+              }}
             >
               <img
                 src="/static/images/icons/whatsapp.svg"
@@ -60,6 +67,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
             target="_blank"
             rel="noreferrer"
             className="tw-inline-block tw-mx-1"
+            onClick={() => {
+              trackEvent({ category: "business", value: "instagram icon" });
+            }}
           >
             <img
               src="/static/images/icons/instagram.svg"
@@ -74,6 +84,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
             target="_blank"
             rel="noreferrer"
             className="tw-inline-block tw-mx-1"
+            onClick={() => {
+              trackEvent({ category: "business", value: "facebook icon" });
+            }}
           >
             <img
               src="/static/images/icons/facebook.svg"
@@ -88,6 +101,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
             target="_blank"
             rel="noreferrer"
             className="tw-inline-block tw-mx-1"
+            onClick={() => {
+              trackEvent({ category: "business", value: "maps icon" });
+            }}
           >
             <img
               src="/static/images/icons/google-maps.svg"
@@ -101,6 +117,7 @@ export function BusinessItem({ item }: Record<string, any>): any {
           className="tw-bg-black tw-text-white tw-px-3 tw-py-1 tw-text-sm tw-inline-block tw-ml-auto sm:tw-ml-1 tw-font-bold"
           onClick={() => {
             setShowModal(true);
+            trackEvent({ category: "business", value: "ver detalles" });
           }}
         >
           ver detalles
@@ -123,6 +140,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
                 src={logo}
                 alt="Business logo"
                 className="tw-w-32 tw-h-32 tw-rounded-full tw-shadow-md tw-p-1 tw-mx-auto tw-mb-2"
+                onClick={() => {
+                  trackEvent({ category: "business", value: "details logo" });
+                }}
               />
               <h2 className="tw-font-bold tw-text-2xl tw-text-center">{name}</h2>
             </section>
@@ -134,6 +154,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
                   target="_blank"
                   rel="noreferrer"
                   className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-0"
+                  onClick={() => {
+                    trackEvent({ category: "business", value: "details whatsapp item" });
+                  }}
                 >
                   <ModalDetailsIcon
                     src="/static/images/icons/whatsapp.svg"
@@ -151,6 +174,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
                   target="_blank"
                   rel="noreferrer"
                   className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+                  onClick={() => {
+                    trackEvent({ category: "business", value: "details instagram item" });
+                  }}
                 >
                   <ModalDetailsIcon
                     src="/static/images/icons/instagram.svg"
@@ -168,6 +194,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
                   target="_blank"
                   rel="noreferrer"
                   className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+                  onClick={() => {
+                    trackEvent({ category: "business", value: "details facebook item" });
+                  }}
                 >
                   <ModalDetailsIcon
                     src="/static/images/icons/facebook.svg"
@@ -205,6 +234,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
                   target="_blank"
                   rel="noreferrer"
                   className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+                  onClick={() => {
+                    trackEvent({ category: "business", value: "details catálogo item" });
+                  }}
                 >
                   <ModalDetailsIcon
                     className="tw-bg-yellow-600 tw-rounded-sm"
@@ -225,6 +257,9 @@ export function BusinessItem({ item }: Record<string, any>): any {
                   target="_blank"
                   rel="noreferrer"
                   className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+                  onClick={() => {
+                    trackEvent({ category: "business", value: "details location item" });
+                  }}
                 >
                   <ModalDetailsIcon
                     src="/static/images/icons/google-maps.svg"
@@ -237,7 +272,12 @@ export function BusinessItem({ item }: Record<string, any>): any {
               )}
 
               {address && (
-                <section className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2">
+                <section
+                  className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+                  onClick={() => {
+                    trackEvent({ category: "business", value: "details address item" });
+                  }}
+                >
                   <ModalDetailsIcon
                     className="tw-rounded-sm tw-bg-purple-200"
                     tw-classnames-overrides={{ "tw-h-6": "tw-h-auto" }}

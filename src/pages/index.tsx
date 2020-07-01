@@ -17,8 +17,8 @@ const Home: React.FunctionComponent = function Home() {
         </p>
         <br />
         <p className="tw-text-justify">
-          pero también se puede agregar negocios o sitios de interés de la ciudad como
-          cafés, restaurantes, sitios de comida rápida, entre otros.
+          también encontrarás información de sitios como cafés, restaurantes, comidas
+          rápidas, pizzerías, licorerías, entre otros.
         </p>
         <br />
         <p className="tw-bg-yellow-100 tw-text-yellow-600 tw-py-2 tw-px-4 tw-text-center tw-border tw-border-yellow-300">

@@ -3,15 +3,17 @@ import ReactDOM from "react-dom";
 import Link from "next/link";
 import { Formik, Field, ErrorMessage } from "formik";
 
-import { Modal } from "~/components/primitive";
-import { ContentBox, Title, BusinessItem } from "~/components/pages";
-import twcss from "~/lib/twcss";
 import tsh from "~/lib/tsh";
+import twcss from "~/lib/twcss";
+import { ContentBox, Title, BusinessItem } from "~/components/pages";
+import { Modal } from "~/components/primitive";
+import { trackEvent } from "~/utils/analytics";
 
 function Header(): any {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   function handleAddBussinessClick() {
+    trackEvent({ category: "main-menu", value: "agrega un negocio" });
     setIsModalVisible(true);
   }
 
@@ -19,7 +21,11 @@ function Header(): any {
     <header>
       <h1 className="tw-inline-block tw-mx-auto tw-mb-8">
         <Link href="/">
-          <a>
+          <a
+            onClick={() => {
+              trackEvent({ category: "header", value: "logo" });
+            }}
+          >
             <span className="tw-block tw-text-3xl tw-leading-none tw-font-hairline">
               directorio
             </span>
@@ -30,13 +36,25 @@ function Header(): any {
       <nav>
         <Menu>
           <MenuItem tw-variant="default">
-            <Link href="/">
-              <MenuItemLink>inicio</MenuItemLink>
+            <Link href="/" passHref>
+              <MenuItemLink
+                onClick={() => {
+                  trackEvent({ category: "main-menu", value: "inicio" });
+                }}
+              >
+                inicio
+              </MenuItemLink>
             </Link>
           </MenuItem>
           <MenuItem tw-variant="default" className="tw-mx-0 sm:tw-mx-2">
-            <Link href="/categorias">
-              <MenuItemLink>categorías</MenuItemLink>
+            <Link href="/categorias" passHref>
+              <MenuItemLink
+                onClick={() => {
+                  trackEvent({ category: "main-menu", value: "categorías" });
+                }}
+              >
+                categorías
+              </MenuItemLink>
             </Link>
           </MenuItem>
           <MenuItem tw-variant="add-business">
@@ -118,16 +136,27 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
         onSubmit={async (values, { setSubmitting }) => {
           try {
             await tsh("/api").post("/business", { body: values }).json();
+
             alert(
               "el negocio ha sido agregado correctamente. el administrador en unos momentos lo publicará en el sitio",
             );
             setIsModalVisible(false);
+
+            trackEvent({
+              category: "create-business",
+              value: "success",
+            });
           } catch (e) {
             console.trace(e);
             alert(
               "lo sentimos, ha ocurrido un error, estamos trabajando para solucionarlo",
             );
             setSubmitting(false);
+
+            trackEvent({
+              category: "create-business",
+              value: "request-failed",
+            });
           }
         }}
       >
@@ -327,6 +356,11 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                       );
 
                       if (!isValidForm) {
+                        trackEvent({
+                          category: "create-business",
+                          value: "form-with-errors",
+                        });
+
                         document.getElementById("modal-body").scrollTop = 0;
 
                         if (formErrors.whatsapp) {
