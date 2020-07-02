@@ -44,7 +44,7 @@ function Backdrop({ children, closeModalHandler }) {
   function handleBackdropClick(e) {
     if (backdropRef && backdropRef.current === e.target) {
       closeModalHandler();
-      trackEvent({ category: "modal", value: "backdrop" });
+      trackEvent({ category: "Componente Modal", label: "Backdrop" });
     }
   }
 
@@ -86,7 +86,7 @@ function CloseButton({ className = "" }) {
     <button
       className={className}
       onClick={() => {
-        trackEvent({ category: "modal", value: "close button" });
+        trackEvent({ category: "Componente Modal", label: "Botón de Cerrar" });
         onCloseModalHandler();
       }}
     >

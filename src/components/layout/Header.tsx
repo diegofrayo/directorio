@@ -12,9 +12,13 @@ import { trackEvent } from "~/utils/analytics";
 function Header(): any {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  function handleAddBussinessClick() {
-    trackEvent({ category: "main-menu", value: "agrega un negocio" });
+  function handleAddBussinessClick(e) {
     setIsModalVisible(true);
+    trackMenuItems(e);
+  }
+
+  function trackMenuItems(e) {
+    trackEvent({ category: "Menú Principal", label: e.currentTarget.innerText });
   }
 
   return (
@@ -23,7 +27,7 @@ function Header(): any {
         <Link href="/">
           <a
             onClick={() => {
-              trackEvent({ category: "header", value: "logo" });
+              trackEvent({ category: "Header", label: "Logo" });
             }}
           >
             <span className="tw-block tw-text-3xl tw-leading-none tw-font-hairline">
@@ -37,24 +41,12 @@ function Header(): any {
         <Menu>
           <MenuItem tw-variant="default">
             <Link href="/" passHref>
-              <MenuItemLink
-                onClick={() => {
-                  trackEvent({ category: "main-menu", value: "inicio" });
-                }}
-              >
-                inicio
-              </MenuItemLink>
+              <MenuItemLink onClick={trackMenuItems}>inicio</MenuItemLink>
             </Link>
           </MenuItem>
           <MenuItem tw-variant="default" className="tw-mx-0 sm:tw-mx-2">
             <Link href="/categorias" passHref>
-              <MenuItemLink
-                onClick={() => {
-                  trackEvent({ category: "main-menu", value: "categorías" });
-                }}
-              >
-                categorías
-              </MenuItemLink>
+              <MenuItemLink onClick={trackMenuItems}>categorías</MenuItemLink>
             </Link>
           </MenuItem>
           <MenuItem tw-variant="add-business">
@@ -143,8 +135,8 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             setIsModalVisible(false);
 
             trackEvent({
-              category: "create-business",
-              value: "success",
+              category: "Formulario Agregar Negocio",
+              label: "Solicitud exitosa",
             });
           } catch (e) {
             console.trace(e);
@@ -154,8 +146,8 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             setSubmitting(false);
 
             trackEvent({
-              category: "create-business",
-              value: "request-failed",
+              category: "Formulario Agregar Negocio",
+              label: "Solicitud fallida",
             });
           }
         }}
@@ -357,8 +349,8 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
 
                       if (!isValidForm) {
                         trackEvent({
-                          category: "create-business",
-                          value: "form-with-errors",
+                          category: "Formulario Agregar Negocio",
+                          label: "Formulario inválido",
                         });
 
                         document.getElementById("modal-body").scrollTop = 0;

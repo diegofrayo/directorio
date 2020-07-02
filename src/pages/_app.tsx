@@ -5,7 +5,7 @@ import App from "next/app";
 import Router from "next/router";
 
 import { Page } from "~/components/layout";
-import { trackLoadPage } from "~/utils/analytics";
+import { initAnalytics, trackPageLoaded } from "~/utils/analytics";
 
 class CustomApp extends App {
   state = { error: null };
@@ -13,9 +13,10 @@ class CustomApp extends App {
   componentDidMount(): void {
     Router.events.on("routeChangeComplete", () => {
       document.getElementById("__next").scrollTop = 0;
+      trackPageLoaded();
     });
 
-    trackLoadPage();
+    initAnalytics();
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo): void {

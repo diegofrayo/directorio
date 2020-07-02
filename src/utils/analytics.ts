@@ -1,42 +1,55 @@
 declare let window: any;
 
-const ANALYTICS_PROPERTY_NAME = "directorio-ARMENIA";
+const ANALYTICS_PROPERTY_NAME = "directorioARMENIA";
+const ANALYTICS_TRACKING_ID = "UA-98284306-2";
 
-export const ANALYTICS_TRACKING_ID = "UA-98284306-2";
-
-export function trackEvent({ category, value }: Record<string, string>): void {
-  console.log({
-    hitType: "event",
-    eventCategory: category,
-    eventAction: "click",
-    eventLabel: value,
-  });
-
-  window.ga(`${ANALYTICS_PROPERTY_NAME}.send`, {
-    hitType: "event",
-    eventCategory: category,
-    eventAction: "click",
-    eventLabel: value,
-  });
-}
-
-export function trackLoadPage(): void {
-  if (!window.ga) {
+export function initAnalytics(): void {
+  if (window.location.href.includes("noga=true")) {
     window.ga = () => {
-      console.log("GA not loaded");
+      console.log("GA disabled");
     };
   }
 
-  window.ga("create", ANALYTICS_TRACKING_ID, "auto", ANALYTICS_PROPERTY_NAME, {
+  window.ga("set", "appName", ANALYTICS_PROPERTY_NAME);
+  window.ga("create", ANALYTICS_TRACKING_ID, "auto", ANALYTICS_PROPERTY_NAME);
+}
+
+export function trackPageLoaded(): void {
+  console.group("trackPageLoaded");
+  console.info({
+    hitType: "pageview",
     page: window.location.pathname,
     title: document.title,
   });
+  console.groupEnd();
 
-  window.ga(`${ANALYTICS_PROPERTY_NAME}.send`, "pageview");
+  window.ga(`${ANALYTICS_PROPERTY_NAME}.send`, {
+    hitType: "pageview",
+    page: window.location.pathname,
+    title: document.title,
+  });
+}
+
+export function trackEvent({ category, label }: Record<string, string>): void {
+  console.group("trackEvent");
+  console.info({
+    hitType: "event",
+    eventAction: "click",
+    eventCategory: category,
+    eventLabel: label,
+  });
+  console.groupEnd();
+
+  window.ga(`${ANALYTICS_PROPERTY_NAME}.send`, {
+    hitType: "event",
+    eventAction: "click",
+    eventCategory: category,
+    eventLabel: label,
+  });
 }
 
 export default {
-  ANALYTICS_TRACKING_ID,
+  initAnalytics,
   trackEvent,
-  trackLoadPage,
+  trackPageLoaded,
 };

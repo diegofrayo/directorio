@@ -1,13 +1,12 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
 
-import { ANALYTICS_TRACKING_ID } from "~/utils/analytics";
-
 function Page({ children }: Record<string, unknown>): any {
   return (
     <Fragment>
       <Head>
         <title>directorio ARMENIA</title>
+
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1, maximum-scale=1"
@@ -26,23 +25,19 @@ function Page({ children }: Record<string, unknown>): any {
         />
         <meta property="og:url" content="https://directorio-armenia.vercel.app" />
         <meta property="og:site_name" content="directorio ARMENIA" />
+
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+          `,
+          }}
+        />
       </Head>
       {children}
-
-      <script
-        src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_TRACKING_ID}`}
-        async
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${ANALYTICS_TRACKING_ID}');
-          `,
-        }}
-      />
     </Fragment>
   );
 }

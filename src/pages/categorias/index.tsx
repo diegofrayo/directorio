@@ -23,7 +23,7 @@ const Categories: React.FunctionComponent = function Categories() {
                   <a
                     className="tw-block tw-p-4 tw-w-full tw-h-full tw-flex tw-flex-row tw-items-center"
                     onClick={() => {
-                      trackEvent({ category: "category", value: category.name });
+                      trackEvent({ category: "Categoría Item", label: category.name });
                     }}
                   >
                     <span className="emoji tw-text-3xl">{category.icon}</span>

@@ -35,7 +35,7 @@ const CategoryDetails: React.FunctionComponent = function CategoryDetails() {
       }
     } catch (e) {
       console.trace(e);
-      trackEvent({ category: "errors", value: e.message });
+      trackEvent({ category: "Errores", label: `/categorias => ${e.message}` });
     }
   }
 
@@ -50,8 +50,8 @@ const CategoryDetails: React.FunctionComponent = function CategoryDetails() {
               className="tw-text-sm tw-text-gray-800"
               onClick={() => {
                 trackEvent({
-                  category: "categorias",
-                  value: "volver al listado de categorías",
+                  category: "/categorias",
+                  label: "volver al listado de categorías",
                 });
               }}
             >
