@@ -1,26 +1,27 @@
 import React from "react";
-import Link from "next/link";
 
 import { CATEGORIES } from "~/utils/data";
 import { ContentBox, Title } from "~/components/pages";
-import { MainLayout } from "~/components/layout";
+import { getMetadata } from "~/utils/metadata";
+import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
 
-const Categories: React.FunctionComponent = function Categories() {
+function Categories({ metadata }) {
   return (
-    <MainLayout>
-      <ContentBox>
-        <Title>categorías</Title>
+    <Page metadata={metadata}>
+      <MainLayout>
+        <ContentBox>
+          <Title>categorías</Title>
 
-        <section className="tw-flex tw-flex-row tw-flex-wrap tw-justify-between">
-          {CATEGORIES.map((category, index) => {
-            return (
-              <article
-                key={`category-${index}`}
-                className="category tw-mb-2 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-yellow-200"
-              >
-                <Link href={`/categorias/${category.slug}`}>
+          <section className="tw-flex tw-flex-row tw-flex-wrap tw-justify-between">
+            {CATEGORIES.map((category, index) => {
+              return (
+                <article
+                  key={`category-${index}`}
+                  className="category tw-mb-2 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-yellow-200"
+                >
                   <a
+                    href={`/categorias/${category.slug}`}
                     className="tw-block tw-p-4 tw-w-full tw-h-full tw-flex tw-flex-row tw-items-center"
                     onClick={() => {
                       trackEvent({ category: "Categoría Item", label: category.name });
@@ -32,30 +33,34 @@ const Categories: React.FunctionComponent = function Categories() {
                     </span>
                     <strong>[{category.total}]</strong>
                   </a>
-                </Link>
-              </article>
-            );
-          })}
-        </section>
+                </article>
+              );
+            })}
+          </section>
 
-        <p className="tw-mt-2 tw-text-right tw-text-gray-600 tw-text-sm tw-italic tw-mx-0 sm:tw-mx-1">
-          (pronto se agregarán mas categorías)
-        </p>
-      </ContentBox>
+          <p className="tw-mt-2 tw-text-right tw-text-gray-600 tw-text-sm tw-italic tw-mx-0 sm:tw-mx-1">
+            (pronto se agregarán mas categorías)
+          </p>
+        </ContentBox>
 
-      <style jsx>{`
-        .category {
-          width: 100%;
-        }
-
-        @media (min-width: 640px) {
+        <style jsx>{`
           .category {
-            width: 48%;
+            width: 100%;
           }
-        }
-      `}</style>
-    </MainLayout>
+
+          @media (min-width: 640px) {
+            .category {
+              width: 48%;
+            }
+          }
+        `}</style>
+      </MainLayout>
+    </Page>
   );
+}
+
+Categories.getInitialProps = function getInitialProps(ctx) {
+  return { metadata: getMetadata(ctx.pathname) };
 };
 
 export default Categories;

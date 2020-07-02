@@ -1,17 +1,23 @@
+import { isDevelopmentEnvironment } from "./utils";
+
 declare let window: any;
 
 const ANALYTICS_PROPERTY_NAME = "directorioARMENIA";
 const ANALYTICS_TRACKING_ID = "UA-98284306-2";
 
 export function initAnalytics(): void {
-  if (window.location.href.includes("noga=true")) {
+  if (
+    !window.ga ||
+    window.location.href.includes("noga=true") ||
+    isDevelopmentEnvironment()
+  ) {
     window.ga = () => {
       console.log("GA disabled");
     };
   }
 
-  window.ga("set", "appName", ANALYTICS_PROPERTY_NAME);
   window.ga("create", ANALYTICS_TRACKING_ID, "auto", ANALYTICS_PROPERTY_NAME);
+  window.ga("set", "appName", ANALYTICS_PROPERTY_NAME);
 }
 
 export function trackPageLoaded(): void {

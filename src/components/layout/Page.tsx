@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
 
-function Page({ children }: Record<string, unknown>): any {
+function Page({ children, metadata }: Record<string, any>): any {
   return (
     <Fragment>
       <Head>
@@ -15,15 +15,12 @@ function Page({ children }: Record<string, unknown>): any {
 
         <meta property="og:type" content="article" />
         <meta property="og:title" content="directorio ARMENIA" />
-        <meta
-          property="og:description"
-          content="el objetivo de este sitio web es dar a conocer de manera fácil y rápida el número de contacto y links de redes sociales de los negocios, pequeñas empresas o personas particulares que venden sus productos o servicios a través de redes sociales o whatsapp."
-        />
+        <meta property="og:description" content={metadata.description} />
+        <meta property="og:url" content={metadata.url} />
         <meta
           property="og:image"
           content="https://directorio-armenia.vercel.app/static/images/da-logo.png"
         />
-        <meta property="og:url" content="https://directorio-armenia.vercel.app" />
         <meta property="og:site_name" content="directorio ARMENIA" />
 
         <script

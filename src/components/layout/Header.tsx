@@ -45,9 +45,9 @@ function Header(): any {
             </Link>
           </MenuItem>
           <MenuItem tw-variant="default" className="tw-mx-0 sm:tw-mx-2">
-            <Link href="/categorias" passHref>
-              <MenuItemLink onClick={trackMenuItems}>categorías</MenuItemLink>
-            </Link>
+            <MenuItemLink href="/categorias" onClick={trackMenuItems}>
+              categorías
+            </MenuItemLink>
           </MenuItem>
           <MenuItem tw-variant="add-business">
             <button
