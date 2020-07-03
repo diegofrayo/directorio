@@ -12,7 +12,7 @@ import {
   generateCategoryBusinessList,
 } from "~/utils/data";
 
-function CategoryDetails({ category, metadata }: Record<string, any>) {
+function CategoryDetails({ category, metadata }: Record<string, any>): any {
   const [businessList, setBussinessList] = useState(undefined);
 
   useEffect(() => {

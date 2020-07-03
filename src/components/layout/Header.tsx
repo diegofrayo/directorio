@@ -103,7 +103,6 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           whatsapp: "",
           instagram: "",
           facebook: "",
-          // email: "",
           address: "",
           location: "",
           description: "",
@@ -257,18 +256,6 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                       )}
                     </InputContainer>
                     <Separator />
-
-                    {/*
-                    <InputContainer htmlFor="email">
-                      <InputLabel>email</InputLabel>
-                      <InputGroup>
-                        <InputIcon>✉️</InputIcon>
-                        <Field type="email" id="email" name="email" as={InputElement} />
-                      </InputGroup>
-                      <ErrorMessage name="email" component={InputError} />
-                    </InputContainer>
-                    <Separator />
-                    */}
 
                     <InputContainer htmlFor="address">
                       <InputLabel>dirección</InputLabel>

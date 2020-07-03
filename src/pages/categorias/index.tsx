@@ -6,7 +6,7 @@ import { getMetadata } from "~/utils/metadata";
 import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
 
-function Categories({ metadata }) {
+function Categories({ metadata }: Record<string, unknown>): any {
   return (
     <Page metadata={metadata}>
       <MainLayout>

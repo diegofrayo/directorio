@@ -1,24 +1,42 @@
-const argv = require("yargs").argv;
+const { argv } = require("yargs");
 const database = require("./database-connection");
 
 async function getBusinessToApprove(businessId) {
-  const response = (await database.ref(`TO_APPROVE/${businessId}`).once("value")).val();
+  const response = (
+    await database.ref(`directorio-armenia/TO_APPROVE/${businessId}`).once("value")
+  ).val();
+
   return response || {};
 }
 
 async function approveBusiness(business) {
-  if (!business.category) {
-    console.log("Business not found");
-    return false;
-  }
+  await Promise.all(
+    business.categories.map(category => {
+      return database
+        .ref(`directorio-armenia/business/${category}/${business.slug}`)
+        .set({
+          ...business,
+          created_at: new Date(business.created_at).toISOString(),
+          approved_at: new Date().toISOString(),
+        });
+    }),
+  );
 
-  const response = await database.ref(`business/${business.category}`).push({
-    ...business,
-    created_at: new Date(business.created_at),
-    approved_at: new Date().toISOString(),
-  });
+  await Promise.all(
+    business.categories.map(category => {
+      return database
+        .ref(`directorio-armenia/categories/${category}/total_business`)
+        .transaction(categoryData => {
+          if (categoryData) {
+            return { ...categoryData, total_business: categoryData.total_business + 1 };
+          }
 
-  return response;
+          return categoryData;
+        });
+    }),
+  );
+
+  return true;
 }
 
 setTimeout(async () => {

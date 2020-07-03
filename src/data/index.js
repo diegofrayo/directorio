@@ -6,6 +6,24 @@ const CATEGORIES = [
     total: 1,
   },
   {
+    slug: "comida-peruana",
+    name: "comida peruana",
+    icon: "🇵🇪",
+    total: 1,
+  },
+  {
+    slug: "postres-y-dulces",
+    name: "postres y dulces",
+    icon: "🧁",
+    total: 1,
+  },
+  {
+    slug: "empanadas",
+    name: "empanadas",
+    icon: "🌮",
+    total: 1,
+  },
+  {
     slug: "productos-de-belleza",
     name: "productos de belleza",
     icon: "💅",

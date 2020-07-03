@@ -1,0 +1,19 @@
+{
+  "extends": ["eslint:all", "airbnb-base", "plugin:prettier/recommended"],
+  "parser": "babel-eslint",
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "globals": {
+    "console": true,
+    "Promise": true,
+    "fetch": true
+  },
+  "rules": {
+    "@typescript-eslint/no-var-requires": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-console": 0
+  }
+}
