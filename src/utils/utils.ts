@@ -28,3 +28,7 @@ export function isDevelopmentEnvironment(): boolean {
   // return false;
   return !window.location.href.includes(".vercel.app");
 }
+
+export function slugify(string) {
+  return string.toLowerCase().replace(/ /g, "-");
+}

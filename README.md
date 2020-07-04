@@ -6,7 +6,8 @@ https://directorio-armenia.vercel.app
 
 ## tech stack
 
-- Next.js
-- TailwindCSS
 - TypeScript
+- Next.js
+- React
+- TailwindCSS
 - Firebase

@@ -1,3 +1,4 @@
+import ReactGA from "react-ga";
 import { isDevelopmentEnvironment } from "./utils";
 
 declare let window: any;
@@ -6,20 +7,13 @@ const ANALYTICS_PROPERTY_NAME = "directorioARMENIA";
 const ANALYTICS_TRACKING_ID = "UA-98284306-2";
 
 export function initAnalytics(): void {
-  if (
-    !window.ga ||
-    window.location.href.includes("noga=true") ||
-    isDevelopmentEnvironment()
-  ) {
-    window.ga = () => {
-      console.log("GA disabled");
-    };
-  } else {
-    console.log("GA enabled");
-  }
+  const isAnalyticsDisabled =
+    window.location.href.includes("noga=true") || isDevelopmentEnvironment();
 
-  window.ga("create", ANALYTICS_TRACKING_ID, "auto", ANALYTICS_PROPERTY_NAME);
-  window.ga("set", "appName", ANALYTICS_PROPERTY_NAME);
+  ReactGA.initialize(ANALYTICS_TRACKING_ID, {
+    testMode: isAnalyticsDisabled,
+  });
+  ReactGA.set({ appName: ANALYTICS_PROPERTY_NAME });
 }
 
 export function trackPageLoaded(): void {
@@ -31,11 +25,7 @@ export function trackPageLoaded(): void {
   });
   console.groupEnd();
 
-  window.ga(`${ANALYTICS_PROPERTY_NAME}.send`, {
-    hitType: "pageview",
-    page: window.location.pathname,
-    title: document.title,
-  });
+  ReactGA.pageview(window.location.pathname, [], document.title);
 }
 
 export function trackEvent({ category, label }: Record<string, string>): void {
@@ -48,16 +38,24 @@ export function trackEvent({ category, label }: Record<string, string>): void {
   });
   console.groupEnd();
 
-  window.ga(`${ANALYTICS_PROPERTY_NAME}.send`, {
-    hitType: "event",
-    eventAction: "click",
-    eventCategory: category,
-    eventLabel: label,
+  ReactGA.event({
+    label,
+    category,
+    action: "click",
   });
+}
+
+export function trackModal(modalName: string): void {
+  console.group("trackModal");
+  console.info({ modalName });
+  console.groupEnd();
+
+  ReactGA.modalview(`${window.location.pathname}/${modalName}`);
 }
 
 export default {
   initAnalytics,
   trackEvent,
   trackPageLoaded,
+  trackModal,
 };

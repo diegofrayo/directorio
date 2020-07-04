@@ -1,7 +1,9 @@
+import "firebase/database";
 import firebase from "firebase/app";
 import { NextApiRequest, NextApiResponse } from "next";
 import { v4 as uuid } from "uuid";
-import "firebase/database";
+
+import { slugify } from "~/utils/utils";
 
 const FIREBASE_CONFIG = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -55,7 +57,9 @@ async function GET_Handler(database, category, res) {
 }
 
 async function POST_Handler(database, body, res) {
-  await database.ref("directorio-armenia/TO_APPROVE").push({
+  const slug = slugify(body.name);
+
+  await database.ref(`directorio-armenia/TO_APPROVE/${slug}`).set({
     ...body,
     categories: ["empty"],
     created_at: Date.now(),
@@ -64,7 +68,7 @@ async function POST_Handler(database, body, res) {
     instagram: body.instagram.toLowerCase(),
     logo: "",
     menu: "",
-    slug: "",
+    slug,
   });
 
   res.status(200).json({ success: true });

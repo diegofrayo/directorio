@@ -7,7 +7,7 @@ import tsh from "~/lib/tsh";
 import twcss from "~/lib/twcss";
 import { ContentBox, Title, BusinessItem } from "~/components/pages";
 import { Modal } from "~/components/primitive";
-import { trackEvent } from "~/utils/analytics";
+import { trackEvent, trackModal } from "~/utils/analytics";
 
 function Header(): any {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -15,6 +15,7 @@ function Header(): any {
   function handleAddBussinessClick(e) {
     setIsModalVisible(true);
     trackMenuItems(e);
+    trackModal("agregar-negocio");
   }
 
   function trackMenuItems(e) {
