@@ -14,6 +14,8 @@ export function initAnalytics(): void {
     window.ga = () => {
       console.log("GA disabled");
     };
+  } else {
+    console.log("GA enabled");
   }
 
   window.ga("create", ANALYTICS_TRACKING_ID, "auto", ANALYTICS_PROPERTY_NAME);
