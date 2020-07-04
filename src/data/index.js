@@ -13,7 +13,7 @@ const CATEGORIES = [
   },
   {
     name: "postres y dulces",
-    icon: "🧁",
+    icon: "🍩",
     total: 1,
   },
   {

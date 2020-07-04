@@ -161,7 +161,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           setFieldTouched,
         }) => {
           return (
-            <section className="tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6">
+            <section className="tw-min-h-500 tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6">
               <div className="tw-flex-shrink-0 tw-px-6 tw-pb-6 tw-mb-6 tw-flex tw-border-b">
                 <div className="tw-w-10/12 sm:tw-w-11/12 tw-items-center">
                   <Title
@@ -311,7 +311,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                     <p className="tw-font-bold tw-mb-2 tw-text-center tw-underline">
                       vista previa
                     </p>
-                    <BusinessItem item={values} />
+                    <BusinessItem item={values} isPreview />
                   </ContentBox>
 
                   <p className="tw-my-6 tw-text-sm tw-bg-gray-100 tw-text-gray-600 tw-p-2 tw-text-center tw-border">

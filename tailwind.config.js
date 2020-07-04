@@ -1,10 +1,16 @@
-const { borderRadius, leading, width } = require('tailwindcss/defaultTheme');
+const {
+  borderRadius,
+  leading,
+  width,
+  height,
+  minHeight,
+} = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  prefix: 'tw-',
+  prefix: "tw-",
   important: false,
   purge: {
-    content: ['./src/components/**/*.tsx', './src/pages/**/*.tsx'],
+    content: ["./src/components/**/*.tsx", "./src/pages/**/*.tsx"],
     options: {
       whitelist: [],
     },
@@ -13,17 +19,32 @@ module.exports = {
     extend: {
       borderRadius: {
         ...borderRadius,
-        full: '100%',
+        full: "100%",
       },
       leading: {
         ...leading,
-        '0': '0',
+        "0": "0",
       },
       width: {
         ...width,
-        '400': '400px',
-        '500': '500px',
-        '600': '600px',
+        "300": "300px",
+        "400": "400px",
+        "500": "500px",
+        "600": "600px",
+      },
+      height: {
+        ...height,
+        "300": "300px",
+        "400": "400px",
+        "500": "500px",
+        "600": "600px",
+      },
+      minHeight: {
+        ...minHeight,
+        "300": "300px",
+        "400": "400px",
+        "500": "500px",
+        "600": "600px",
       },
     },
   },

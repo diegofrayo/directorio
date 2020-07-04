@@ -50,7 +50,11 @@ export function trackModal(modalName: string): void {
   console.info({ modalName });
   console.groupEnd();
 
-  ReactGA.modalview(`${window.location.pathname}/${modalName}`);
+  ReactGA.modalview(`${window.location.pathname}/${modalName}`.replace("//", "/"));
+}
+
+export function setDimension(index: number, name: string): void {
+  ReactGA.set({ [`dimension${index}`]: name });
 }
 
 export default {
@@ -58,4 +62,5 @@ export default {
   trackEvent,
   trackPageLoaded,
   trackModal,
+  setDimension,
 };

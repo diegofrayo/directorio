@@ -37,10 +37,6 @@ function Categories({ metadata }: Record<string, unknown>): any {
               );
             })}
           </section>
-
-          <p className="tw-mt-2 tw-text-right tw-text-gray-600 tw-text-sm tw-italic tw-mx-0 sm:tw-mx-1">
-            (pronto se agregarán mas categorías)
-          </p>
         </ContentBox>
 
         <style jsx>{`

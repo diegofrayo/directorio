@@ -40,7 +40,11 @@ function cleanData(database) {
           */
         };
 
-        // delete database["directorio-armenia"].business[category][businessSlug].email;
+        // eslint-disable-next-line no-param-reassign
+        delete database["directorio-armenia"].business[category][businessSlug].email;
+
+        // eslint-disable-next-line no-param-reassign
+        delete database["directorio-armenia"].business[category][businessSlug].category;
       });
     },
   );
