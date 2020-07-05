@@ -44,7 +44,7 @@ export default async function BusinessController(
 
 async function GET_Handler(database, category, res) {
   const response = (
-    await database.ref(`directorio-armenia/business/${category}`).once("value")
+    await database.ref(`directorio-armenia/businesses/${category}`).once("value")
   ).val();
 
   res.status(200).send(

@@ -24,8 +24,15 @@ export function createQueryFromObject(object: Record<string, string>): string {
   return result;
 }
 
-export function isDevelopmentEnvironment(): boolean {
-  return false;
+export function isDevelopmentEnvironment(source?: string): boolean {
+  // if (source === "ANALYTICS") {
+  //   return true;
+  // }
+
+  // if (source === "FIREBASE") {
+  //   return false;
+  // }
+
   return !window.location.href.includes(".vercel.app");
 }
 
@@ -35,7 +42,7 @@ export function slugify(str: string): string {
   // remove accents, swap ñ for n, etc
   const FROM = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
   const TO = "aaaaeeeeiiiioooouuuunc------";
-  for (let i = 0, l = FROM.length; i < l; i++) {
+  for (let i = 0, l = FROM.length; i < l; i += 1) {
     result = result.replace(new RegExp(FROM.charAt(i), "g"), TO.charAt(i));
   }
 

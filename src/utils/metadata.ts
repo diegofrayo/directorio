@@ -1,4 +1,4 @@
-const DEFAULT_METADATA = {
+export const DEFAULT_METADATA = {
   description: `el principal objetivo de este sitio web es dar a conocer de manera fácil y
           rápida el número de contacto y links de redes sociales de los negocios, pequeñas
           empresas o personas particulares que venden sus productos o servicios a través

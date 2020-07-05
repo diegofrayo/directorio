@@ -13,7 +13,7 @@ async function approveBusiness(business) {
   await Promise.all(
     business.categories.map(category => {
       return database
-        .ref(`directorio-armenia/business/${category}/${business.slug}`)
+        .ref(`directorio-armenia/businesses/${category}/${business.slug}`)
         .set({
           ...business,
           created_at: new Date(business.created_at).toISOString(),

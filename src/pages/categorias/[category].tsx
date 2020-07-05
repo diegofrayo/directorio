@@ -21,7 +21,7 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
 
   async function fetchData() {
     try {
-      if (isDevelopmentEnvironment()) {
+      if (isDevelopmentEnvironment("FIREBASE")) {
         setBussinessList(generateCategoryBusinessList());
       } else {
         const response = await fetchCategoryBusinessList(category.slug);

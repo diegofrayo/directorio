@@ -1,7 +1,9 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
 
-function Page({ children, metadata }: Record<string, any>): any {
+import { DEFAULT_METADATA } from "~/utils/metadata";
+
+function Page({ children, metadata = DEFAULT_METADATA }: Record<string, any>): any {
   return (
     <Fragment>
       <Head>
@@ -11,7 +13,7 @@ function Page({ children, metadata }: Record<string, any>): any {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no, minimum-scale=1, maximum-scale=1"
         />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.ico" />
 
         <meta property="og:type" content="article" />
         <meta property="og:title" content="directorio ARMENIA" />

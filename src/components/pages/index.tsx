@@ -139,7 +139,7 @@ export function BusinessItem({ item, isPreview }: Record<string, any>): any {
           setShowModal(false);
         }}
       >
-        <section className="tw-min-h-400 tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-500 tw-max-h-full tw-py-6">
+        <section className="tw-h-400 tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-500 tw-max-h-full tw-py-6">
           <div className="tw-flex-shrink-0 tw-mb-6 tw-relative tw-text-right tw-px-6">
             <Modal.CloseButton />
           </div>

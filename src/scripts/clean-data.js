@@ -22,11 +22,11 @@ function cleanData(database) {
     whatsapp: "",
   };
 
-  Object.entries(database["directorio-armenia"].business).forEach(
+  Object.entries(database["directorio-armenia"].businesses).forEach(
     ([category, business]) => {
       Object.entries(business).forEach(([businessSlug, businessData]) => {
         // eslint-disable-next-line no-param-reassign
-        database["directorio-armenia"].business[category][businessSlug] = {
+        database["directorio-armenia"].businesses[category][businessSlug] = {
           ...EMPTY_ATTRS,
           ...businessData,
 
@@ -41,10 +41,10 @@ function cleanData(database) {
         };
 
         // eslint-disable-next-line no-param-reassign
-        delete database["directorio-armenia"].business[category][businessSlug].email;
+        delete database["directorio-armenia"].businesses[category][businessSlug].email;
 
         // eslint-disable-next-line no-param-reassign
-        delete database["directorio-armenia"].business[category][businessSlug].category;
+        delete database["directorio-armenia"].businesses[category][businessSlug].category;
       });
     },
   );
