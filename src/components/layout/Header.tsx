@@ -161,7 +161,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           setFieldTouched,
         }) => {
           return (
-            <section className="tw-h-500 tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6">
+            <section className="tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6">
               <div className="tw-flex-shrink-0 tw-px-6 tw-pb-6 tw-mb-6 tw-flex tw-border-b">
                 <div className="tw-w-10/12 sm:tw-w-11/12 tw-items-center">
                   <Title

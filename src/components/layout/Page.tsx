@@ -7,7 +7,7 @@ function Page({ children, metadata = DEFAULT_METADATA }: Record<string, any>): a
   return (
     <Fragment>
       <Head>
-        <title>directorio ARMENIA</title>
+        <title>directorioARMENIA</title>
 
         <meta
           name="viewport"
