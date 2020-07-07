@@ -5,7 +5,7 @@ import App from "next/app";
 import Router from "next/router";
 
 import { Page } from "~/components/layout";
-import { initAnalytics, trackPageLoaded } from "~/utils/analytics";
+import { initAnalytics, trackPageLoaded, setDimension } from "~/utils/analytics";
 import { getMetadata } from "~/utils/metadata";
 
 import ErrorPage from "./_error";
@@ -14,17 +14,14 @@ class CustomApp extends App {
   state = { error: null, loadFromServer: true };
 
   componentDidMount(): void {
+    initAnalytics();
+
     function onRouteChangeComplete() {
       console.log("onRouteChangeComplete");
 
       document.getElementById("__next").scrollTop = 0;
       trackPageLoaded();
-    }
-
-    if (this.state.loadFromServer) {
-      console.log("loadFromServer");
-      onRouteChangeComplete();
-      this.setState({ loadFromServer: false });
+      setDimension(1, null);
     }
 
     Router.events.on("routeChangeComplete", onRouteChangeComplete);
@@ -32,7 +29,17 @@ class CustomApp extends App {
       this.setState({ error: null });
     });
 
-    initAnalytics();
+    if (this.state.loadFromServer) {
+      console.log("loadFromServer");
+      onRouteChangeComplete();
+      this.setState({ loadFromServer: false });
+
+      if (window.location.href.includes("noga=true")) {
+        window.localStorage.setItem("noga", "true");
+      } else if (window.location.href.includes("noga=false")) {
+        window.localStorage.removeItem("noga");
+      }
+    }
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo): void {

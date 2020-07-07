@@ -21,7 +21,7 @@ function ErrorPage({ statusCode }: Record<string, unknown>): any {
             <Fragment>
               <Icon className="emoji">🙈</Icon>
               <Message>
-                lo sentimos, hubo un error, lo trataremos se solucionar lo mas pronto
+                lo sentimos, hubo un error, lo trataremos de solucionar lo más pronto
                 posible
               </Message>
             </Fragment>

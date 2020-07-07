@@ -9,7 +9,7 @@ export const ContentBox = twcss.section`tw-border tw-border-black tw-p-4`;
 
 export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:tw-text-4xl`;
 
-export function BusinessItem({ item, isPreview }: Record<string, any>): any {
+export function BusinessItem({ item, isPreview = false }: Record<string, any>): any {
   const [showModal, setShowModal] = useState(false);
 
   const {
@@ -26,7 +26,7 @@ export function BusinessItem({ item, isPreview }: Record<string, any>): any {
   const logo = item.logo || "/static/images/example-business-logo.png";
 
   function track(label) {
-    setDimension(0, isPreview ? null : slug);
+    setDimension(1, isPreview ? null : slug);
     trackEvent({
       category: `Negocio Item${isPreview ? " - Preview" : ""}`,
       label,
