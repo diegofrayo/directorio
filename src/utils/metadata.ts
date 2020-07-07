@@ -3,8 +3,8 @@ export const DEFAULT_METADATA = {
           rápida el número de contacto y links de redes sociales de los negocios, pequeñas
           empresas o personas particulares que venden sus productos o servicios a través
           de redes sociales o whatsapp.`,
-  url: "https://directorio-armenia.vercel.app",
   title: "directorio ARMENIA",
+  url: "https://directorio-armenia.vercel.app",
 };
 
 export function getMetadata(
@@ -16,14 +16,22 @@ export function getMetadata(
   switch (route) {
     case "/categorias":
       pageMetadata.description = `Directorio de restaurantes, domicilios y emprendimientos en Armenia`;
-      pageMetadata.url = `${DEFAULT_METADATA.url}/categorias`;
       pageMetadata.title = `categorías - ${DEFAULT_METADATA.title}`;
+      pageMetadata.url = `${DEFAULT_METADATA.url}/categorias`;
       break;
 
     case "/categorias/[category]":
       pageMetadata.description = `${data.category.name} en Armenia`;
-      pageMetadata.url = `${DEFAULT_METADATA.url}/categorias/${data.category.slug}`;
       pageMetadata.title = `${data.category.name} - ${DEFAULT_METADATA.title}`;
+      pageMetadata.url = `${DEFAULT_METADATA.url}/categorias/${data.category.slug}`;
+      break;
+
+    case "/contacto":
+      pageMetadata.title = `contacto - ${DEFAULT_METADATA.title}`;
+      break;
+
+    case "/terminos-y-condiciones":
+      pageMetadata.title = `términos y condiciones - ${DEFAULT_METADATA.title}`;
       break;
 
     default:

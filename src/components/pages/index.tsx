@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import twcss from "~/lib/twcss";
 import { formatPhoneNumber } from "~/utils/utils";
 import { Modal } from "~/components/primitive";
-import { trackEvent, setDimension } from "~/utils/analytics";
+import { trackEvent, setDimension, trackModal } from "~/utils/analytics";
 
 export const ContentBox = twcss.section`tw-border tw-border-black tw-p-4`;
 
@@ -127,6 +127,7 @@ export function BusinessItem({ item, isPreview = false }: Record<string, any>): 
           onClick={e => {
             setShowModal(true);
             track(e.currentTarget.innerText);
+            trackModal(`ver-detalles${isPreview ? "-preview" : ""}`);
           }}
         >
           ver detalles

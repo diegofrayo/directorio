@@ -4,9 +4,9 @@ import React, { Fragment } from "react";
 import App from "next/app";
 import Router from "next/router";
 
-import { Page } from "~/components/layout";
-import { initAnalytics, trackPageLoaded, setDimension } from "~/utils/analytics";
 import { getMetadata } from "~/utils/metadata";
+import { initAnalytics, trackPageLoaded, setDimension } from "~/utils/analytics";
+import { Page } from "~/components/layout";
 
 import ErrorPage from "./_error";
 
@@ -18,10 +18,7 @@ class CustomApp extends App {
 
     function onRouteChangeComplete() {
       console.log("onRouteChangeComplete");
-
       document.getElementById("__next").scrollTop = 0;
-      trackPageLoaded();
-      setDimension(1, null);
     }
 
     Router.events.on("routeChangeComplete", onRouteChangeComplete);

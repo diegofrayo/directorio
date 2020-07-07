@@ -11,8 +11,9 @@
     "lint:data-scripts": "eslint \"scripts/*.js\" -c scripts/.eslintrc-node --fix",
     "style": "prettier --write \"src/**/*.{ts,tsx}\"",
     "data:approve-business": "node scripts/approve-business.js",
+    "data:build-categories": "node scripts/build-categories.js",
     "data:clean-data": "node scripts/clean-data.js",
-    "data:build-categories": "node scripts/build-categories.js"
+    "data:update-business": "node scripts/update-business.js"
   },
   "dependencies": {
     "firebase": "^7.15.4",

@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 
+import useDidMount from "~/hooks/useDidMount";
 import { ContentBox, Title, BusinessItem } from "~/components/pages";
 import { getMetadata } from "~/utils/metadata";
 import { isDevelopmentEnvironment } from "~/utils/utils";
@@ -15,9 +16,9 @@ import {
 function CategoryDetails({ category, metadata }: Record<string, any>): any {
   const [businessList, setBussinessList] = useState(undefined);
 
-  useEffect(() => {
+  useDidMount(() => {
     fetchData();
-  }, []);
+  });
 
   async function fetchData() {
     try {

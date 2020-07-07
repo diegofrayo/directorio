@@ -1,9 +1,18 @@
 import React, { Fragment } from "react";
 import Head from "next/head";
 
+import { useDidMount, useDocumentTitle } from "~/hooks";
 import { DEFAULT_METADATA } from "~/utils/metadata";
+import { trackPageLoaded, setDimension } from "~/utils/analytics";
 
 function Page({ children, metadata = DEFAULT_METADATA }: Record<string, any>): any {
+  useDocumentTitle(metadata.title);
+
+  useDidMount(() => {
+    trackPageLoaded();
+    setDimension(1, null);
+  });
+
   return (
     <Fragment>
       <Head>

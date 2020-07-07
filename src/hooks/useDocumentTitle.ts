@@ -4,7 +4,7 @@ function useDocumentTitle(title?: any): void {
   if (!title) return undefined;
 
   useEffect(() => {
-    document.title = `${title} - directorio ARMENIA`;
+    document.title = title;
   }, [title]);
 }
 

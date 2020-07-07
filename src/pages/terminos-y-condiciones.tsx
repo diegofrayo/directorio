@@ -5,7 +5,7 @@ import { ContentBox, Title } from "~/components/pages";
 
 const TermsAndConditions: React.FunctionComponent = function TermsAndConditions() {
   return (
-    <MainLayout title="términos y condiciones">
+    <MainLayout>
       <ContentBox>
         <Title>términos y condiciones</Title>
 
