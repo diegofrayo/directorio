@@ -29,7 +29,10 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
       }
     } catch (e) {
       console.trace(e);
-      trackEvent({ category: "Errores", label: `/categorias => ${e.message}` });
+      trackEvent({
+        category: "Errores",
+        label: `/categorias/${category.slug} => ${e.message}`,
+      });
     }
   }
 
@@ -91,7 +94,7 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
 }
 
 CategoryDetails.getInitialProps = function getInitialProps(ctx) {
-  const category = CATEGORIES.find(item => item.slug === ctx.query.category);
+  const category = CATEGORIES[ctx.query.category];
 
   return {
     metadata: getMetadata(ctx.pathname, { category }),

@@ -7,7 +7,7 @@ function Page({ children, metadata = DEFAULT_METADATA }: Record<string, any>): a
   return (
     <Fragment>
       <Head>
-        <title>directorioARMENIA</title>
+        <title>{metadata.title}</title>
 
         <meta
           name="viewport"
@@ -16,7 +16,7 @@ function Page({ children, metadata = DEFAULT_METADATA }: Record<string, any>): a
         <link rel="icon" href="/favicon.ico" />
 
         <meta property="og:type" content="article" />
-        <meta property="og:title" content="directorio ARMENIA" />
+        <meta property="og:title" content={metadata.title} />
         <meta property="og:description" content={metadata.description} />
         <meta property="og:url" content={metadata.url} />
         <meta

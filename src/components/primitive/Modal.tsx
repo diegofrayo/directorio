@@ -93,6 +93,15 @@ function CloseButton({ className = "" }) {
       <span className="tw-font-bold tw-text-2xl sm:tw-text-4xl tw-leading-none hover:tw-opacity-50">
         x
       </span>
+
+      <style jsx>
+        {`
+          span {
+            position: relative;
+            top: -7px;
+          }
+        `}
+      </style>
     </button>
   );
 }

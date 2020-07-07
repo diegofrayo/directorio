@@ -127,7 +127,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
         }}
         onSubmit={async (values, { setSubmitting }) => {
           try {
-            await tsh("/api").post("/business", { body: values }).json();
+            await tsh("/api").post("/businesses", { body: values }).json();
 
             alert(
               "el negocio ha sido agregado correctamente. el administrador en unos momentos lo publicará en el sitio",

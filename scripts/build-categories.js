@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 function slugify(str) {
   let result = str.replace(/^\s+|\s+$/g, "").toLowerCase();
 
@@ -78,6 +80,18 @@ const CATEGORIES = [
   })
   .sort((a, b) => (a.name > b.name ? 1 : -1));
 
-module.exports = {
-  CATEGORIES,
-};
+setTimeout(async () => {
+  try {
+    fs.writeFileSync(
+      "./src/data/categories.json",
+      JSON.stringify(
+        CATEGORIES.reduce((result, category) => {
+          result[category.slug] = category; // eslint-disable-line no-param-reassign
+          return result;
+        }, {}),
+      ),
+    );
+  } catch (e) {
+    console.log(e);
+  }
+}, 1000);

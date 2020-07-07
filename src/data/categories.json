@@ -1,0 +1,53 @@
+{
+  "alitas": { "name": "alitas", "icon": "🍗", "total": 1, "slug": "alitas" },
+  "asados-y-arepas": {
+    "name": "asados y arepas",
+    "icon": "🥘",
+    "total": 1,
+    "slug": "asados-y-arepas"
+  },
+  "comida-peruana": {
+    "name": "comida peruana",
+    "icon": "🇵🇪",
+    "total": 1,
+    "slug": "comida-peruana"
+  },
+  "comidas-rapidas": {
+    "name": "comidas rápidas",
+    "icon": "🌭",
+    "total": 2,
+    "slug": "comidas-rapidas"
+  },
+  "empanadas": { "name": "empanadas", "icon": "🌮", "total": 1, "slug": "empanadas" },
+  "hamburgueserias": {
+    "name": "hamburgueserías",
+    "icon": "🍔",
+    "total": 1,
+    "slug": "hamburgueserias"
+  },
+  "pizza": { "name": "pizza", "icon": "🍕", "total": 1, "slug": "pizza" },
+  "postres-y-dulces": {
+    "name": "postres y dulces",
+    "icon": "🍩",
+    "total": 1,
+    "slug": "postres-y-dulces"
+  },
+  "productos-de-belleza": {
+    "name": "productos de belleza",
+    "icon": "💅",
+    "total": 1,
+    "slug": "productos-de-belleza"
+  },
+  "regalos-y-variedades": {
+    "name": "regalos y variedades",
+    "icon": "🎁",
+    "total": 2,
+    "slug": "regalos-y-variedades"
+  },
+  "salsas-y-mermeladas": {
+    "name": "salsas y mermeladas",
+    "icon": "🍯",
+    "total": 1,
+    "slug": "salsas-y-mermeladas"
+  }
+}

@@ -14,7 +14,7 @@ function Categories({ metadata }: Record<string, unknown>): any {
           <Title>categorías</Title>
 
           <section className="tw-flex tw-flex-row tw-flex-wrap tw-justify-between">
-            {CATEGORIES.map((category, index) => {
+            {Object.values(CATEGORIES).map((category, index) => {
               return (
                 <article
                   key={`category-${index}`}

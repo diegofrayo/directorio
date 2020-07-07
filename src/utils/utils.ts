@@ -24,18 +24,6 @@ export function createQueryFromObject(object: Record<string, string>): string {
   return result;
 }
 
-export function isDevelopmentEnvironment(source?: string): boolean {
-  // if (source === "ANALYTICS") {
-  //   return true;
-  // }
-
-  // if (source === "FIREBASE") {
-  //   return false;
-  // }
-
-  return !window.location.href.includes(".vercel.app");
-}
-
 export function slugify(str: string): string {
   let result = str.replace(/^\s+|\s+$/g, "").toLowerCase();
 
@@ -52,4 +40,16 @@ export function slugify(str: string): string {
     .replace(/-+/g, "-"); // collapse dashes
 
   return result;
+}
+
+export function isDevelopmentEnvironment(source?: string): boolean {
+  // if (source === "ANALYTICS") {
+  //   return true;
+  // }
+
+  // if (source === "FIREBASE") {
+  //   return false;
+  // }
+
+  return !window.location.href.includes(".vercel.app");
 }

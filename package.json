@@ -8,11 +8,11 @@
     "start": "next start",
     "test": "jest tests/*.spec.{jsx,js}",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --ext .ts,.tsx --fix",
-    "lint:data-scripts": "eslint \"src/**/*.js\" -c .eslintrc-node --fix",
+    "lint:data-scripts": "eslint \"scripts/*.js\" -c scripts/.eslintrc-node --fix",
     "style": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "data:approve-business": "node src/scripts/approve-business.js",
-    "data:clean-data": "node src/scripts/clean-data.js",
-    "data:update-categories": "node src/scripts/update-categories.js"
+    "data:approve-business": "node scripts/approve-business.js",
+    "data:clean-data": "node scripts/clean-data.js",
+    "data:build-categories": "node scripts/build-categories.js"
   },
   "dependencies": {
     "firebase": "^7.15.4",
@@ -59,7 +59,7 @@
     }
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
+    "**/*.{ts,tsx,json}": [
       "eslint --fix",
       "prettier --write",
       "git add"

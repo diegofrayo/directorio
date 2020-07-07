@@ -1,5 +1,5 @@
 import tsh from "~/lib/tsh";
-import { CATEGORIES } from "~/data";
+import CATEGORIES from "~/data/categories.json";
 import { createArray } from "./utils";
 
 export { CATEGORIES };
@@ -26,6 +26,6 @@ export function fetchCategoryBusinessList(
   const categoryParam: string = Array.isArray(category) ? category.join(",") : category;
 
   return tsh("/api")
-    .get("/business", { params: { category: categoryParam } })
+    .get("/businesses", { params: { category: categoryParam } })
     .json();
 }

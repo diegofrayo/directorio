@@ -5,7 +5,7 @@ import { ContentBox, Title } from "~/components/pages";
 
 const Contact: React.FunctionComponent = function Contact() {
   return (
-    <MainLayout>
+    <MainLayout title="contacto">
       <ContentBox>
         <Title>contacto</Title>
 

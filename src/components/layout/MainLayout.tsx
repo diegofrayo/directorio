@@ -2,11 +2,17 @@ import React, { Fragment } from "react";
 import Link from "next/link";
 
 import twcss from "~/lib/twcss";
+import useDocumentTitle from "~/hooks/useDocumentTitle";
 import { trackEvent } from "~/utils/analytics";
 
 import Header from "./Header";
 
-export default function MainLayout({ children }: Record<string, unknown>): any {
+export default function MainLayout({
+  children,
+  title,
+}: Record<string, unknown | string>): any {
+  useDocumentTitle(title);
+
   return (
     <Fragment>
       <Main>

@@ -1,5 +1,8 @@
+/*
+// Deprecated for this momemnt
+
 const database = require("./database-connection");
-const { CATEGORIES } = require("../data");
+const CATEGORIES = require("../src/data/categories.json");
 
 async function updateCategories() {
   return database.ref(`directorio-armenia/categories`).set(
@@ -18,3 +21,4 @@ setTimeout(async () => {
     console.log(e);
   }
 }, 1000);
+*/

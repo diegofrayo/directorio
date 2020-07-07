@@ -19,12 +19,10 @@ class CustomApp extends App {
 
       document.getElementById("__next").scrollTop = 0;
       trackPageLoaded();
-      setTimeout(() => {
-        document.title = `${window.location.pathname} - directorioARMENIA`;
-      }, 1000);
     }
 
     if (this.state.loadFromServer) {
+      console.log("loadFromServer");
       onRouteChangeComplete();
       this.setState({ loadFromServer: false });
     }
