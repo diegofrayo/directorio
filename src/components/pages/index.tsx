@@ -134,7 +134,7 @@ export function BusinessItem({
         }}
       >
         <section className="tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-500 tw-max-h-full tw-py-6">
-          <div className="tw-flex-shrink-0 tw-mb-6 tw-relative tw-text-right tw-px-6">
+          <div className="tw-flex-shrink-0 tw-mb-2 tw-relative tw-text-right tw-px-6">
             <Modal.CloseButton />
           </div>
           <section className="tw-flex tw-flex-col tw-flex-1 tw-items-stretch tw-px-6 tw-overflow-auto">
@@ -144,6 +144,21 @@ export function BusinessItem({
               from={isPreview ? "modal-preview" : "modal-details"}
             />
           </section>
+          {!isPreview && (
+            <div className="tw-flex-shrink-0 tw-mt-4 tw-px-6">
+              <button
+                type="button"
+                className="clipboard-btn tw-bg-black tw-text-white tw-py-2 sm:tw-py-4 tw-px-4 tw-w-full tw-font-bold tw-text-sm sm:tw-text-base"
+                data-clipboard-text={`https://directorio-armenia.vercel.app/${slug}`}
+                onClick={e => {
+                  alert("enlace copiado");
+                  track(e.currentTarget.innerText);
+                }}
+              >
+                copiar enlace de este negocio para compartir
+              </button>
+            </div>
+          )}
         </section>
       </Modal>
     </article>
@@ -314,19 +329,6 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
           </pre>
         )}
       </ContentBox>
-
-      {from === "modal-details" && (
-        <button
-          type="button"
-          className="clipboard-btn tw-bg-black tw-text-white tw-py-4 tw-px-4 tw-w-full tw-font-bold tw-mt-4"
-          data-clipboard-text={`https://directorio-armenia.vercel.app/${slug}`}
-          onClick={() => {
-            alert("enlace copiado");
-          }}
-        >
-          copiar enlace de este negocio para compartir
-        </button>
-      )}
     </section>
   );
 }
