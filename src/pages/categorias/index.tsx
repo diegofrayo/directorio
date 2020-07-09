@@ -2,7 +2,7 @@ import React from "react";
 
 import { CATEGORIES } from "~/utils/data";
 import { ContentBox, Title } from "~/components/pages";
-import { getMetadata } from "~/utils/metadata";
+
 import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
 
@@ -55,8 +55,17 @@ function Categories({ metadata }: Record<string, unknown>): any {
   );
 }
 
-Categories.getInitialProps = function getInitialProps(ctx) {
-  return { metadata: getMetadata(ctx.pathname) };
-};
-
 export default Categories;
+
+export async function getServerSideProps(): Promise<Record<string, any>> {
+  return {
+    props: {
+      metadata: {
+        description:
+          "Directorio de restaurantes, domicilios y emprendimientos en Armenia",
+        title: "categorías",
+        url: "categorias",
+      },
+    },
+  };
+}

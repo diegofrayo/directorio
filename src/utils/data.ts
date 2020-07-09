@@ -36,3 +36,13 @@ export function fetchCategoryBusinessList(
     .get("/businesses", { params: { category: categoryParam } })
     .json();
 }
+
+export function fetchBusinessBySlug(
+  business: string | string[],
+): Promise<Record<string, string | boolean | string[]>> {
+  const businessParam: string = Array.isArray(business) ? business.join(",") : business;
+
+  return tsh("/api")
+    .get("/businesses", { params: { business: businessParam } })
+    .json();
+}

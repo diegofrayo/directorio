@@ -9,26 +9,19 @@ export const ContentBox = twcss.section`tw-border tw-border-black tw-p-4`;
 
 export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:tw-text-4xl`;
 
-export function BusinessItem({ item, isPreview = false }: Record<string, any>): any {
+export function BusinessItem({
+  item,
+  isPreview = false,
+}: Record<string, any | boolean>): any {
   const [showModal, setShowModal] = useState(false);
 
-  const {
-    name,
-    whatsapp,
-    instagram,
-    facebook,
-    location,
-    description,
-    address,
-    menu,
-    slug,
-  } = item;
+  const { name, whatsapp, instagram, facebook, location, slug } = item;
   const logo = item.logo || "/static/images/example-business-logo.png";
 
   function track(label) {
     setDimension(1, isPreview ? null : slug);
     trackEvent({
-      category: `Negocio Item${isPreview ? " - Preview" : ""}`,
+      category: `Negocio Item - ${isPreview ? "Vista Previa" : "Modal"}`,
       label,
     });
   }
@@ -145,152 +138,196 @@ export function BusinessItem({ item, isPreview = false }: Record<string, any>): 
             <Modal.CloseButton />
           </div>
           <section className="tw-flex tw-flex-col tw-flex-1 tw-items-stretch tw-px-6 tw-overflow-auto">
-            <section className="tw-mb-8">
-              <img
-                src={logo}
-                alt="Business logo"
-                className="tw-w-32 tw-h-32 tw-rounded-full tw-shadow-md tw-p-1 tw-mx-auto tw-mb-2"
-                onClick={() => {
-                  track("Detalles Logo");
-                }}
-              />
-              <h2 className="tw-font-bold tw-text-2xl tw-text-center">{name}</h2>
-            </section>
-
-            <ContentBox className="tw-flex-1">
-              {whatsapp && (
-                <a
-                  href={`https://api.whatsapp.com/send?phone=57${whatsapp}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-0"
-                  onClick={() => {
-                    track("Detalles WhatsApp");
-                  }}
-                >
-                  <ModalDetailsIcon
-                    src="/static/images/icons/whatsapp.svg"
-                    alt="WhatsApp icon"
-                  />
-                  <ModalDetailsItem className="tw-text-green-500">
-                    {formatPhoneNumber(whatsapp)}
-                  </ModalDetailsItem>
-                </a>
-              )}
-
-              {instagram && (
-                <a
-                  href={`https://instagram.com/${instagram}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
-                  onClick={() => {
-                    track("Detalles Instagram");
-                  }}
-                >
-                  <ModalDetailsIcon
-                    src="/static/images/icons/instagram.svg"
-                    alt="Instagram icon"
-                  />
-                  <ModalDetailsItem className="tw-text-pink-600">
-                    {`@${instagram}`}
-                  </ModalDetailsItem>
-                </a>
-              )}
-
-              {facebook && (
-                <a
-                  href={`https://facebook.com/${facebook}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
-                  onClick={() => {
-                    track("Detalles Facebook");
-                  }}
-                >
-                  <ModalDetailsIcon
-                    src="/static/images/icons/facebook.svg"
-                    alt="Facebook icon"
-                  />
-                  <ModalDetailsItem className="tw-text-blue-700">
-                    {`@${facebook}`}
-                  </ModalDetailsItem>
-                </a>
-              )}
-
-              {menu && (
-                <a
-                  href={menu}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
-                  onClick={() => {
-                    track("Detalles Catálogo");
-                  }}
-                >
-                  <ModalDetailsIcon
-                    className="tw-bg-yellow-600 tw-rounded-sm"
-                    tw-classnames-overrides={{ "tw-h-6": "tw-h-auto" }}
-                    is="span"
-                  >
-                    🗒️
-                  </ModalDetailsIcon>
-                  <ModalDetailsItem className="tw-text-yellow-600 tw-underline">
-                    presiona para ver el catálogo de productos
-                  </ModalDetailsItem>
-                </a>
-              )}
-
-              {location && (
-                <a
-                  href={location}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
-                  onClick={() => {
-                    track("Detalles Location");
-                  }}
-                >
-                  <ModalDetailsIcon
-                    src="/static/images/icons/google-maps.svg"
-                    alt="Google maps icon"
-                  />
-                  <ModalDetailsItem className="tw-text-red-600">
-                    {location}
-                  </ModalDetailsItem>
-                </a>
-              )}
-
-              {address && (
-                <section
-                  className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
-                  onClick={() => {
-                    track("Detalles Dirección");
-                  }}
-                >
-                  <ModalDetailsIcon
-                    className="tw-rounded-sm tw-bg-purple-200"
-                    tw-classnames-overrides={{ "tw-h-6": "tw-h-auto" }}
-                    is="span"
-                  >
-                    📍
-                  </ModalDetailsIcon>
-                  <ModalDetailsItem className="tw-text-purple-800">
-                    {address}
-                  </ModalDetailsItem>
-                </section>
-              )}
-
-              {description && (
-                <pre className="tw-bg-gray-200 tw-p-4 tw-mt-4 tw-text-left tw-whitespace-pre-line tw-text-base">
-                  {description}
-                </pre>
-              )}
-            </ContentBox>
+            <BusinessDetails
+              item={item}
+              track={track}
+              from={isPreview ? "modal-preview" : "modal-details"}
+            />
           </section>
         </section>
       </Modal>
     </article>
+  );
+}
+
+export function BusinessDetails({ item, track, from }: Record<string, any>): any {
+  const isFromDetailsPage = from === "business-details-page";
+  const {
+    name,
+    whatsapp,
+    instagram,
+    facebook,
+    location,
+    description,
+    address,
+    menu,
+    slug,
+  } = item;
+  const logo = item.logo || "/static/images/example-business-logo.png";
+
+  return (
+    <section>
+      <section className="tw-mb-8">
+        <img
+          src={logo}
+          alt="Business logo"
+          className="tw-w-32 tw-h-32 tw-rounded-full tw-shadow-md tw-p-1 tw-mx-auto tw-mb-2"
+          onClick={() => {
+            track("Detalles Logo");
+          }}
+        />
+        <h2 className="tw-font-bold tw-text-2xl tw-text-center">{name}</h2>
+      </section>
+
+      <ContentBox
+        className="tw-flex-1"
+        tw-classnames-overrides={
+          isFromDetailsPage
+            ? {
+                "tw-border": "",
+              }
+            : {}
+        }
+      >
+        {whatsapp && (
+          <a
+            href={`https://api.whatsapp.com/send?phone=57${whatsapp}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
+            target="_blank"
+            rel="noreferrer"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-0"
+            onClick={() => {
+              track("Detalles WhatsApp");
+            }}
+          >
+            <ModalDetailsIcon
+              src="/static/images/icons/whatsapp.svg"
+              alt="WhatsApp icon"
+            />
+            <ModalDetailsItem className="tw-text-green-500">
+              {formatPhoneNumber(whatsapp)}
+            </ModalDetailsItem>
+          </a>
+        )}
+
+        {instagram && (
+          <a
+            href={`https://instagram.com/${instagram}`}
+            target="_blank"
+            rel="noreferrer"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            onClick={() => {
+              track("Detalles Instagram");
+            }}
+          >
+            <ModalDetailsIcon
+              src="/static/images/icons/instagram.svg"
+              alt="Instagram icon"
+            />
+            <ModalDetailsItem className="tw-text-pink-600">
+              {`@${instagram}`}
+            </ModalDetailsItem>
+          </a>
+        )}
+
+        {facebook && (
+          <a
+            href={`https://facebook.com/${facebook}`}
+            target="_blank"
+            rel="noreferrer"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            onClick={() => {
+              track("Detalles Facebook");
+            }}
+          >
+            <ModalDetailsIcon
+              src="/static/images/icons/facebook.svg"
+              alt="Facebook icon"
+            />
+            <ModalDetailsItem className="tw-text-blue-700">
+              {`@${facebook}`}
+            </ModalDetailsItem>
+          </a>
+        )}
+
+        {menu && (
+          <a
+            href={menu}
+            target="_blank"
+            rel="noreferrer"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            onClick={() => {
+              track("Detalles Catálogo");
+            }}
+          >
+            <ModalDetailsIcon
+              className="tw-bg-yellow-600 tw-rounded-sm"
+              tw-classnames-overrides={{ "tw-h-6": "tw-h-auto" }}
+              is="span"
+            >
+              🗒️
+            </ModalDetailsIcon>
+            <ModalDetailsItem className="tw-text-yellow-600 tw-underline">
+              presiona para ver el catálogo de productos
+            </ModalDetailsItem>
+          </a>
+        )}
+
+        {location && (
+          <a
+            href={location}
+            target="_blank"
+            rel="noreferrer"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            onClick={() => {
+              track("Detalles Location");
+            }}
+          >
+            <ModalDetailsIcon
+              src="/static/images/icons/google-maps.svg"
+              alt="Google maps icon"
+            />
+            <ModalDetailsItem className="tw-text-red-600">{location}</ModalDetailsItem>
+          </a>
+        )}
+
+        {address && (
+          <section
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            onClick={() => {
+              track("Detalles Dirección");
+            }}
+          >
+            <ModalDetailsIcon
+              className="tw-rounded-sm tw-bg-purple-200"
+              tw-classnames-overrides={{ "tw-h-6": "tw-h-auto" }}
+              is="span"
+            >
+              📍
+            </ModalDetailsIcon>
+            <ModalDetailsItem className="tw-text-purple-800">{address}</ModalDetailsItem>
+          </section>
+        )}
+
+        {description && (
+          <pre className="tw-bg-gray-200 tw-p-4 tw-mt-4 tw-text-left tw-whitespace-pre-line tw-text-base">
+            {description}
+          </pre>
+        )}
+      </ContentBox>
+
+      {from === "modal-details" && (
+        <button
+          type="button"
+          className="clipboard-btn tw-bg-black tw-text-white tw-py-4 tw-px-4 tw-w-full tw-font-bold tw-mt-4"
+          data-clipboard-text={`https://directorio-armenia.vercel.app/${slug}`}
+          onClick={() => {
+            alert("enlace copiado");
+          }}
+        >
+          copiar enlace de este negocio para compartir
+        </button>
+      )}
+    </section>
   );
 }
 

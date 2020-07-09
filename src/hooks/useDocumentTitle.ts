@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-function useDocumentTitle(title?: any): void {
+function useDocumentTitle(title?: string): void {
   if (!title) return undefined;
 
   useEffect(() => {

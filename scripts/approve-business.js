@@ -10,31 +10,23 @@ async function getBusinessToApprove(businessId) {
 }
 
 async function approveBusiness(business) {
-  await Promise.all(
-    business.categories.map(category => {
-      return database
-        .ref(`directorio-armenia/businesses/${category}/${business.slug}`)
-        .set({
-          ...business,
-          created_at: new Date(business.created_at).toISOString(),
-          approved_at: new Date().toISOString(),
-        });
-    }),
-  );
+  const newBusiness = {
+    ...business,
+    created_at: new Date(business.created_at).toISOString(),
+    approved_at: new Date().toISOString(),
+  };
 
   await Promise.all(
     business.categories.map(category => {
       return database
-        .ref(`directorio-armenia/categories/${category}/total_business`)
-        .transaction(categoryData => {
-          if (categoryData) {
-            return { ...categoryData, total_business: categoryData.total_business + 1 };
-          }
-
-          return categoryData;
-        });
+        .ref(`directorio-armenia/businesses-by-category/${category}/${business.slug}`)
+        .set(newBusiness);
     }),
   );
+
+  await database
+    .ref(`directorio-armenia/businesses-by-slug/${business.slug}`)
+    .set(newBusiness);
 
   return true;
 }

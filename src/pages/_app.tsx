@@ -1,12 +1,11 @@
 import "../styles.css";
 
-import React, { Fragment } from "react";
+import React from "react";
 import App from "next/app";
 import Router from "next/router";
+import ClipboardJS from "clipboard";
 
-import { getMetadata } from "~/utils/metadata";
-import { initAnalytics, trackPageLoaded, setDimension } from "~/utils/analytics";
-import { Page } from "~/components/layout";
+import { initAnalytics } from "~/utils/analytics";
 
 import ErrorPage from "./_error";
 
@@ -19,6 +18,8 @@ class CustomApp extends App {
     function onRouteChangeComplete() {
       console.log("onRouteChangeComplete");
       document.getElementById("__next").scrollTop = 0;
+
+      new ClipboardJS(".clipboard-btn");
     }
 
     Router.events.on("routeChangeComplete", onRouteChangeComplete);
@@ -49,20 +50,14 @@ class CustomApp extends App {
   }
 
   render(): any {
-    const { Component, pageProps, router } = this.props;
+    const { Component, pageProps } = this.props;
     const { error } = this.state;
-    const isPageElement = Component.getInitialProps !== undefined;
-    const RootElement = isPageElement ? Fragment : Page;
 
     if (error) {
       return <ErrorPage />;
     }
 
-    return (
-      <RootElement {...(isPageElement ? {} : { metadata: getMetadata(router.pathname) })}>
-        <Component {...pageProps} />
-      </RootElement>
-    );
+    return <Component {...pageProps} />;
   }
 }
 

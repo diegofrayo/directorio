@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 
 import database from "~/utils/firebase";
 import { slugify } from "~/utils/utils";
+import { fetchBusinessBySlug } from "~/utils/server";
 
 export default async function BusinessController(
   req: NextApiRequest,
@@ -11,7 +12,7 @@ export default async function BusinessController(
   try {
     switch (req.method) {
       case "GET":
-        await GET_Handler(database, req.query.category, res);
+        await GET_Handler(database, req.query, res);
         break;
 
       case "POST":
@@ -28,18 +29,38 @@ export default async function BusinessController(
   }
 }
 
-async function GET_Handler(database, category, res) {
-  const response = (
-    await database.ref(`directorio-armenia/businesses/${category}`).once("value")
-  ).val();
+async function GET_Handler(database, query, res) {
+  if (query.category) {
+    const response = (
+      await database
+        .ref(`directorio-armenia/businesses-by-category/${query.category}`)
+        .once("value")
+    ).val();
 
-  res.status(200).send(
-    Object.values(response || {}).sort(
-      (a: Record<string, unknown>, b: Record<string, unknown>) => {
-        return a.created_at > b.created_at ? 1 : -1;
-      },
-    ),
-  );
+    if (!response) throw new Error("Businesses not found");
+
+    res.status(200).send(
+      Object.values(response).sort(
+        (a: Record<string, unknown>, b: Record<string, unknown>) => {
+          return a.created_at > b.created_at ? 1 : -1;
+        },
+      ),
+    );
+
+    return;
+  }
+
+  if (query.business) {
+    const response = await fetchBusinessBySlug(query.slug);
+
+    if (!response) throw new Error("Business not found");
+
+    res.status(200).send(response);
+
+    return;
+  }
+
+  throw new Error("Invalid params");
 }
 
 async function POST_Handler(database, body, res) {

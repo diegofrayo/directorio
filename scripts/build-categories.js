@@ -67,7 +67,7 @@ const CATEGORIES = [
   {
     name: "regalos y variedades",
     icon: "🎁",
-    total: 2,
+    total: 4,
   },
   {
     name: "pizza",

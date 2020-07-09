@@ -2,10 +2,28 @@ import React, { Fragment } from "react";
 import Head from "next/head";
 
 import { useDidMount, useDocumentTitle } from "~/hooks";
-import { DEFAULT_METADATA } from "~/utils/metadata";
 import { trackPageLoaded, setDimension } from "~/utils/analytics";
 
-function Page({ children, metadata = DEFAULT_METADATA }: Record<string, any>): any {
+function Page({ children, metadata: metadataProp = {} }: Record<string, any>): any {
+  const DEFAULT_METADATA = {
+    description:
+      "el principal objetivo de este sitio web es dar a conocer de manera fácil y rápida el número de contacto y links de redes sociales de los negocios, pequeñas empresas o personas particulares que venden sus productos o servicios a través de redes sociales o whatsapp.",
+    image: "https://directorio-armenia.vercel.app/static/images/da-logo.png",
+    title: "directorio ARMENIA",
+    url: "https://directorio-armenia.vercel.app",
+  };
+  const metadata = {
+    ...DEFAULT_METADATA,
+    ...metadataProp,
+    url: metadataProp.url
+      ? `${DEFAULT_METADATA.url}/${metadataProp.url}`
+      : DEFAULT_METADATA.url,
+    title: metadataProp.title
+      ? `${metadataProp.title} - ${DEFAULT_METADATA.title}`
+      : DEFAULT_METADATA.title,
+    description: metadataProp.description || DEFAULT_METADATA.description,
+  };
+
   useDocumentTitle(metadata.title);
 
   useDidMount(() => {
@@ -28,10 +46,7 @@ function Page({ children, metadata = DEFAULT_METADATA }: Record<string, any>): a
         <meta property="og:title" content={metadata.title} />
         <meta property="og:description" content={metadata.description} />
         <meta property="og:url" content={metadata.url} />
-        <meta
-          property="og:image"
-          content="https://directorio-armenia.vercel.app/static/images/da-logo.png"
-        />
+        <meta property="og:image" content={metadata.image} />
         <meta property="og:site_name" content="directorio ARMENIA" />
 
         <script

@@ -1,12 +1,12 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import Link from "next/link";
 
-import useDidMount from "~/hooks/useDidMount";
 import { ContentBox, Title, BusinessItem } from "~/components/pages";
-import { getMetadata } from "~/utils/metadata";
+
 import { isDevelopmentEnvironment } from "~/utils/utils";
 import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
+import { useDidMount } from "~/hooks";
 import {
   CATEGORIES,
   fetchCategoryBusinessList,
@@ -34,10 +34,11 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
         category: "Errores",
         label: `/categorias/${category.slug} => ${e.message}`,
       });
+      throw e;
     }
   }
 
-  if (!businessList || !category) return null;
+  if (!businessList) return null;
 
   return (
     <Page metadata={metadata}>
@@ -94,13 +95,21 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
   );
 }
 
-CategoryDetails.getInitialProps = function getInitialProps(ctx) {
+export default CategoryDetails;
+
+export async function getServerSideProps(
+  ctx: Record<string, any>,
+): Promise<Record<string, any>> {
   const category = CATEGORIES[ctx.query.category];
 
   return {
-    metadata: getMetadata(ctx.pathname, { category }),
-    category,
+    props: {
+      metadata: {
+        description: `${category.name} en Armenia`,
+        title: category.name,
+        url: `categorias/${category.slug}`,
+      },
+      category,
+    },
   };
-};
-
-export default CategoryDetails;
+}

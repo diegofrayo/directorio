@@ -1,8 +1,10 @@
 const database = require("./database-connection");
 
-async function getBusinessToUpdate(path) {
+async function getBusinessToUpdate(businessSlug) {
   const response = (
-    await database.ref(`directorio-armenia/businesses/${path}`).once("value")
+    await database
+      .ref(`directorio-armenia/businesses-by-slug/${businessSlug}`)
+      .once("value")
   ).val();
 
   return response;
@@ -12,7 +14,7 @@ async function updateBusiness(business, businessUpdates) {
   await Promise.all(
     business.categories.map(category => {
       return database
-        .ref(`directorio-armenia/businesses/${category}/${business.slug}`)
+        .ref(`directorio-armenia/businesses-by-category/${category}/${business.slug}`)
         .set(null);
     }),
   );
@@ -20,7 +22,7 @@ async function updateBusiness(business, businessUpdates) {
   await Promise.all(
     business.categories.map(category => {
       return database
-        .ref(`directorio-armenia/businesses/${category}/${business.slug}`)
+        .ref(`directorio-armenia/businesses-by-category/${category}/${business.slug}`)
         .set({
           ...business,
           ...businessUpdates,
@@ -28,12 +30,17 @@ async function updateBusiness(business, businessUpdates) {
     }),
   );
 
+  await database.ref(`directorio-armenia/businesses-by-slug/${business.slug}`).set({
+    ...business,
+    ...businessUpdates,
+  });
+
   return true;
 }
 
 setTimeout(async () => {
   try {
-    const businessToUpdate = await getBusinessToUpdate("category/business-slug");
+    const businessToUpdate = await getBusinessToUpdate("business-slug");
     await updateBusiness(businessToUpdate, {});
 
     process.exit();
