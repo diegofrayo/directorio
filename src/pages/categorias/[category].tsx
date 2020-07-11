@@ -97,10 +97,19 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
 
 export default CategoryDetails;
 
-export async function getServerSideProps(
-  ctx: Record<string, any>,
-): Promise<Record<string, any>> {
-  const category = CATEGORIES[ctx.query.category];
+export async function getStaticPaths() {
+  return {
+    paths: Object.values(CATEGORIES).map(category => ({
+      params: { category: category.slug },
+    })),
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({
+  params,
+}: Record<string, any>): Promise<Record<string, any>> {
+  const category = CATEGORIES[params.category];
 
   return {
     props: {

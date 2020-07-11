@@ -6,7 +6,9 @@ async function getBusinessToApprove(businessId) {
     await database.ref(`directorio-armenia/TO_APPROVE/${businessId}`).once("value")
   ).val();
 
-  return response || {};
+  if (!response) throw new Error("Business not found");
+
+  return response;
 }
 
 async function approveBusiness(business) {

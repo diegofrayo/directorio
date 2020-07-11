@@ -148,14 +148,16 @@ export function BusinessItem({
             <div className="tw-flex-shrink-0 tw-mt-4 tw-px-6">
               <button
                 type="button"
-                className="clipboard-btn tw-bg-black tw-text-white tw-py-2 sm:tw-py-4 tw-px-4 tw-w-full tw-font-bold tw-text-sm sm:tw-text-base"
+                className="clipboard-btn tw-bg-black tw-text-white tw-py-2 sm:tw-py-4 tw-px-4 tw-w-full tw-font-bold tw-text-sm sm:tw-text-lg"
                 data-clipboard-text={`https://directorio-armenia.vercel.app/${slug}`}
                 onClick={e => {
-                  alert("enlace copiado");
+                  alert(
+                    `el enlace fue copiado: https://directorio-armenia.vercel.app/${slug}`,
+                  );
                   track(e.currentTarget.innerText);
                 }}
               >
-                copiar enlace de este negocio para compartir
+                copiar el enlace de este negocio para compartir
               </button>
             </div>
           )}

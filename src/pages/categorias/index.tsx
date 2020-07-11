@@ -8,7 +8,14 @@ import { trackEvent } from "~/utils/analytics";
 
 function Categories({ metadata }: Record<string, unknown>): any {
   return (
-    <Page metadata={metadata}>
+    <Page
+      metadata={{
+        description:
+          "Directorio de restaurantes, domicilios y emprendimientos en Armenia",
+        title: "categorías",
+        url: "categorias",
+      }}
+    >
       <MainLayout>
         <ContentBox>
           <Title>categorías</Title>
@@ -56,16 +63,3 @@ function Categories({ metadata }: Record<string, unknown>): any {
 }
 
 export default Categories;
-
-export async function getServerSideProps(): Promise<Record<string, any>> {
-  return {
-    props: {
-      metadata: {
-        description:
-          "Directorio de restaurantes, domicilios y emprendimientos en Armenia",
-        title: "categorías",
-        url: "categorias",
-      },
-    },
-  };
-}
