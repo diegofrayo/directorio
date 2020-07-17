@@ -27,7 +27,7 @@ export function BusinessItem({
   }
 
   return (
-    <article className="tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-w-full hover:tw-bg-yellow-200 tw-px-2">
+    <article className="business tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-w-full hover:tw-bg-yellow-200 tw-px-2">
       <section>
         <img
           src={logo}

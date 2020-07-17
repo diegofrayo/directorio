@@ -34,3 +34,6 @@ package-lock.json
 notes.md
 .env
 assets/
+cypress/examples
+cypress/videos
+cypress/screenshots
