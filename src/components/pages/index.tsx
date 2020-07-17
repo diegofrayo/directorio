@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 import twcss from "~/lib/twcss";
 import { formatPhoneNumber } from "~/utils/utils";
@@ -8,6 +9,42 @@ import { trackEvent, setDimension, trackModal } from "~/utils/analytics";
 export const ContentBox = twcss.section``;
 
 export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:tw-text-4xl tw-uppercase`;
+
+export function Breadcumb({ items }: Record<string, any>): any {
+  return (
+    <ul className="tw-block tw-text-left">
+      {items.map((item, index) => {
+        if (index === items.length - 1) {
+          return (
+            <span
+              key={`breadcumb-item-${index}`}
+              className="tw-mr-4 tw-text-base tw-text-gray-700 tw-inline-block tw-break-all"
+            >
+              {item.text}
+            </span>
+          );
+        }
+
+        return (
+          <Link key={`breadcumb-item-${index}`} href={item.url} passHref>
+            <a className="tw-mr-4 tw-text-base tw-text-gray-700 tw-inline-block tw-break-all tw-font-bold">
+              {item.text}
+            </a>
+          </Link>
+        );
+      })}
+
+      <style jsx>
+        {`
+          a:after {
+            content: "▶️";
+            margin-left: 5px;
+          }
+        `}
+      </style>
+    </ul>
+  );
+}
 
 export function BusinessItem({
   item,
@@ -138,11 +175,7 @@ export function BusinessItem({
             <Modal.CloseButton />
           </div>
           <section className="tw-flex tw-flex-col tw-flex-1 tw-items-stretch tw-px-6 tw-overflow-auto">
-            <BusinessDetails
-              item={item}
-              track={track}
-              from={isPreview ? "modal-preview" : "modal-details"}
-            />
+            <BusinessDetails item={item} track={track} />
           </section>
           {!isPreview && (
             <div className="tw-flex-shrink-0 tw-mt-4 tw-px-6">
@@ -167,8 +200,7 @@ export function BusinessItem({
   );
 }
 
-export function BusinessDetails({ item, track, from }: Record<string, any>): any {
-  const isFromDetailsPage = from === "business-details-page";
+export function BusinessDetails({ item, track }: Record<string, any>): any {
   const {
     name,
     whatsapp,
@@ -178,7 +210,6 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
     description,
     address,
     menu,
-    slug,
   } = item;
   const logo = item.logo || "/static/images/example-business-logo.png";
 
@@ -222,7 +253,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
             href={`https://instagram.com/${instagram}`}
             target="_blank"
             rel="noreferrer"
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Instagram");
             }}
@@ -242,7 +273,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
             href={`https://facebook.com/${facebook}`}
             target="_blank"
             rel="noreferrer"
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Facebook");
             }}
@@ -262,7 +293,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
             href={menu}
             target="_blank"
             rel="noreferrer"
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Catálogo");
             }}
@@ -285,7 +316,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
             href={location}
             target="_blank"
             rel="noreferrer"
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Location");
             }}
@@ -300,7 +331,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
 
         {address && (
           <section
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Dirección");
             }}

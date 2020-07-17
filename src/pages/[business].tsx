@@ -1,13 +1,12 @@
 import React from "react";
-import Link from "next/link";
 
-import { BusinessDetails, ContentBox } from "~/components/pages";
-
+import { BusinessDetails, ContentBox, Breadcumb } from "~/components/pages";
+import { CATEGORIES } from "~/utils/data";
+import { fetchBusinessBySlug } from "~/utils/server";
 import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
-import { fetchBusinessBySlug } from "~/utils/server";
 
-function BusinessDetailsPage({ business, metadata }: Record<string, any>): any {
+function BusinessDetailsPage({ business, metadata, category }: Record<string, any>): any {
   function track(label) {
     trackEvent({
       category: "Negocio Item - Página",
@@ -19,26 +18,21 @@ function BusinessDetailsPage({ business, metadata }: Record<string, any>): any {
     <Page metadata={metadata}>
       <MainLayout>
         <ContentBox>
-          <section className="tw-text-left tw-mb-4">
-            <Link href={`/categorias/${business.categories[0]}`} passHref>
-              <a
-                className="tw-text-sm tw-text-gray-800"
-                onClick={() => {
-                  trackEvent({
-                    category: "/negocio",
-                    label: "ver listado de negocios similares",
-                  });
-                }}
-              >
-                <span>◀️</span>
-                <span className="tw-ml-1 tw-underline">
-                  ver listado de negocios similares
-                </span>
-              </a>
-            </Link>
+          <section className="tw-mb-10">
+            <Breadcumb
+              items={[
+                { text: "Inicio", url: "/" },
+                { text: "Categorías", url: "/categorias" },
+                { text: category.name, url: `/categorias/${category.slug}` },
+                {
+                  text: business.name,
+                  url: `/categorias/${category.slug}/${business.slug}`,
+                },
+              ]}
+            />
           </section>
 
-          <BusinessDetails item={business} from="business-details-page" track={track} />
+          <BusinessDetails item={business} track={track} />
         </ContentBox>
       </MainLayout>
     </Page>
@@ -51,6 +45,7 @@ export async function getServerSideProps(
   ctx: Record<string, any>,
 ): Promise<Record<string, any>> {
   const business = await fetchBusinessBySlug(ctx.params.business);
+  const category = CATEGORIES[business.categories[0]];
 
   return {
     props: {
@@ -61,6 +56,7 @@ export async function getServerSideProps(
         url: business.slug,
       },
       business,
+      category,
     },
   };
 }

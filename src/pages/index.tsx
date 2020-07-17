@@ -22,7 +22,7 @@ const Home: React.FunctionComponent = function Home() {
             rápidas, pizzerías, licorerías, entre otros.
           </p>
           <br />
-          <p className="tw-bg-blue-100 tw-text-blue-600 tw-py-2 tw-px-4 tw-text-center tw-border tw-border-blue-300">
+          <p className="tw-bg-blue-100 tw-text-xl tw-text-blue-600 tw-py-2 tw-px-4 tw-text-center tw-border tw-border-blue-300">
             Puedes agregar un negocio a este sitio web <strong>GRATIS</strong> y sin
             necesidad de registrarte.
           </p>

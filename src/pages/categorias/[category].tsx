@@ -1,8 +1,6 @@
 import React, { Fragment, useState } from "react";
-import Link from "next/link";
 
-import { ContentBox, Title, BusinessItem } from "~/components/pages";
-
+import { ContentBox, Title, Breadcumb, BusinessItem } from "~/components/pages";
 import { isDevelopmentEnvironment } from "~/utils/utils";
 import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
@@ -44,23 +42,14 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
     <Page metadata={metadata}>
       <MainLayout>
         <ContentBox>
-          <section className="tw-text-left tw-mb-4">
-            <Link href="/categorias" passHref>
-              <a
-                className="tw-text-sm tw-text-gray-800"
-                onClick={() => {
-                  trackEvent({
-                    category: "/categorias",
-                    label: "volver al listado de categorías",
-                  });
-                }}
-              >
-                <span>◀️</span>
-                <span className="tw-ml-1 tw-underline">
-                  volver al listado de categorías
-                </span>
-              </a>
-            </Link>
+          <section className="tw-mb-10">
+            <Breadcumb
+              items={[
+                { text: "Inicio", url: "/" },
+                { text: "Categorías", url: "/categorias" },
+                { text: category.name, url: `/categorias/${category.slug}` },
+              ]}
+            />
           </section>
 
           <section className="tw-flex tw-flex-no-wrap tw-justify-center tw-items-center tw-mb-6">
@@ -97,7 +86,7 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
 
 export default CategoryDetails;
 
-export async function getStaticPaths() {
+export async function getStaticPaths(): Promise<Record<string, any>> {
   return {
     paths: Object.values(CATEGORIES).map(category => ({
       params: { category: category.slug },

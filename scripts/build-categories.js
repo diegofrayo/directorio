@@ -20,62 +20,62 @@ function slugify(str) {
 
 const CATEGORIES = [
   {
-    name: "salsas y mermeladas",
+    name: "Salsas y Mermeladas",
     icon: "🍯",
     total: 1,
   },
   {
-    name: "comida peruana",
+    name: "Comida Peruana",
     icon: "🇵🇪",
     total: 1,
   },
   {
-    name: "postres y dulces",
+    name: "Postres y Dulces",
     icon: "🍩",
     total: 1,
   },
   {
-    name: "empanadas",
+    name: "Empanadas",
     icon: "🌮",
     total: 1,
   },
   {
-    name: "productos de belleza",
+    name: "Productos de Belleza",
     icon: "💅",
     total: 1,
   },
   {
-    name: "asados y arepas",
+    name: "Asados y Arepas",
     icon: "🥘",
     total: 1,
   },
   {
-    name: "comidas rápidas",
+    name: "Comidas Rápidas",
     icon: "🌭",
     total: 2,
   },
   {
-    name: "hamburgueserías",
+    name: "Hamburgueserías",
     icon: "🍔",
     total: 1,
   },
   {
-    name: "alitas",
+    name: "Alitas",
     icon: "🍗",
     total: 1,
   },
   {
-    name: "regalos y variedades",
+    name: "Regalos y Variedades",
     icon: "🎁",
     total: 4,
   },
   {
-    name: "pizza",
+    name: "Pizza",
     icon: "🍕",
     total: 1,
   },
   {
-    name: "almuerzos ejecutivos",
+    name: "Almuerzos Ejecutivos",
     icon: "🍲",
     total: 1,
   },

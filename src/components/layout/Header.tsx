@@ -8,9 +8,19 @@ import twcss from "~/lib/twcss";
 import { ContentBox, Title, BusinessItem } from "~/components/pages";
 import { Modal } from "~/components/primitive";
 import { trackEvent, trackModal } from "~/utils/analytics";
+import { useWindowResize } from "~/hooks";
 
 function Header(): any {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isMenuCollapsed, setIsMenuCollapsed] = useState(true);
+
+  useWindowResize(() => {
+    if (window.innerWidth < 640) {
+      setIsMenuCollapsed(true);
+    } else {
+      setIsMenuCollapsed(false);
+    }
+  });
 
   function handleAddBussinessClick(e) {
     setIsModalVisible(true);
@@ -18,27 +28,29 @@ function Header(): any {
     trackModal("agregar-negocio");
   }
 
+  function handleCollapseMenu() {
+    setIsMenuCollapsed(cv => !cv);
+  }
+
   function trackMenuItems(e) {
     trackEvent({ category: "Menú Principal", label: e.currentTarget.innerText });
   }
 
   return (
-    <header className="tw-bg-yellow-300 tw-border-b tw-border-yellow-400 tw-px-6 tw-flex-shrink-0">
-      <h1 className="tw-inline-block tw-mx-auto tw-mt-4 tw-mb-6">
-        <Link href="/">
-          <a
-            onClick={() => {
-              trackEvent({ category: "Header", label: "Logo" });
-            }}
-          >
-            <span className="tw-block tw-text-3xl tw-leading-none tw-font-hairline">
-              directorio
-            </span>
-            <strong className="tw-block tw-text-xl tw-text-right">ARMENIA</strong>
-          </a>
-        </Link>
-      </h1>
-      <nav>
+    <header className="tw-bg-yellow-300 tw-border-b tw-border-yellow-400 tw-px-6 tw-flex-shrink-0 tw-py-4">
+      <section className="tw-flex tw-justify-between sm:tw-justify-center">
+        <Logo />
+        <button
+          className="tw-inline-block sm:tw-hidden tw-p-2"
+          onClick={handleCollapseMenu}
+        >
+          <span className="tw-border-b-2 tw-border-yellow-600 tw-block tw-w-8 tw-my-2" />
+          <span className="tw-border-b-2 tw-border-yellow-600 tw-block tw-w-8 tw-my-2" />
+          <span className="tw-border-b-2 tw-border-yellow-600 tw-block tw-w-8 tw-my-2" />
+        </button>
+      </section>
+
+      <nav className={`tw-mt-6 ${isMenuCollapsed ? "tw-hidden" : "tw-block"}`}>
         <Menu>
           <MenuItem tw-variant="default">
             <Link href="/" passHref>
@@ -76,14 +88,33 @@ export default Header;
 
 // --- Components ---
 
+function Logo() {
+  return (
+    <h1 className="tw-inline-block tw-flex-shrink-0">
+      <Link href="/">
+        <a
+          onClick={() => {
+            trackEvent({ category: "Header", label: "Logo" });
+          }}
+        >
+          <span className="tw-block tw-text-3xl tw-leading-none tw-font-hairline">
+            directorio
+          </span>
+          <strong className="tw-block tw-text-xl tw-text-right">ARMENIA</strong>
+        </a>
+      </Link>
+    </h1>
+  );
+}
+
 const Menu = twcss.ul`tw-block sm:tw-inline-flex tw-w-full`;
 const MenuItem = twcss.li({
   __base:
-    "tw-flex-shrink-0 tw-cursor-pointer tw-py-1 sm:tw-py-0 tw-uppercase tw-font-bold tw-text-base sm:tw-text-xl hover:tw-opacity-50",
-  default: "tw-text-black",
+    "tw-flex-shrink-0 tw-cursor-pointer tw-py-1 sm:tw-py-0 tw-uppercase tw-font-bold tw-text-black tw-text-base sm:tw-text-xl hover:tw-opacity-50 tw-my-2 sm:tw-my-0",
+  default: "tw-mr-0 sm:tw-mr-8",
   "add-business": "tw-flex-grow-1 tw-text-center sm:tw-text-right",
 });
-const MenuItemLink = twcss.a`tw-block tw-w-full tw-p-2`;
+const MenuItemLink = twcss.a`tw-block tw-w-full`;
 const MenuItemLinkText = twcss.span`tw-inline-block tw-border-b-2 tw-border-dashed tw-border-black`;
 
 function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {

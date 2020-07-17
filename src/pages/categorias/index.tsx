@@ -6,7 +6,7 @@ import { ContentBox, Title } from "~/components/pages";
 import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
 
-function Categories({ metadata }: Record<string, unknown>): any {
+function Categories(): any {
   return (
     <Page
       metadata={{
@@ -25,7 +25,7 @@ function Categories({ metadata }: Record<string, unknown>): any {
               return (
                 <article
                   key={`category-${index}`}
-                  className="category tw-mb-4 sm:tw-mb-5 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-gray-200"
+                  className="category tw-mb-4 sm:tw-mb-6 tw-border tw-mx-0 tw-cursor-pointer hover:tw-bg-gray-200"
                 >
                   <a
                     href={`/categorias/${category.slug}`}
@@ -35,7 +35,7 @@ function Categories({ metadata }: Record<string, unknown>): any {
                     }}
                   >
                     <span className="emoji tw-text-3xl">{category.icon}</span>
-                    <span className="tw-ml-3 tw-mr-4 tw-flex-1 tw-text-left">
+                    <span className="tw-ml-3 tw-mr-4 tw-flex-1 tw-text-left tw-lowercase">
                       {category.name}
                     </span>
                     <strong>[{category.total}]</strong>
