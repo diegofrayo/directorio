@@ -1,12 +1,17 @@
 import React from "react";
 
-import { BusinessDetails, ContentBox, Breadcumb } from "~/components/pages";
+import { BusinessDetails, ContentBox, Breadcumb, Separator } from "~/components/pages";
 import { CATEGORIES } from "~/utils/data";
 import { fetchBusinessBySlug } from "~/utils/server";
 import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
+import { useDidMount } from "~/hooks";
 
 function BusinessDetailsPage({ business, metadata, category }: Record<string, any>): any {
+  useDidMount(() => {
+    if (!business) window.location.href = "/404";
+  });
+
   function track(label) {
     trackEvent({
       category: "Negocio Item - Página",
@@ -14,11 +19,13 @@ function BusinessDetailsPage({ business, metadata, category }: Record<string, an
     });
   }
 
+  if (!business) return null;
+
   return (
     <Page metadata={metadata}>
       <MainLayout>
         <ContentBox>
-          <section className="tw-mb-10">
+          <section className="tw-mb-10 tw-text-left">
             <Breadcumb
               items={[
                 { text: "Inicio", url: "/" },
@@ -45,6 +52,11 @@ export async function getServerSideProps(
   ctx: Record<string, any>,
 ): Promise<Record<string, any>> {
   const business = await fetchBusinessBySlug(ctx.params.business);
+
+  if (!business) {
+    return { props: {} };
+  }
+
   const category = CATEGORIES[business.categories[0]];
 
   return {

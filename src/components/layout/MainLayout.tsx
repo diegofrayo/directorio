@@ -31,7 +31,7 @@ export default function MainLayout({ children }: Record<string, unknown>): any {
 
 const Main = twcss.main`tw-mx-auto tw-max-w-screen-md tw-text-center tw-bg-white tw-shadow-md tw-min-h-full tw-flex tw-flex-col`;
 
-const Body = twcss.section`tw-px-3 tw-py-12 sm:tw-px-6 tw-flex-1`;
+const Body = twcss.section`tw-px-3 tw-py-12 sm:tw-px-6 tw-flex tw-flex-1 tw-flex-col tw-items-stretch`;
 
 function Footer() {
   function trackLinks(e) {

@@ -9,7 +9,7 @@ function ErrorPage({ statusCode }: Record<string, unknown>): any {
   return (
     <Page>
       <MainLayout>
-        <ContentBox className="tw-pt-8 tw-pb-10">
+        <ContentBox className="tw-flex tw-items-center tw-justify-center tw-flex-1 tw-flex-col tw-pb-6">
           {statusCode === 404 ? (
             <Fragment>
               <Icon className="emoji">🙉</Icon>

@@ -2,8 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { v4 as uuid } from "uuid";
 
 import database from "~/utils/firebase";
-import { slugify } from "~/utils/utils";
+import { slugify, isDevelopmentEnvironment } from "~/utils/utils";
 import { fetchBusinessBySlug } from "~/utils/server";
+import { CATEGORIES, generateCategoryBusinessList } from "~/utils/data";
 
 export default async function BusinessController(
   req: NextApiRequest,
@@ -31,11 +32,13 @@ export default async function BusinessController(
 
 async function GET_Handler(database, query, res) {
   if (query.category) {
-    const response = (
-      await database
-        .ref(`directorio-armenia/businesses-by-category/${query.category}`)
-        .once("value")
-    ).val();
+    const response = isDevelopmentEnvironment("FIREBASE")
+      ? generateCategoryBusinessList(CATEGORIES[query.category].total)
+      : (
+          await database
+            .ref(`directorio-armenia/businesses-by-category/${query.category}`)
+            .once("value")
+        ).val();
 
     if (!response) throw new Error("Businesses not found");
 

@@ -10,27 +10,31 @@ export const ContentBox = twcss.section``;
 
 export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:tw-text-4xl tw-uppercase`;
 
+export const Separator = twcss.hr`tw-border-0 tw-my-5`;
+
 export function Breadcumb({ items }: Record<string, any>): any {
   return (
-    <ul className="tw-block tw-text-left">
+    <ul className="tw-block sm:tw-inline-block tw-text-left tw-border-b tw-border-gray-400 tw-border-dashed tw-pb-1">
       {items.map((item, index) => {
         if (index === items.length - 1) {
           return (
-            <span
-              key={`breadcumb-item-${index}`}
-              className="tw-mr-4 tw-text-base tw-text-gray-700 tw-inline-block tw-break-all"
-            >
-              {item.text}
-            </span>
+            <li key={`breadcumb-item-${index}`} className="tw-block sm:tw-inline-block">
+              <span className="tw-text-base tw-text-gray-700">{item.text}</span>
+            </li>
           );
         }
 
         return (
-          <Link key={`breadcumb-item-${index}`} href={item.url} passHref>
-            <a className="tw-mr-4 tw-text-base tw-text-gray-700 tw-inline-block tw-break-all tw-font-bold">
-              {item.text}
-            </a>
-          </Link>
+          <li
+            key={`breadcumb-item-${index}`}
+            className="tw-block sm:tw-inline-block tw-mr-0 sm:tw-mr-4"
+          >
+            <Link href={item.url} passHref>
+              <a className="tw-text-base tw-text-gray-700 tw-font-bold">
+                <span className="tw-underline">{item.text}</span>
+              </a>
+            </Link>
+          </li>
         );
       })}
 
@@ -184,9 +188,7 @@ export function BusinessItem({
                 className="clipboard-btn tw-bg-black tw-text-white tw-py-2 sm:tw-py-4 tw-px-4 tw-w-full tw-font-bold tw-text-sm sm:tw-text-lg tw-uppercase"
                 data-clipboard-text={`https://directorio-armenia.vercel.app/${slug}`}
                 onClick={e => {
-                  alert(
-                    `El enlace fue copiado: https://directorio-armenia.vercel.app/${slug}`,
-                  );
+                  alert("El enlace fue copiado exitosamente");
                   track(e.currentTarget.innerText);
                 }}
               >

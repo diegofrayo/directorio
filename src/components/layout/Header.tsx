@@ -5,7 +5,7 @@ import { Formik, Field, ErrorMessage } from "formik";
 
 import tsh from "~/lib/tsh";
 import twcss from "~/lib/twcss";
-import { ContentBox, Title, BusinessItem } from "~/components/pages";
+import { ContentBox, Title, BusinessItem, Separator } from "~/components/pages";
 import { Modal } from "~/components/primitive";
 import { trackEvent, trackModal } from "~/utils/analytics";
 import { useWindowResize } from "~/hooks";
@@ -445,4 +445,3 @@ const SubmitButton = twcss.button({
   invalid: "tw-opacity-25 tw-cursor-not-allowed",
   loading: "tw-opacity-25 tw-cursor-wait",
 });
-const Separator = twcss.hr`tw-border-0 tw-my-5`;

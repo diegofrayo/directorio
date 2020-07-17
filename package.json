@@ -8,13 +8,14 @@
     "start": "next start",
     "test": "jest test/*.spec.{jsx,js}",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --ext .ts,.tsx --fix",
-    "lint:data-scripts": "eslint \"scripts/*.js\" -c scripts/.eslintrc-node --fix",
+    "lint:scripts": "eslint \"scripts/*.js\" -c .eslintrc-node --fix",
     "style": "prettier --write \"src/**/*.{ts,tsx}\"",
-    "data:approve-business": "node scripts/approve-business.js",
-    "data:build-categories": "node scripts/build-categories.js",
-    "data:clean-data": "node scripts/clean-data.js",
-    "data:update-business": "node scripts/update-business.js",
-    "data:update-businesses": "node scripts/update-businesses.js"
+    "scripts:approve-business": "node scripts/approve-business.js",
+    "scripts:build-categories": "node scripts/build-categories.js",
+    "scripts:clean-data": "node scripts/clean-data.js",
+    "scripts:update-business": "node scripts/update-business.js",
+    "scripts:update-businesses": "node scripts/update-businesses.js",
+    "scripts:screenshots": "node scripts/screenshots.js"
   },
   "dependencies": {
     "clipboard": "^2.0.6",
@@ -42,6 +43,7 @@
     "@typescript-eslint/parser": "^3.4.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.1.0",
+    "capture-website": "^1.0.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.3.1",
     "eslint-config-airbnb-base": "^14.2.0",
@@ -58,7 +60,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn data:build-categories && yarn lint:data-scripts && yarn test && yarn build"
+      "pre-commit": "lint-staged && yarn scripts:build-categories && yarn lint:scripts && yarn test && yarn build"
     }
   },
   "lint-staged": {
