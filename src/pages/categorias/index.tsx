@@ -25,7 +25,7 @@ function Categories({ metadata }: Record<string, unknown>): any {
               return (
                 <article
                   key={`category-${index}`}
-                  className="category tw-mb-2 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-yellow-200"
+                  className="category tw-mb-4 sm:tw-mb-5 tw-border tw-mx-0 sm:tw-mx-1 tw-cursor-pointer hover:tw-bg-gray-200"
                 >
                   <a
                     href={`/categorias/${category.slug}`}

@@ -9,21 +9,29 @@ import Header from "./Header";
 export default function MainLayout({ children }: Record<string, unknown>): any {
   return (
     <Fragment>
-      <Main>
+      <Main className="main">
         <Header />
         <Body>{children}</Body>
         <Footer />
       </Main>
       <section id="modals-portal-container" />
+
+      <style jsx>
+        {`
+          :global(.main) {
+            box-shadow: 0px 0px 3px 2px #000;
+          }
+        `}
+      </style>
     </Fragment>
   );
 }
 
 // --- Components ---
 
-const Main = twcss.main`tw-mx-auto tw-max-w-screen-md tw-text-center tw-p-6`;
+const Main = twcss.main`tw-mx-auto tw-max-w-screen-md tw-text-center tw-bg-white tw-shadow-md tw-min-h-full tw-flex tw-flex-col`;
 
-const Body = twcss.section`tw-mt-6 tw-pb-12`;
+const Body = twcss.section`tw-px-4 tw-py-12 sm:tw-px-6 tw-flex-1`;
 
 function Footer() {
   function trackLinks(e) {
@@ -31,38 +39,38 @@ function Footer() {
   }
 
   return (
-    <footer className="tw-border-t tw-pt-2 tw-mt-10">
+    <footer className="tw-bg-gray-100 tw-border-t tw-py-6 tw-flex-shrink-0">
       <ul>
-        <li className="tw-inline-block tw-m-2">
+        <li className="tw-inline-block tw-mx-2 tw-my-1 sm:tw-my-0">
           <Link href="/terminos-y-condiciones" passHref>
-            <a className="tw-font-bold tw-underline" onClick={trackLinks}>
-              términos y condiciones
+            <a className="tw-font-bold tw-uppercase" onClick={trackLinks}>
+              Términos y condiciones
             </a>
           </Link>
         </li>
-        <li className="tw-inline-block tw-m-2">
+        <li className="tw-inline-block tw-mx-2 tw-my-1 sm:tw-my-0">
           <Link href="/contacto" passHref>
-            <a className="tw-font-bold tw-underline" onClick={trackLinks}>
-              contacto
+            <a className="tw-font-bold tw-uppercase" onClick={trackLinks}>
+              Contacto
             </a>
           </Link>
         </li>
       </ul>
 
       <p
-        className="tw-text-sm tw-mt-8 tw-text-gray-700"
+        className="tw-text-sm tw-mt-6 tw-text-gray-700"
         onClick={() => {
           trackEvent({ category: "Footer", label: "Hecho con amor" });
         }}
       >
-        hecho con <span className="emoji">❤️</span> en{" "}
+        Hecho con <span className="emoji">❤️</span> en{" "}
         <a
           href="https://goo.gl/maps/sMdcnQHsSG76d73A9"
           target="_blank"
           rel="noreferrer"
           className="tw-font-bold tw-underline"
         >
-          armenia, quindío
+          Armenia, Quindío
         </a>
       </p>
     </footer>

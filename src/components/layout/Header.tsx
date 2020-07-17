@@ -23,8 +23,8 @@ function Header(): any {
   }
 
   return (
-    <header>
-      <h1 className="tw-inline-block tw-mx-auto tw-mb-8">
+    <header className="tw-bg-yellow-300 tw-border-b tw-border-yellow-400 tw-px-6 tw-flex-shrink-0">
+      <h1 className="tw-inline-block tw-mx-auto tw-mt-4 tw-mb-6">
         <Link href="/">
           <a
             onClick={() => {
@@ -42,21 +42,24 @@ function Header(): any {
         <Menu>
           <MenuItem tw-variant="default">
             <Link href="/" passHref>
-              <MenuItemLink onClick={trackMenuItems}>inicio</MenuItemLink>
+              <MenuItemLink onClick={trackMenuItems}>
+                <MenuItemLinkText>inicio</MenuItemLinkText>
+              </MenuItemLink>
             </Link>
           </MenuItem>
-          <MenuItem tw-variant="default" className="tw-mx-0 sm:tw-mx-2">
-            <MenuItemLink href="/categorias" onClick={trackMenuItems}>
-              categorías
-            </MenuItemLink>
+          <MenuItem tw-variant="default">
+            <Link href="/categorias" passHref>
+              <MenuItemLink onClick={trackMenuItems}>
+                <MenuItemLinkText>categorías</MenuItemLinkText>
+              </MenuItemLink>
+            </Link>
           </MenuItem>
           <MenuItem tw-variant="add-business">
-            <button
-              className="tw-w-full tw-h-full tw-font-bold tw-p-2"
-              onClick={handleAddBussinessClick}
-            >
-              ¡agrega un negocio!
-            </button>
+            <MenuItemLink onClick={handleAddBussinessClick}>
+              <MenuItemLinkText className="tw-border-2 tw-px-2">
+                ¡agrega un negocio!
+              </MenuItemLinkText>
+            </MenuItemLink>
           </MenuItem>
         </Menu>
       </nav>
@@ -76,11 +79,12 @@ export default Header;
 const Menu = twcss.ul`tw-block sm:tw-inline-flex tw-w-full`;
 const MenuItem = twcss.li({
   __base:
-    "tw-flex-1 tw-bg-gray-900 hover:tw-bg-gray-800 tw-cursor-pointer tw-my-1 sm:tw-my-0",
-  default: "hover:tw-underline tw-text-gray-100 tw-font-bold",
-  "add-business": "tw-text-yellow-400 tw-underline",
+    "tw-flex-shrink-0 tw-cursor-pointer tw-py-1 sm:tw-py-0 tw-uppercase tw-font-bold tw-text-base sm:tw-text-xl hover:tw-opacity-50",
+  default: "tw-text-black",
+  "add-business": "tw-flex-grow-1 tw-text-center sm:tw-text-right",
 });
-const MenuItemLink = twcss.a`tw-block tw-p-2`;
+const MenuItemLink = twcss.a`tw-block tw-w-full tw-p-2`;
+const MenuItemLinkText = twcss.span`tw-inline-block tw-border-b-2 tw-border-dashed tw-border-black`;
 
 function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
   const [portal, setPortal] = useState(undefined);
@@ -112,7 +116,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           const errors: Record<string, string> = {};
 
           if (values.name.length < 2) {
-            errors.name = "el nombre debe tener al menos 2 carácteres";
+            errors.name = "El nombre debe tener al menos 2 carácteres";
           }
 
           if (
@@ -120,7 +124,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             !/^[0-9]*$/.test(values.whatsapp)
           ) {
             errors.whatsapp =
-              "el teléfono debe tener 10 carácteres y solo debe contener números";
+              "El teléfono debe tener 10 carácteres y solo debe contener números";
           }
 
           return errors;
@@ -130,7 +134,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             await tsh("/api").post("/businesses", { body: values }).json();
 
             alert(
-              "el negocio ha sido agregado correctamente. el administrador en unos momentos lo publicará en el sitio",
+              "El negocio ha sido agregado correctamente. El administrador en unos momentos lo validará y publicará en el sitio",
             );
             setIsModalVisible(false);
 
@@ -141,7 +145,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           } catch (e) {
             console.trace(e);
             alert(
-              "lo sentimos, ha ocurrido un error, estamos trabajando para solucionarlo",
+              "Lo sentimos, ha ocurrido un error, estamos trabajando para solucionarlo",
             );
             setSubmitting(false);
 
@@ -200,7 +204,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                     <Separator />
 
                     <InputContainer htmlFor="whatsapp">
-                      <InputLabel>whatsapp</InputLabel>
+                      <InputLabel>WhatsApp</InputLabel>
                       <InputGroup>
                         <InputIcon>+57</InputIcon>
                         <Field
@@ -304,19 +308,16 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                     </InputContainer>
                   </section>
 
-                  <ContentBox
-                    className="tw-mt-4"
-                    tw-classnames-overrides={{ "tw-border": "tw-border-4" }}
-                  >
-                    <p className="tw-font-bold tw-mb-2 tw-text-center tw-underline">
+                  <ContentBox className="tw-mt-4 tw-border-4 tw-border-black tw-py-4 tw-px-2">
+                    <p className="tw-font-bold tw-mb-2 tw-text-center tw-uppercase">
                       vista previa
                     </p>
                     <BusinessItem item={values} isPreview />
                   </ContentBox>
 
                   <p className="tw-my-6 tw-text-sm tw-bg-gray-100 tw-text-gray-600 tw-p-2 tw-text-center tw-border">
-                    el logo de tu negocio será obtenido de alguno de los perfiles que
-                    ingresaste previamente [whatsapp, instagram o facebook]
+                    El logo de tu negocio será obtenido de alguno de los perfiles que
+                    ingresaste previamente [WhatsApp, Instagram o Facebook]
                   </p>
 
                   <SubmitButton
@@ -402,13 +403,13 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
 
 const URLPreview = twcss.a`tw-pl-6 tw-text-right tw-block tw-text-gray-500 tw-text-sm tw-mt-1 tw-font-bold tw-underline`;
 const InputContainer = twcss.label`tw-text-left tw-block`;
-const InputLabel = twcss.p`tw-mb-1 tw-font-bold tw-cursor-pointer`;
+const InputLabel = twcss.p`tw-mb-1 tw-font-bold tw-cursor-pointer tw-capitalize`;
 const InputGroup = twcss.div`tw-w-full tw-flex tw-border tw-border-black`;
 const InputIcon = twcss.span`input__icon tw-bg-gray-600 tw-text-white tw-flex tw-items-center tw-font-bold tw-border-r tw-border-black tw-justify-center tw-flex-shrink-0`;
 const InputElement = twcss.input`input__element tw-p-2 tw-rounded-none`;
 const InputError = twcss.p`tw-text-red-600 tw-text-sm tw-text-right tw-pl-6 tw-mt-1`;
 const SubmitButton = twcss.button({
-  __base: "tw-bg-black tw-text-white tw-py-4 tw-px-4 tw-w-full tw-font-bold",
+  __base: "tw-bg-black tw-text-white tw-py-4 tw-px-4 tw-w-full tw-font-bold tw-uppercase",
   initial: "hover:tw-bg-gray-900",
   invalid: "tw-opacity-25 tw-cursor-not-allowed",
   loading: "tw-opacity-25 tw-cursor-wait",

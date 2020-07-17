@@ -1,12 +1,12 @@
 {
   "name": "directorio-armenia",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest tests/*.spec.{jsx,js}",
+    "test": "jest test/*.spec.{jsx,js}",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --ext .ts,.tsx --fix",
     "lint:data-scripts": "eslint \"scripts/*.js\" -c scripts/.eslintrc-node --fix",
     "style": "prettier --write \"src/**/*.{ts,tsx}\"",
@@ -58,7 +58,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn data:build-categories && yarn lint:data-scripts && yarn build"
+      "pre-commit": "lint-staged && yarn data:build-categories && yarn lint:data-scripts && yarn test && yarn build"
     }
   },
   "lint-staged": {

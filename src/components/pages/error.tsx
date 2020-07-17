@@ -14,14 +14,14 @@ function ErrorPage({ statusCode }: Record<string, unknown>): any {
             <Fragment>
               <Icon className="emoji">🙉</Icon>
               <Message>
-                lo sentimos, la página a la que intentas ingresar no existe
+                Lo sentimos, la página a la que intentas ingresar no existe
               </Message>
             </Fragment>
           ) : (
             <Fragment>
               <Icon className="emoji">🙈</Icon>
               <Message>
-                lo sentimos, hubo un error, lo trataremos de solucionar lo más pronto
+                Lo sentimos, hubo un error, lo trataremos de solucionar lo más pronto
                 posible
               </Message>
             </Fragment>

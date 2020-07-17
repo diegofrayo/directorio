@@ -4,6 +4,7 @@ const {
   width,
   height,
   minHeight,
+  flexGrow,
 } = require("tailwindcss/defaultTheme");
 
 module.exports = {
@@ -45,6 +46,12 @@ module.exports = {
         "400": "400px",
         "500": "500px",
         "600": "600px",
+      },
+      flexGrow: {
+        ...flexGrow,
+        "1": "1",
+        "2": "2",
+        "3": "3",
       },
     },
   },

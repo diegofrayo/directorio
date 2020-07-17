@@ -34,3 +34,4 @@ package-lock.json
 notes.md
 .env
 assets/
+cypress/
