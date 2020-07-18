@@ -1,4 +1,5 @@
 const captureWebsite = require("capture-website");
+const sharp = require("sharp");
 
 // eslint-disable-next-line no-unused-vars
 const SITE_VERSION_1 = {
@@ -20,18 +21,36 @@ const PAGES = [
   { title: "business-details", url: "/minipigs-alcancias" },
 ];
 
-PAGES.forEach(page => {
-  (async () => {
-    await captureWebsite.file(
-      `${CURRENT_SITE_VERSION.url}${page.url}?noga=true`,
-      `screenshots/${CURRENT_SITE_VERSION.tag}/${page.title}.png`,
-      {
-        width: 1024,
-        height: 768,
-        fullPage: true,
-        delay: 10,
-        overwrite: true,
-      },
+setTimeout(async function() {
+  try {
+    const generateScreenshots = function generateScreenshots() {
+      return PAGES.reduce((p, page) => {
+        return p.then(() =>
+          captureWebsite.file(
+            `${CURRENT_SITE_VERSION.url}${page.url}?noga=true`,
+            `screenshots/temp/${CURRENT_SITE_VERSION.tag}/${page.title}.png`,
+            {
+              width: 1024,
+              height: 768,
+              fullPage: true,
+              delay: 10,
+              overwrite: true,
+            },
+          ),
+        );
+      }, Promise.resolve());
+    };
+
+    await generateScreenshots();
+
+    await Promise.all(
+      PAGES.map(page => {
+        return sharp(`screenshots/temp/${CURRENT_SITE_VERSION.tag}/${page.title}.png`)
+          .resize(1024, 768)
+          .toFile(`screenshots/${CURRENT_SITE_VERSION.tag}/${page.title}.png`);
+      }),
     );
-  })();
-});
+  } catch (e) {
+    console.log(e);
+  }
+}, 1000);

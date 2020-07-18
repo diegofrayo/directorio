@@ -35,3 +35,4 @@ notes.md
 .env
 assets/
 cypress/
+screenshots/temp/**/*.png
