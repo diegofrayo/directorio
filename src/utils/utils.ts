@@ -51,5 +51,7 @@ export function isDevelopmentEnvironment(source?: string): boolean {
   //   return false;
   // }
 
-  return !window.location.href.includes(".vercel.app");
+  return typeof window !== "undefined"
+    ? !window.location.href.includes(".vercel.app")
+    : process.env.NODE_ENV === "development";
 }

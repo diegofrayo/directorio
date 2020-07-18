@@ -12,18 +12,18 @@ const TermsAndConditions: React.FunctionComponent = function TermsAndConditions(
 
           <ul className="tw-text-left">
             <li>
-              consultar y agregar información en este sitio web es <strong>GRATIS</strong>{" "}
+              Consultar y agregar información en este sitio web es <strong>GRATIS</strong>{" "}
               y sin necesidad de registro
             </li>
             <li>
-              este sitio web fue construido <strong>SIN</strong> fines de lucro
+              Este sitio web fue construido <strong>SIN</strong> fines de lucro
             </li>
             <li>
-              la información añadida es primero <strong>VALIDADA</strong> y
+              La información añadida es primero <strong>VALIDADA</strong> y
               <strong> ACEPTADA</strong> por el administrador antes de ser publicada
             </li>
             <li>
-              este sitio web usa <strong>COOKIES</strong> solo para contar el número de
+              Este sitio web usa <strong>COOKIES</strong> solo para contar el número de
               visitantes y obtener otras estadísticas, en ningún momento recolecta datos
               personales de sus visitantes
             </li>

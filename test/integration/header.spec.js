@@ -1,7 +1,7 @@
 import React from "react";
 import { screen } from "@testing-library/react";
 
-import { fireEvent, render, waitForElement, wait } from "./utils/setup";
+import { fireEvent, render, waitForElement, wait } from "./helpers/setup";
 import MainLayout from "~/components/layout/MainLayout";
 
 describe("Main Menu", () => {

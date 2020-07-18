@@ -30,10 +30,11 @@ yarn-error.log*
 .env.production.local
 
 # mine
-package-lock.json
-notes.md
 .env
+notes.md
+package-lock.json
 assets/
 cypress/examples
-cypress/videos
 cypress/screenshots
+cypress/videos
+screenshots/temp/**/*.png

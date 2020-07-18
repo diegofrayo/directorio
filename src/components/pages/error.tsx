@@ -9,19 +9,19 @@ function ErrorPage({ statusCode }: Record<string, unknown>): any {
   return (
     <Page>
       <MainLayout>
-        <ContentBox className="tw-pt-8 tw-pb-10">
+        <ContentBox className="tw-flex tw-items-center tw-justify-center tw-flex-1 tw-flex-col tw-pb-6">
           {statusCode === 404 ? (
             <Fragment>
               <Icon className="emoji">🙉</Icon>
               <Message>
-                lo sentimos, la página a la que intentas ingresar no existe
+                Lo sentimos, la página a la que intentas ingresar no existe
               </Message>
             </Fragment>
           ) : (
             <Fragment>
               <Icon className="emoji">🙈</Icon>
               <Message>
-                lo sentimos, hubo un error, lo trataremos de solucionar lo más pronto
+                Lo sentimos, hubo un error, lo trataremos de solucionar lo más pronto
                 posible
               </Message>
             </Fragment>

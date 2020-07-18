@@ -7,6 +7,8 @@ async function getBusinessToUpdate(businessSlug) {
       .once("value")
   ).val();
 
+  if (!response) throw new Error("Business not found");
+
   return response;
 }
 
@@ -40,7 +42,8 @@ async function updateBusiness(business, businessUpdates) {
 
 setTimeout(async () => {
   try {
-    const businessToUpdate = await getBusinessToUpdate("business-slug");
+    const businessToUpdate = await getBusinessToUpdate("arriero-express");
+
     await updateBusiness(businessToUpdate, {});
 
     process.exit();

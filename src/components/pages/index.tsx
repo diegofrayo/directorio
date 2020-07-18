@@ -1,13 +1,54 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 import twcss from "~/lib/twcss";
 import { formatPhoneNumber } from "~/utils/utils";
 import { Modal } from "~/components/primitive";
 import { trackEvent, setDimension, trackModal } from "~/utils/analytics";
 
-export const ContentBox = twcss.section`tw-border tw-border-black tw-p-4`;
+export const ContentBox = twcss.section``;
 
-export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:tw-text-4xl`;
+export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:tw-text-4xl tw-uppercase`;
+
+export const Separator = twcss.hr`tw-border-0 tw-my-5`;
+
+export function Breadcumb({ items }: Record<string, any>): any {
+  return (
+    <ul className="tw-block sm:tw-inline-block tw-text-left tw-border-b tw-border-gray-400 tw-border-dashed tw-pb-1">
+      {items.map((item, index) => {
+        if (index === items.length - 1) {
+          return (
+            <li key={`breadcumb-item-${index}`} className="tw-block sm:tw-inline-block">
+              <span className="tw-text-base tw-text-gray-700">{item.text}</span>
+            </li>
+          );
+        }
+
+        return (
+          <li
+            key={`breadcumb-item-${index}`}
+            className="tw-block sm:tw-inline-block tw-mr-0 sm:tw-mr-4"
+          >
+            <Link href={item.url} passHref>
+              <a className="tw-text-base tw-text-gray-700 tw-font-bold">
+                <span className="tw-underline">{item.text}</span>
+              </a>
+            </Link>
+          </li>
+        );
+      })}
+
+      <style jsx>
+        {`
+          a:after {
+            content: "▶️";
+            margin-left: 5px;
+          }
+        `}
+      </style>
+    </ul>
+  );
+}
 
 export function BusinessItem({
   item,
@@ -27,7 +68,7 @@ export function BusinessItem({
   }
 
   return (
-    <article className="business tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-w-full hover:tw-bg-yellow-200 tw-px-2">
+    <article className="tw-py-2 tw-flex tw-flex-row tw-flex-wrap tw-w-full hover:tw-bg-gray-200 tw-px-2">
       <section>
         <img
           src={logo}
@@ -116,7 +157,7 @@ export function BusinessItem({
         )}
         <button
           type="button"
-          className="tw-bg-black tw-text-white tw-px-3 tw-py-1 tw-text-sm tw-inline-block tw-ml-auto sm:tw-ml-1 tw-font-bold"
+          className="tw-bg-black tw-text-white tw-px-3 tw-py-1 tw-text-sm tw-inline-block tw-ml-auto sm:tw-ml-1 tw-font-bold tw-uppercase"
           onClick={e => {
             setShowModal(true);
             track(e.currentTarget.innerText);
@@ -138,22 +179,16 @@ export function BusinessItem({
             <Modal.CloseButton />
           </div>
           <section className="tw-flex tw-flex-col tw-flex-1 tw-items-stretch tw-px-6 tw-overflow-auto">
-            <BusinessDetails
-              item={item}
-              track={track}
-              from={isPreview ? "modal-preview" : "modal-details"}
-            />
+            <BusinessDetails item={item} track={track} />
           </section>
           {!isPreview && (
             <div className="tw-flex-shrink-0 tw-mt-4 tw-px-6">
               <button
                 type="button"
-                className="clipboard-btn tw-bg-black tw-text-white tw-py-2 sm:tw-py-4 tw-px-4 tw-w-full tw-font-bold tw-text-sm sm:tw-text-lg"
+                className="clipboard-btn tw-bg-black tw-text-white tw-py-2 sm:tw-py-4 tw-px-4 tw-w-full tw-font-bold tw-text-sm sm:tw-text-lg tw-uppercase"
                 data-clipboard-text={`https://directorio-armenia.vercel.app/${slug}`}
                 onClick={e => {
-                  alert(
-                    `el enlace fue copiado: https://directorio-armenia.vercel.app/${slug}`,
-                  );
+                  alert("El enlace fue copiado exitosamente");
                   track(e.currentTarget.innerText);
                 }}
               >
@@ -167,8 +202,7 @@ export function BusinessItem({
   );
 }
 
-export function BusinessDetails({ item, track, from }: Record<string, any>): any {
-  const isFromDetailsPage = from === "business-details-page";
+export function BusinessDetails({ item, track }: Record<string, any>): any {
   const {
     name,
     whatsapp,
@@ -178,7 +212,6 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
     description,
     address,
     menu,
-    slug,
   } = item;
   const logo = item.logo || "/static/images/example-business-logo.png";
 
@@ -188,7 +221,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
         <img
           src={logo}
           alt="Business logo"
-          className="tw-w-32 tw-h-32 tw-rounded-full tw-shadow-md tw-p-1 tw-mx-auto tw-mb-2"
+          className="tw-w-32 tw-h-32 tw-rounded-full tw-shadow-md tw-p-1 tw-mx-auto tw-mb-3"
           onClick={() => {
             track("Detalles Logo");
           }}
@@ -196,16 +229,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
         <h2 className="tw-font-bold tw-text-2xl tw-text-center">{name}</h2>
       </section>
 
-      <ContentBox
-        className="tw-flex-1"
-        tw-classnames-overrides={
-          isFromDetailsPage
-            ? {
-                "tw-border": "",
-              }
-            : {}
-        }
-      >
+      <ContentBox className="tw-flex-1">
         {whatsapp && (
           <a
             href={`https://api.whatsapp.com/send?phone=57${whatsapp}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
@@ -231,7 +255,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
             href={`https://instagram.com/${instagram}`}
             target="_blank"
             rel="noreferrer"
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Instagram");
             }}
@@ -251,7 +275,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
             href={`https://facebook.com/${facebook}`}
             target="_blank"
             rel="noreferrer"
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Facebook");
             }}
@@ -271,7 +295,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
             href={menu}
             target="_blank"
             rel="noreferrer"
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Catálogo");
             }}
@@ -284,7 +308,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
               🗒️
             </ModalDetailsIcon>
             <ModalDetailsItem className="tw-text-yellow-600 tw-underline">
-              presiona para ver el catálogo de productos
+              Ver el catálogo de productos
             </ModalDetailsItem>
           </a>
         )}
@@ -294,7 +318,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
             href={location}
             target="_blank"
             rel="noreferrer"
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Location");
             }}
@@ -309,7 +333,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
 
         {address && (
           <section
-            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-2"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
             onClick={() => {
               track("Detalles Dirección");
             }}
@@ -326,7 +350,7 @@ export function BusinessDetails({ item, track, from }: Record<string, any>): any
         )}
 
         {description && (
-          <pre className="tw-bg-gray-200 tw-p-4 tw-mt-4 tw-text-left tw-whitespace-pre-line tw-text-base">
+          <pre className="tw-bg-gray-400 tw-p-4 tw-mt-4 tw-text-left tw-whitespace-pre-line tw-text-base">
             {description}
           </pre>
         )}

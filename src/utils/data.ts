@@ -5,9 +5,9 @@ import { createArray, slugify } from "./utils";
 export { CATEGORIES };
 
 export function generateCategoryBusinessList(
-  numberOfItems: number,
+  total: number,
 ): Array<Record<string, string | boolean | string[]>> {
-  return createArray(numberOfItems).map(index => {
+  return createArray(total).map(index => {
     return {
       address: index % 3 === 0 ? "Direccion #123 89-34" : "",
       approved_at: new Date().toISOString(),
