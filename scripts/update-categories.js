@@ -1,5 +1,5 @@
 /*
-// Deprecated for this momemnt
+// Deprecated
 
 const database = require("./database-connection");
 const CATEGORIES = require("../src/data/categories.json");

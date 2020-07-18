@@ -12,7 +12,7 @@ describe("Main Menu", () => {
       </MainLayout>,
     );
 
-    screen.debug();
+    // screen.debug();
 
     expect(false).toBe(false);
   });

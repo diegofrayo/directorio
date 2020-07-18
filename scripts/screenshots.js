@@ -1,16 +1,10 @@
 const captureWebsite = require("capture-website");
 const sharp = require("sharp");
 
-// eslint-disable-next-line no-unused-vars
-const SITE_VERSION_1 = {
-  url: "https://directorio-armenia-jsx69r21p.vercel.app",
-  tag: "1.0",
-};
-const SITE_VERSION_2 = {
+const CURRENT_SITE_VERSION = {
   url: "http://localhost:3000",
   tag: "2.0",
 };
-const CURRENT_SITE_VERSION = SITE_VERSION_2;
 const PAGES = [
   { title: "inicio", url: "/" },
   { title: "categorias", url: "/categorias" },

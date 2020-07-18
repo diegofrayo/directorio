@@ -84,7 +84,7 @@ export function BusinessItem({
         {whatsapp && (
           <section>
             <a
-              href={`https://api.whatsapp.com/send?phone=57${whatsapp}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
+              href={`https://api.whatsapp.com/send?phone=57${whatsapp}`}
               target="_blank"
               rel="noreferrer"
               onClick={() => {
@@ -104,6 +104,22 @@ export function BusinessItem({
         )}
       </section>
       <section className="tw-flex tw-flex-row tw-items-center tw-w-full sm:tw-w-auto tw-justify-start sm:tw-justify-end tw-pt-2 sm:tw-pt-0">
+        <a
+          href={`/${slug}`}
+          target="_blank"
+          rel="noreferrer"
+          className="tw-inline-block tw-mx-1"
+          onClick={() => {
+            track("Open details in a new tab");
+          }}
+        >
+          <img
+            src="/static/images/icons/open.svg"
+            className="tw-w-6 tw-h-6"
+            alt="Open in a new tab icon"
+          />
+        </a>
+
         {instagram && (
           <a
             href={`https://instagram.com/${instagram}`}
@@ -232,7 +248,7 @@ export function BusinessDetails({ item, track }: Record<string, any>): any {
       <ContentBox className="tw-flex-1">
         {whatsapp && (
           <a
-            href={`https://api.whatsapp.com/send?phone=57${whatsapp}&text=Hola, obtuve este número a través del sitio web https://directorio-armenia.vercel.app`}
+            href={`https://api.whatsapp.com/send?phone=57${whatsapp}`}
             target="_blank"
             rel="noreferrer"
             className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-0"

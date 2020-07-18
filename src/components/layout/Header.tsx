@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Link from "next/link";
 import { Formik, Field, ErrorMessage } from "formik";
+import classnames from "classnames";
 
 import tsh from "~/lib/tsh";
 import twcss from "~/lib/twcss";
@@ -50,7 +51,7 @@ function Header(): any {
         </button>
       </section>
 
-      <nav className={`tw-mt-6 ${isMenuCollapsed ? "tw-hidden" : "tw-block"}`}>
+      <nav className={classnames("tw-mt-6", isMenuCollapsed ? "tw-hidden" : "tw-block")}>
         <Menu>
           <MenuItem tw-variant="default">
             <Link href="/" passHref>

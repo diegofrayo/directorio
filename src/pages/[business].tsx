@@ -23,9 +23,9 @@ function BusinessDetailsPage({ business, metadata, category }: Record<string, an
 
   return (
     <Page metadata={metadata}>
-      <MainLayout>
+      <MainLayout className="business-details-root">
         <ContentBox>
-          <section className="tw-mb-10 tw-text-left">
+          <section className="tw-mb-8 tw-text-center">
             <Breadcumb
               items={[
                 { text: "Inicio", url: "/" },
@@ -42,6 +42,20 @@ function BusinessDetailsPage({ business, metadata, category }: Record<string, an
           <BusinessDetails item={business} track={track} />
         </ContentBox>
       </MainLayout>
+
+      <style jsx>{`
+        :global(.business-details-root) :global(.body) {
+          padding-top: 1.25rem;
+          padding-bottom: 1.25rem;
+        }
+
+        @media (min-width: 640px) {
+          :global(.business-details-root) :global(.body) {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+          }
+        }
+      `}</style>
     </Page>
   );
 }

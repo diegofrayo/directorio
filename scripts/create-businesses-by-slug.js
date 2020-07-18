@@ -1,3 +1,6 @@
+/*
+// Deprecated
+
 const fs = require("fs");
 const firebaseDatabase = require("./database-connection");
 
@@ -37,3 +40,4 @@ setTimeout(async () => {
     console.log(e);
   }
 }, 1000);
+*/

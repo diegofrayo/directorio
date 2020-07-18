@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import classnames from "classnames";
 
 import { ContentBox, Title, Breadcumb, BusinessItem } from "~/components/pages";
 import { MainLayout, Page } from "~/components/layout";
@@ -31,9 +32,9 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
 
   return (
     <Page metadata={metadata}>
-      <MainLayout>
+      <MainLayout className="category-details-root">
         <ContentBox>
-          <section className="tw-mb-10 tw-text-left">
+          <section className="tw-text-center">
             <Breadcumb
               items={[
                 { text: "Inicio", url: "/" },
@@ -43,10 +44,13 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
             />
           </section>
 
-          <section className="tw-flex tw-flex-no-wrap tw-justify-center tw-items-center tw-mb-6">
+          <section className="tw-flex tw-flex-no-wrap tw-justify-center tw-items-center tw-my-8">
             <span className="emoji tw-text-2xl tw-mr-4">{category.icon}</span>
             <Title
-              className="tw-text-left tw-inline-block"
+              className={classnames(
+                "tw-text-left tw-inline-block",
+                category.name.split(" ").length === 1 && "tw-truncate",
+              )}
               tw-classnames-overrides={{ "tw-mb-6": "tw-mb-0" }}
             >
               {category.name}
@@ -66,6 +70,18 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
         </ContentBox>
 
         <style jsx>{`
+          :global(.category-details-root) :global(.body) {
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+          }
+
+          @media (min-width: 640px) {
+            :global(.category-details-root) :global(.body) {
+              padding-top: 2rem;
+              padding-bottom: 2rem;
+            }
+          }
+
           .separator:last-child {
             border: 0;
           }

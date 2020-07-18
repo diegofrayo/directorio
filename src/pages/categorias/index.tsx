@@ -1,8 +1,8 @@
 import React from "react";
+import classnames from "classnames";
 
 import { CATEGORIES } from "~/utils/data";
 import { ContentBox, Title } from "~/components/pages";
-
 import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
 
@@ -35,7 +35,12 @@ function Categories(): any {
                     }}
                   >
                     <span className="emoji tw-text-3xl">{category.icon}</span>
-                    <span className="tw-ml-3 tw-mr-4 tw-flex-1 tw-text-left tw-lowercase">
+                    <span
+                      className={classnames(
+                        "tw-ml-3 tw-mr-4 tw-flex-1 tw-text-left",
+                        category.name.split(" ").length === 1 && "tw-truncate",
+                      )}
+                    >
                       {category.name}
                     </span>
                     <strong>[{category.total}]</strong>

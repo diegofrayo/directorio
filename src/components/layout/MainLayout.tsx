@@ -1,17 +1,21 @@
 import React, { Fragment } from "react";
 import Link from "next/link";
+import classnames from "classnames";
 
 import twcss from "~/lib/twcss";
 import { trackEvent } from "~/utils/analytics";
 
 import Header from "./Header";
 
-export default function MainLayout({ children }: Record<string, unknown>): any {
+export default function MainLayout({
+  children,
+  className = "",
+}: Record<string, unknown>): any {
   return (
     <Fragment>
-      <Main className="main">
+      <Main className={classnames("main", className)}>
         <Header />
-        <Body>{children}</Body>
+        <Body className="body">{children}</Body>
         <Footer />
       </Main>
       <section id="modals-portal-container" />
@@ -19,7 +23,7 @@ export default function MainLayout({ children }: Record<string, unknown>): any {
       <style jsx>
         {`
           :global(.main) {
-            box-shadow: 0px 0px 3px 2px #000;
+            box-shadow: 0px 0px 3px 1px rgb(140, 140, 140);
           }
         `}
       </style>

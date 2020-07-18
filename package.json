@@ -16,10 +16,10 @@
     "scripts:build-categories": "node scripts/build-categories.js",
     "scripts:clean-data": "node scripts/clean-data.js",
     "scripts:update-business": "node scripts/update-business.js",
-    "scripts:update-businesses": "node scripts/update-businesses.js",
     "scripts:screenshots": "node scripts/screenshots.js"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "clipboard": "^2.0.6",
     "firebase": "^7.15.4",
     "formik": "^2.1.4",
