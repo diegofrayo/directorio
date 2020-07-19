@@ -42,7 +42,7 @@ const CATEGORIES = [
   {
     name: "Productos de Belleza",
     icon: "💅",
-    total: 1,
+    total: 2,
   },
   {
     name: "Asados y Arepas",
@@ -67,7 +67,7 @@ const CATEGORIES = [
   {
     name: "Regalos y Variedades",
     icon: "🎁",
-    total: 4,
+    total: 5,
   },
   {
     name: "Pizza",

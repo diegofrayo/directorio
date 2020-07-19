@@ -1,10 +1,9 @@
-const { argv } = require("yargs");
 const database = require("./database-connection");
 
 async function getBusinessToApprove(businessId) {
-  const response = (
-    await database.ref(`directorio-armenia/TO_APPROVE/${businessId}`).once("value")
-  ).val();
+  const response = (await database
+    .ref(`directorio-armenia/TO_APPROVE/${businessId}`)
+    .once("value")).val();
 
   if (!response) throw new Error("Business not found");
 
@@ -35,7 +34,7 @@ async function approveBusiness(business) {
 
 setTimeout(async () => {
   try {
-    const businessToApprove = await getBusinessToApprove(argv.id);
+    const businessToApprove = await getBusinessToApprove("detalles-sorprendentes");
     await approveBusiness(businessToApprove);
 
     process.exit();

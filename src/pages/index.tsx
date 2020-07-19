@@ -10,14 +10,14 @@ const Home: React.FunctionComponent = function Home() {
         <ContentBox>
           <Title>¡bienvenido!</Title>
 
-          <p className="tw-text-left">
+          <p className="tw-text-center">
             El principal objetivo de este sitio web es dar a conocer de manera fácil y
             rápida la información de los negocios, pequeñas empresas o personas
             particulares que venden sus productos o servicios a través de redes sociales o
             <strong className="tw-underline tw-text-green-700 tw-ml-1">WhatsApp</strong>.
           </p>
           <br />
-          <p className="tw-text-left">
+          <p className="tw-text-center">
             También encontrarás información de sitios como cafés, restaurantes, comidas
             rápidas, pizzerías, licorerías, entre otros.
           </p>

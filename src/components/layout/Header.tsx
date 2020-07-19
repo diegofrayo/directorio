@@ -202,7 +202,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
         }) => {
           return (
             <section className="tw-flex tw-flex-col tw-items-stretch tw-bg-white tw-relative tw-max-w-screen-sm tw-w-full tw-max-h-full tw-py-6">
-              <div className="tw-flex-shrink-0 tw-px-6 tw-pb-6 tw-mb-6 tw-flex tw-border-b">
+              <div className="tw-flex-shrink-0 tw-px-4 sm:tw-px-6 tw-pb-6 tw-mb-6 tw-flex tw-border-b">
                 <div className="tw-w-10/12 sm:tw-w-11/12 tw-items-center">
                   <Title
                     className="tw-text-left"
@@ -216,7 +216,10 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                 </div>
               </div>
 
-              <section id="modal-body" className="tw-flex-1 tw-px-6 tw-overflow-auto">
+              <section
+                id="modal-body"
+                className="tw-flex-1 tw-px-4 sm:tw-px-6 tw-overflow-auto"
+              >
                 <form
                   onSubmit={e => {
                     e.preventDefault();
@@ -344,8 +347,8 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                     </InputContainer>
                   </section>
 
-                  <ContentBox className="tw-mt-4 tw-border-4 tw-border-black tw-py-4 tw-px-2">
-                    <p className="tw-font-bold tw-mb-2 tw-text-center tw-uppercase">
+                  <ContentBox className="tw-mt-4 tw-border-4 tw-border-black tw-p-1">
+                    <p className="tw-font-bold tw-mb-1 tw-text-center tw-uppercase">
                       vista previa
                     </p>
                     <BusinessItem item={values} isPreview />
