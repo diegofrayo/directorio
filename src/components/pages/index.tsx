@@ -104,21 +104,23 @@ export function BusinessItem({
         )}
       </section>
       <section className="tw-flex tw-flex-row tw-items-center tw-w-full sm:tw-w-auto tw-justify-start sm:tw-justify-end tw-pt-2 sm:tw-pt-0">
-        <a
-          href={`/${slug}`}
-          target="_blank"
-          rel="noreferrer"
-          className="tw-inline-block tw-mx-1"
-          onClick={() => {
-            track("Open details in a new tab");
-          }}
-        >
-          <img
-            src="/static/images/icons/open.svg"
-            className="tw-w-6 tw-h-6"
-            alt="Open in a new tab icon"
-          />
-        </a>
+        {!isPreview && (
+          <a
+            href={`/${slug}`}
+            target="_blank"
+            rel="noreferrer"
+            className="tw-inline-block tw-mx-1"
+            onClick={() => {
+              track("Open details in a new tab");
+            }}
+          >
+            <img
+              src="/static/images/icons/open.svg"
+              className="tw-w-6 tw-h-6"
+              alt="Open in a new tab icon"
+            />
+          </a>
+        )}
 
         {instagram && (
           <a
@@ -171,17 +173,19 @@ export function BusinessItem({
             />
           </a>
         )}
-        <button
-          type="button"
-          className="tw-bg-black tw-text-white tw-px-3 tw-py-1 tw-text-sm tw-inline-block tw-ml-auto sm:tw-ml-1 tw-font-bold tw-uppercase"
-          onClick={e => {
-            setShowModal(true);
-            track(e.currentTarget.innerText);
-            trackModal(`ver-detalles${isPreview ? "-preview" : ""}`);
-          }}
-        >
-          ver detalles
-        </button>
+        {name && (whatsapp || instagram) && (
+          <button
+            type="button"
+            className="tw-bg-black tw-text-white tw-px-3 tw-py-1 tw-text-sm tw-inline-block tw-ml-auto sm:tw-ml-1 tw-font-bold tw-uppercase"
+            onClick={e => {
+              setShowModal(true);
+              track(e.currentTarget.innerText);
+              trackModal(`ver-detalles${isPreview ? "-preview" : ""}`);
+            }}
+          >
+            ver detalles
+          </button>
+        )}
       </section>
 
       <Modal

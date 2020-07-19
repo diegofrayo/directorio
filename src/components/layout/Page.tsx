@@ -2,12 +2,12 @@ import React, { Fragment } from "react";
 import Head from "next/head";
 
 import { useDidMount, useDocumentTitle } from "~/hooks";
-import { trackPageLoaded, setDimension } from "~/utils/analytics";
+import { trackPageLoaded } from "~/utils/analytics";
 
 function Page({ children, metadata: metadataProp = {} }: Record<string, any>): any {
   const DEFAULT_METADATA = {
     description:
-      "el principal objetivo de este sitio web es dar a conocer de manera fácil y rápida el número de contacto y links de redes sociales de los negocios, pequeñas empresas o personas particulares que venden sus productos o servicios a través de redes sociales o whatsapp.",
+      "El principal objetivo de este sitio web es dar a conocer de manera fácil y rápida la información de los negocios, pequeñas empresas o personas particulares que venden sus productos o servicios a través de redes sociales o WhatsApp",
     image: "https://directorio-armenia.vercel.app/static/images/da-logo.png",
     title: "directorio ARMENIA",
     url: "https://directorio-armenia.vercel.app",
@@ -28,7 +28,6 @@ function Page({ children, metadata: metadataProp = {} }: Record<string, any>): a
 
   useDidMount(() => {
     trackPageLoaded();
-    setDimension(1, null);
   });
 
   return (

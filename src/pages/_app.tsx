@@ -17,7 +17,7 @@ class CustomApp extends App {
 
     function onRouteChangeComplete() {
       console.log("onRouteChangeComplete");
-      document.getElementById("__next").scrollTop = 0;
+      // document.getElementById("__next").scrollTop = 0;
 
       new ClipboardJS(".clipboard-btn");
     }

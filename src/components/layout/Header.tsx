@@ -38,49 +38,53 @@ function Header(): any {
   }
 
   return (
-    <header className="tw-bg-yellow-300 tw-border-b tw-border-yellow-400 tw-px-6 tw-flex-shrink-0 tw-py-4">
-      <section className="tw-flex tw-justify-between sm:tw-justify-center">
-        <Logo />
-        <button
-          className="tw-inline-block sm:tw-hidden tw-p-2"
-          onClick={handleCollapseMenu}
+    <header className="tw-bg-yellow-300 tw-border-b tw-border-yellow-400 tw-flex-shrink-0">
+      <section className="tw-max-w-screen-md tw-mx-auto tw-py-4 tw-px-6">
+        <section className="tw-flex tw-justify-between sm:tw-justify-center">
+          <Logo />
+          <button
+            className="tw-inline-block sm:tw-hidden tw-p-2"
+            onClick={handleCollapseMenu}
+          >
+            <span className="tw-border-b-2 tw-border-yellow-600 tw-block tw-w-8 tw-my-2" />
+            <span className="tw-border-b-2 tw-border-yellow-600 tw-block tw-w-8 tw-my-2" />
+            <span className="tw-border-b-2 tw-border-yellow-600 tw-block tw-w-8 tw-my-2" />
+          </button>
+        </section>
+
+        <nav
+          className={classnames("tw-mt-6", isMenuCollapsed ? "tw-hidden" : "tw-block")}
         >
-          <span className="tw-border-b-2 tw-border-yellow-600 tw-block tw-w-8 tw-my-2" />
-          <span className="tw-border-b-2 tw-border-yellow-600 tw-block tw-w-8 tw-my-2" />
-          <span className="tw-border-b-2 tw-border-yellow-600 tw-block tw-w-8 tw-my-2" />
-        </button>
+          <Menu>
+            <MenuItem tw-variant="default">
+              <Link href="/" passHref>
+                <MenuItemLink onClick={trackMenuItems}>
+                  <MenuItemLinkText>inicio</MenuItemLinkText>
+                </MenuItemLink>
+              </Link>
+            </MenuItem>
+            <MenuItem tw-variant="default">
+              <Link href="/categorias" passHref>
+                <MenuItemLink onClick={trackMenuItems}>
+                  <MenuItemLinkText>categorías</MenuItemLinkText>
+                </MenuItemLink>
+              </Link>
+            </MenuItem>
+            <MenuItem tw-variant="add-business">
+              <MenuItemLink onClick={handleAddBussinessClick}>
+                <MenuItemLinkText className="tw-border-2 tw-px-2">
+                  ¡agrega un negocio!
+                </MenuItemLinkText>
+              </MenuItemLink>
+            </MenuItem>
+          </Menu>
+        </nav>
+
+        <CreateBusinessModal
+          isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
+        />
       </section>
-
-      <nav className={classnames("tw-mt-6", isMenuCollapsed ? "tw-hidden" : "tw-block")}>
-        <Menu>
-          <MenuItem tw-variant="default">
-            <Link href="/" passHref>
-              <MenuItemLink onClick={trackMenuItems}>
-                <MenuItemLinkText>inicio</MenuItemLinkText>
-              </MenuItemLink>
-            </Link>
-          </MenuItem>
-          <MenuItem tw-variant="default">
-            <Link href="/categorias" passHref>
-              <MenuItemLink onClick={trackMenuItems}>
-                <MenuItemLinkText>categorías</MenuItemLinkText>
-              </MenuItemLink>
-            </Link>
-          </MenuItem>
-          <MenuItem tw-variant="add-business">
-            <MenuItemLink onClick={handleAddBussinessClick}>
-              <MenuItemLinkText className="tw-border-2 tw-px-2">
-                ¡agrega un negocio!
-              </MenuItemLinkText>
-            </MenuItemLink>
-          </MenuItem>
-        </Menu>
-      </nav>
-
-      <CreateBusinessModal
-        isModalVisible={isModalVisible}
-        setIsModalVisible={setIsModalVisible}
-      />
     </header>
   );
 }

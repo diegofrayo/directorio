@@ -28,6 +28,7 @@ export function trackPageLoaded(): void {
   console.groupEnd();
 
   ReactGA.pageview(window.location.pathname, [], document.title);
+  setDimension(1, null);
 }
 
 export function trackEvent({ category, label }: Record<string, string>): void {

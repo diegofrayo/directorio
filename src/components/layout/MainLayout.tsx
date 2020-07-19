@@ -33,9 +33,9 @@ export default function MainLayout({
 
 // --- Components ---
 
-const Main = twcss.main`tw-mx-auto tw-max-w-screen-md tw-text-center tw-bg-white tw-shadow-md tw-min-h-full tw-flex tw-flex-col`;
+const Main = twcss.main`tw-mx-auto tw-text-center tw-bg-white tw-shadow-md tw-min-h-full tw-flex tw-flex-col`;
 
-const Body = twcss.section`tw-px-6 tw-py-8 tw-flex tw-flex-1 tw-flex-col tw-items-stretch`;
+const Body = twcss.section`tw-px-6 tw-py-8 tw-flex tw-flex-1 tw-flex-col tw-items-stretch tw-max-w-screen-md tw-mx-auto tw-w-full`;
 
 function Footer() {
   function trackLinks(e) {
@@ -43,7 +43,7 @@ function Footer() {
   }
 
   return (
-    <footer className="tw-bg-gray-100 tw-border-t tw-py-6 tw-flex-shrink-0">
+    <footer className="tw-bg-gray-100 tw-border-t tw-py-6 tw-flex-shrink-0 tw-text-center">
       <ul>
         <li className="tw-inline-block tw-mx-2 tw-my-1 sm:tw-my-0">
           <Link href="/terminos-y-condiciones" passHref>
