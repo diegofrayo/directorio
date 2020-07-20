@@ -77,7 +77,7 @@ const CATEGORIES = [
   {
     name: "Almuerzos Ejecutivos",
     icon: "🍲",
-    total: 1,
+    total: 2,
   },
   {
     name: "Productos Saludables",

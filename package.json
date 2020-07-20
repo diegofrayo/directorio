@@ -67,16 +67,21 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn scripts:build-categories && yarn lint:scripts && yarn build"
+      "pre-commit": "lint-staged && yarn build"
     }
   },
   "lint-staged": {
-    "**/*.{ts,tsx}": [
+    "src/**/*.{ts,tsx}": [
       "eslint --fix",
       "prettier --write",
       "git add"
     ],
-    "**/*.json": [
+    "scripts/*.js": [
+      "eslint -c .eslintrc-node --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.json": [
       "prettier --write",
       "git add"
     ]
