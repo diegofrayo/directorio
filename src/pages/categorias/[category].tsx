@@ -51,7 +51,7 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
                 "tw-text-left tw-inline-block",
                 category.name.split(" ").length === 1 && "tw-truncate",
               )}
-              tw-classnames-overrides={{ "tw-mb-6": "tw-mb-0" }}
+              tw-classnames-overrides={"Title>tw-mb-6=tw-mb-0"}
             >
               {category.name}
             </Title>
@@ -71,14 +71,12 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
 
         <style jsx>{`
           :global(.category-details-root) :global(.body) {
-            padding-top: 1.25rem;
-            padding-bottom: 1.25rem;
+            @apply tw-py-5;
           }
 
-          @media (min-width: 640px) {
+          @media (min-width: theme("screens.sm")) {
             :global(.category-details-root) :global(.body) {
-              padding-top: 2rem;
-              padding-bottom: 2rem;
+              @apply tw-py-8;
             }
           }
 

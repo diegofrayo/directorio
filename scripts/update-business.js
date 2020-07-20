@@ -42,7 +42,7 @@ async function updateBusiness(business, businessUpdates) {
 
 setTimeout(async () => {
   try {
-    const businessToUpdate = await getBusinessToUpdate("arriero-express");
+    const businessToUpdate = await getBusinessToUpdate("");
 
     await updateBusiness(businessToUpdate, {});
 

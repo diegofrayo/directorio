@@ -1,5 +1,5 @@
 module.exports = {
-  moduleDirectories: ["node_modules", "src", __dirname, "tests"],
+  moduleDirectories: ["node_modules", "src", __dirname, "test"],
   modulePaths: ["<rootDir>/src"],
   roots: ["src", "test"],
   moduleNameMapper: {

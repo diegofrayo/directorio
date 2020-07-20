@@ -6,12 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest test/integration/*.spec.{jsx,js}",
     "test:integration": "jest test/integration/*.spec.{jsx,js}",
     "test:e2e": "yarn run cypress open",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --ext .ts,.tsx --fix",
     "lint:scripts": "eslint \"scripts/*.js\" -c .eslintrc-node --fix",
-    "style": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "style": "prettier --write \"{src,scripts}/**/*.{js,ts,tsx,json}\"",
     "scripts:approve-business": "node scripts/approve-business.js",
     "scripts:build-categories": "node scripts/build-categories.js",
     "scripts:clean-data": "node scripts/clean-data.js",
@@ -24,10 +23,15 @@
     "firebase": "^7.15.4",
     "formik": "^2.1.4",
     "next": "9.4.4",
+    "postcss-flexbugs-fixes": "^4.2.1",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.3",
+    "postcss-preset-env": "^6.7.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-ga": "^3.0.0",
     "styled-jsx": "^3.3.0",
+    "styled-jsx-plugin-postcss": "^2.0.1",
     "tailwindcss": "^1.4.6",
     "uuid": "^8.2.0"
   },
@@ -63,12 +67,16 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn scripts:build-categories && yarn lint:scripts && yarn test && yarn build"
+      "pre-commit": "lint-staged && yarn scripts:build-categories && yarn lint:scripts && yarn build"
     }
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
       "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "**/*.json": [
       "prettier --write",
       "git add"
     ]

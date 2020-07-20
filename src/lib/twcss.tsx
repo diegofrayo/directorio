@@ -197,9 +197,12 @@ function generateClassName(styles, className, twVariant) {
 function applyOverridesToClassNames(className, twClassNamesOverrides) {
   if (!twClassNamesOverrides) return className;
 
-  return Object.keys(twClassNamesOverrides)
-    .reduce((acum, curr) => {
-      acum = acum.replace(curr, twClassNamesOverrides[curr]);
+  return twClassNamesOverrides
+    .split(">")[1]
+    .split("|")
+    .reduce((acum, duple) => {
+      const [currentClass, overrideClass] = duple.split("=");
+      acum = acum.replace(currentClass, overrideClass);
       return acum;
     }, className)
     .trim();

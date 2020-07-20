@@ -1,9 +1,9 @@
 const database = require("./database-connection");
 
 async function getBusinessToApprove(businessId) {
-  const response = (await database
-    .ref(`directorio-armenia/TO_APPROVE/${businessId}`)
-    .once("value")).val();
+  const response = (
+    await database.ref(`directorio-armenia/TO_APPROVE/${businessId}`).once("value")
+  ).val();
 
   if (!response) throw new Error("Business not found");
 

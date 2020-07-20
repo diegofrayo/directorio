@@ -45,14 +45,12 @@ function BusinessDetailsPage({ business, metadata, category }: Record<string, an
 
       <style jsx>{`
         :global(.business-details-root) :global(.body) {
-          padding-top: 1.25rem;
-          padding-bottom: 1.25rem;
+          @apply tw-py-5;
         }
 
-        @media (min-width: 640px) {
+        @media (min-width: theme("screens.sm")) {
           :global(.business-details-root) :global(.body) {
-            padding-top: 2rem;
-            padding-bottom: 2rem;
+            @apply tw-py-8;
           }
         }
       `}</style>

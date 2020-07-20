@@ -42,7 +42,7 @@ export function Breadcumb({ items }: Record<string, any>): any {
         {`
           a:after {
             content: "▶️";
-            margin-left: 5px;
+            @apply tw-ml-1;
           }
         `}
       </style>
@@ -322,7 +322,7 @@ export function BusinessDetails({ item, track }: Record<string, any>): any {
           >
             <ModalDetailsIcon
               className="tw-bg-yellow-600 tw-rounded-sm"
-              tw-classnames-overrides={{ "tw-h-6": "tw-h-auto" }}
+              tw-classnames-overrides={"ModalDetailsIcon>tw-h-6=tw-h-auto"}
               is="span"
             >
               🗒️
@@ -360,7 +360,7 @@ export function BusinessDetails({ item, track }: Record<string, any>): any {
           >
             <ModalDetailsIcon
               className="tw-rounded-sm tw-bg-purple-200"
-              tw-classnames-overrides={{ "tw-h-6": "tw-h-auto" }}
+              tw-classnames-overrides={"ModalDetailsIcon>tw-h-6=tw-h-auto"}
               is="span"
             >
               📍
