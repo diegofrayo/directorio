@@ -29,12 +29,14 @@ async function approveBusiness(business) {
     .ref(`directorio-armenia/businesses-by-slug/${business.slug}`)
     .set(newBusiness);
 
+  await database.ref(`directorio-armenia/TO_APPROVE/${business.slug}`).set(null);
+
   return true;
 }
 
 setTimeout(async () => {
   try {
-    const businessToApprove = await getBusinessToApprove("restaurante-la-oficina");
+    const businessToApprove = await getBusinessToApprove("rincon-costeno-el-tradicional");
     await approveBusiness(businessToApprove);
 
     process.exit();

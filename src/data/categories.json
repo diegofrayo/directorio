@@ -18,6 +18,12 @@
     "total": 1,
     "slug": "comida-peruana"
   },
+  "comida-de-mar": {
+    "name": "Comida de Mar",
+    "icon": "🐟",
+    "total": 1,
+    "slug": "comida-de-mar"
+  },
   "comidas-rapidas": {
     "name": "Comidas Rápidas",
     "icon": "🌭",
