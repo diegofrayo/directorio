@@ -37,6 +37,7 @@
     "total": 1,
     "slug": "hamburgueserias"
   },
+  "licorerias": { "name": "Licorerías", "icon": "🍸", "total": 1, "slug": "licorerias" },
   "pizza": { "name": "Pizza", "icon": "🍕", "total": 1, "slug": "pizza" },
   "postres-y-dulces": {
     "name": "Postres y Dulces",

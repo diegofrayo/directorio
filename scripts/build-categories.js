@@ -89,6 +89,11 @@ const CATEGORIES = [
     icon: "🐟",
     total: 1,
   },
+  {
+    name: "Licorerías",
+    icon: "🍸",
+    total: 1,
+  },
 ]
   .map(category => {
     return { ...category, slug: slugify(category.name) };

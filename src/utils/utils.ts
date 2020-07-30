@@ -47,9 +47,9 @@ export function isDevelopmentEnvironment(source?: string): boolean {
   //   return true;
   // }
 
-  if (source === "FIREBASE") {
-    return false;
-  }
+  // if (source === "FIREBASE") {
+  //   return false;
+  // }
 
   return typeof window !== "undefined"
     ? !window.location.href.includes(".vercel.app")

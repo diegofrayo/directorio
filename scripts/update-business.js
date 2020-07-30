@@ -42,7 +42,7 @@ async function updateBusiness(business, businessUpdates) {
 
 setTimeout(async () => {
   try {
-    const businessToUpdate = await getBusinessToUpdate("");
+    const businessToUpdate = await getBusinessToUpdate("nikolic-ventanilla");
 
     await updateBusiness(businessToUpdate, {});
 
