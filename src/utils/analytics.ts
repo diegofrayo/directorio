@@ -9,7 +9,7 @@ const ANALYTICS_TRACKING_ID = "UA-98284306-2";
 export function initAnalytics(): void {
   const isAnalyticsDisabled =
     window.location.href.includes("noga=true") ||
-    window.localStorage.getItem("noga") ||
+    window.localStorage.getItem("noga") === "true" ||
     isDevelopmentEnvironment("ANALYTICS");
 
   ReactGA.initialize(ANALYTICS_TRACKING_ID, {
