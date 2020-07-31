@@ -42,9 +42,11 @@ async function updateBusiness(business, businessUpdates) {
 
 setTimeout(async () => {
   try {
-    const businessToUpdate = await getBusinessToUpdate("nikolic-ventanilla");
+    const businessToUpdate = await getBusinessToUpdate("los-labriegos");
 
-    await updateBusiness(businessToUpdate, {});
+    await updateBusiness(businessToUpdate, {
+      categories: ["almuerzos-ejecutivos"],
+    });
 
     process.exit();
   } catch (e) {

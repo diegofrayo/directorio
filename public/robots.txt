@@ -1,0 +1,3 @@
+user-agent: *
+
+Sitemap: https://directorio-armenia.vercel.app/sitemap.xml
