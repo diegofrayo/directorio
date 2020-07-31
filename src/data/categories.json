@@ -3,7 +3,7 @@
   "almuerzos-ejecutivos": {
     "name": "Almuerzos Ejecutivos",
     "icon": "🍲",
-    "total": 2,
+    "total": 3,
     "slug": "almuerzos-ejecutivos"
   },
   "asados-y-arepas": {
@@ -60,7 +60,7 @@
   "regalos-y-variedades": {
     "name": "Regalos y Variedades",
     "icon": "🎁",
-    "total": 5,
+    "total": 6,
     "slug": "regalos-y-variedades"
   },
   "salsas-y-mermeladas": {

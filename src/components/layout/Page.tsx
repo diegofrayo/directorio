@@ -47,6 +47,10 @@ function Page({ children, metadata: metadataProp = {} }: Record<string, any>): a
         <meta property="og:url" content={metadata.url} />
         <meta property="og:image" content={metadata.image} />
         <meta property="og:site_name" content="directorio ARMENIA" />
+        <meta
+          name="google-site-verification"
+          content="Gf-6mROjwXEjbtUUtl2rX5NgzWuzWxgxoKYTaGsqvtw"
+        />
 
         <script
           dangerouslySetInnerHTML={{

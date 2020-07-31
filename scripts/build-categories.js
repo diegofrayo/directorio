@@ -67,7 +67,7 @@ const CATEGORIES = [
   {
     name: "Regalos y Variedades",
     icon: "🎁",
-    total: 5,
+    total: 6,
   },
   {
     name: "Pizza",
@@ -77,7 +77,7 @@ const CATEGORIES = [
   {
     name: "Almuerzos Ejecutivos",
     icon: "🍲",
-    total: 2,
+    total: 3,
   },
   {
     name: "Productos Saludables",
