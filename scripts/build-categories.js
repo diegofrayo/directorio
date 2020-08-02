@@ -82,7 +82,7 @@ const CATEGORIES = [
   {
     name: "Productos Saludables",
     icon: "🥗",
-    total: 1,
+    total: 2,
   },
   {
     name: "Comida de Mar",
@@ -92,6 +92,11 @@ const CATEGORIES = [
   {
     name: "Licorerías",
     icon: "🍸",
+    total: 1,
+  },
+  {
+    name: "Pastelerías y Panaderías",
+    icon: "🥧",
     total: 1,
   },
 ]

@@ -38,6 +38,12 @@
     "slug": "hamburgueserias"
   },
   "licorerias": { "name": "Licorerías", "icon": "🍸", "total": 1, "slug": "licorerias" },
+  "pastelerias-y-panaderias": {
+    "name": "Pastelerías y Panaderías",
+    "icon": "🥧",
+    "total": 1,
+    "slug": "pastelerias-y-panaderias"
+  },
   "pizza": { "name": "Pizza", "icon": "🍕", "total": 1, "slug": "pizza" },
   "postres-y-dulces": {
     "name": "Postres y Dulces",
@@ -48,7 +54,7 @@
   "productos-saludables": {
     "name": "Productos Saludables",
     "icon": "🥗",
-    "total": 1,
+    "total": 2,
     "slug": "productos-saludables"
   },
   "productos-de-belleza": {
