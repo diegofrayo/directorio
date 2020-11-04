@@ -1,7 +1,13 @@
 import React, { Fragment, useState } from "react";
 import classnames from "classnames";
 
-import { ContentBox, Title, Breadcumb, BusinessItem } from "~/components/pages";
+import {
+  Breadcumb,
+  BusinessItem,
+  ContentBox,
+  Separator,
+  Title,
+} from "~/components/pages";
 import { MainLayout, Page } from "~/components/layout";
 import { trackEvent } from "~/utils/analytics";
 import { useDidMount } from "~/hooks";
@@ -51,18 +57,21 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
                 "tw-text-left tw-inline-block",
                 category.name.split(" ").length === 1 && "tw-truncate",
               )}
-              tw-classnames-overrides={"Title>tw-mb-6=tw-mb-0"}
+              tw-classnames-overrides="Title>tw-mb-6=tw-mb-0"
             >
               {category.name}
             </Title>
           </section>
 
           <section>
-            {businessList.map((item, index) => {
+            {businessList.map(item => {
               return (
-                <Fragment key={`item-${index}`}>
+                <Fragment key={`CategoryDetails-Fragment-${item.id}`}>
                   <BusinessItem item={item} />
-                  <hr className="separator tw-my-1" />
+                  <Separator
+                    size={1}
+                    tw-classnames-overrides="Separator>tw-border-0=tw-border-1 last:tw-border-0"
+                  />
                 </Fragment>
               );
             })}
@@ -78,10 +87,6 @@ function CategoryDetails({ category, metadata }: Record<string, any>): any {
             :global(.category-details-root) :global(.body) {
               @apply tw-py-8;
             }
-          }
-
-          .separator:last-child {
-            border: 0;
           }
         `}</style>
       </MainLayout>

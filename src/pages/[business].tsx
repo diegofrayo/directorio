@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BusinessDetails, ContentBox, Breadcumb, Separator } from "~/components/pages";
+import { BusinessDetails, ContentBox, Breadcumb } from "~/components/pages";
 import { CATEGORIES } from "~/utils/data";
 import { fetchBusinessBySlug } from "~/utils/server";
 import { MainLayout, Page } from "~/components/layout";

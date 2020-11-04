@@ -21,15 +21,15 @@ function Categories(): any {
           <Title>categorías</Title>
 
           <section className="tw-flex tw-flex-row tw-flex-wrap tw-justify-between">
-            {Object.values(CATEGORIES).map((category, index) => {
+            {Object.values(CATEGORIES).map(category => {
               return (
                 <article
-                  key={`category-${index}`}
+                  key={`Categories-article-${category.slug}`}
                   className="category tw-mb-4 sm:tw-mb-6 tw-border tw-mx-0 tw-cursor-pointer hover:tw-bg-gray-200"
                 >
                   <a
                     href={`/categorias/${category.slug}`}
-                    className="tw-block tw-p-4 tw-w-full tw-h-full tw-flex tw-flex-row tw-items-center"
+                    className="tw-p-4 tw-w-full tw-h-full tw-flex tw-flex-row tw-items-center"
                     onClick={() => {
                       trackEvent({ category: "Categoría Item", label: category.name });
                     }}

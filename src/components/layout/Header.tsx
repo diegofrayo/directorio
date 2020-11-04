@@ -206,7 +206,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                 <div className="tw-w-10/12 sm:tw-w-11/12 tw-items-center">
                   <Title
                     className="tw-text-left"
-                    tw-classnames-overrides={"Title>tw-mb-6=tw-mb-0"}
+                    tw-classnames-overrides="Title>tw-mb-6=tw-mb-0"
                   >
                     agrega un negocio
                   </Title>

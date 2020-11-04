@@ -27,14 +27,14 @@
   "comidas-rapidas": {
     "name": "Comidas Rápidas",
     "icon": "🌭",
-    "total": 2,
+    "total": 3,
     "slug": "comidas-rapidas"
   },
   "empanadas": { "name": "Empanadas", "icon": "🌮", "total": 1, "slug": "empanadas" },
   "hamburgueserias": {
     "name": "Hamburgueserías",
     "icon": "🍔",
-    "total": 1,
+    "total": 2,
     "slug": "hamburgueserias"
   },
   "licorerias": { "name": "Licorerías", "icon": "🍸", "total": 1, "slug": "licorerias" },

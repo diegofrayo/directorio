@@ -55,4 +55,7 @@ module.exports = {
       },
     },
   },
+  variants: {
+    borderWidth: ["responsive", "last"],
+  },
 };

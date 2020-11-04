@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import classnames from "classnames";
 
 import twcss from "~/lib/twcss";
-import { formatPhoneNumber } from "~/utils/utils";
+import { formatPhoneNumber, slugify } from "~/utils/utils";
 import { Modal } from "~/components/primitive";
 import { trackEvent, setDimension, trackModal } from "~/utils/analytics";
 
@@ -10,7 +11,21 @@ export const ContentBox = twcss.section``;
 
 export const Title = twcss.h2`tw-font-bold tw-underline tw-mb-6 tw-text-2xl sm:tw-text-4xl tw-uppercase`;
 
-export const Separator = twcss.hr`tw-border-0 tw-my-5`;
+export function Separator({ size = 5, ...rest }: Record<string, any>): any {
+  const sizes = {
+    1: "tw-my-1",
+    2: "tw-my-2",
+    3: "tw-my-3",
+    4: "tw-my-4",
+    5: "tw-my-5",
+  };
+
+  return (
+    <SeparatorPrimitive className={classnames("tw-border-0", sizes[size])} {...rest} />
+  );
+}
+
+const SeparatorPrimitive = twcss.hr``;
 
 export function Breadcumb({ items }: Record<string, any>): any {
   return (
@@ -18,7 +33,10 @@ export function Breadcumb({ items }: Record<string, any>): any {
       {items.map((item, index) => {
         if (index === items.length - 1) {
           return (
-            <li key={`breadcumb-item-${index}`} className="tw-block sm:tw-inline-block">
+            <li
+              key={`Breadcumb-li-${slugify(item.text)}`}
+              className="tw-block sm:tw-inline-block"
+            >
               <span className="tw-text-base tw-text-gray-700">{item.text}</span>
             </li>
           );
@@ -26,7 +44,7 @@ export function Breadcumb({ items }: Record<string, any>): any {
 
         return (
           <li
-            key={`breadcumb-item-${index}`}
+            key={`Breadcumb-li-${slugify(item.text)}`}
             className="tw-block sm:tw-inline-block tw-mr-0 sm:tw-mr-4"
           >
             <Link href={item.url} passHref>
@@ -322,7 +340,7 @@ export function BusinessDetails({ item, track }: Record<string, any>): any {
           >
             <ModalDetailsIcon
               className="tw-bg-yellow-600 tw-rounded-sm"
-              tw-classnames-overrides={"ModalDetailsIcon>tw-h-6=tw-h-auto"}
+              tw-classnames-overrides="ModalDetailsIcon>tw-h-6=tw-h-auto"
               is="span"
             >
               🗒️
@@ -360,7 +378,7 @@ export function BusinessDetails({ item, track }: Record<string, any>): any {
           >
             <ModalDetailsIcon
               className="tw-rounded-sm tw-bg-purple-200"
-              tw-classnames-overrides={"ModalDetailsIcon>tw-h-6=tw-h-auto"}
+              tw-classnames-overrides="ModalDetailsIcon>tw-h-6=tw-h-auto"
               is="span"
             >
               📍
