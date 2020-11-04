@@ -13,6 +13,9 @@ async function getBusinessToUpdate(businessSlug) {
 }
 
 async function updateBusiness(business, businessUpdates) {
+  const finalBusiness = { ...business, ...businessUpdates };
+
+  await database.ref(`directorio-armenia/businesses-by-slug/${business.slug}`).set(null);
   await Promise.all(
     business.categories.map(category => {
       return database
@@ -21,35 +24,27 @@ async function updateBusiness(business, businessUpdates) {
     }),
   );
 
+  await database
+    .ref(`directorio-armenia/businesses-by-slug/${finalBusiness.slug}`)
+    .set(finalBusiness);
   await Promise.all(
-    business.categories.map(category => {
+    finalBusiness.categories.map(category => {
       return database
         .ref(`directorio-armenia/businesses-by-category/${category}/${business.slug}`)
-        .set({
-          ...business,
-          ...businessUpdates,
-        });
+        .set(finalBusiness);
     }),
   );
-
-  await database.ref(`directorio-armenia/businesses-by-slug/${business.slug}`).set({
-    ...business,
-    ...businessUpdates,
-  });
 
   return true;
 }
 
 setTimeout(async () => {
   try {
-    const businessToUpdate = await getBusinessToUpdate("los-labriegos");
-
-    await updateBusiness(businessToUpdate, {
-      categories: ["almuerzos-ejecutivos"],
-    });
-
-    process.exit();
+    const businessToUpdate = await getBusinessToUpdate("bonaven");
+    await updateBusiness(businessToUpdate, {});
   } catch (e) {
     console.log(e);
+  } finally {
+    process.exit();
   }
 }, 1000);

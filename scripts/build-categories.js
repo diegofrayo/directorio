@@ -52,12 +52,12 @@ const CATEGORIES = [
   {
     name: "Comidas Rápidas",
     icon: "🌭",
-    total: 2,
+    total: 3,
   },
   {
     name: "Hamburgueserías",
     icon: "🍔",
-    total: 1,
+    total: 2,
   },
   {
     name: "Alitas",

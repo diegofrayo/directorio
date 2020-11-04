@@ -36,7 +36,7 @@ async function approveBusiness(business) {
 
 setTimeout(async () => {
   try {
-    const businessToApprove = await getBusinessToApprove("el-punto-del-cereal");
+    const businessToApprove = await getBusinessToApprove("moto-burger");
     await approveBusiness(businessToApprove);
 
     process.exit();

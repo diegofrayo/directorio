@@ -22,7 +22,7 @@
     "clipboard": "^2.0.6",
     "firebase": "^7.15.4",
     "formik": "^2.1.4",
-    "next": "9.4.4",
+    "next": "latest",
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.2.3",
@@ -32,7 +32,7 @@
     "react-ga": "^3.0.0",
     "styled-jsx": "^3.3.0",
     "styled-jsx-plugin-postcss": "^2.0.1",
-    "tailwindcss": "^1.4.6",
+    "tailwindcss": "latest",
     "uuid": "^8.2.0"
   },
   "devDependencies": {
