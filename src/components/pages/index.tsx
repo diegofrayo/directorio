@@ -139,7 +139,6 @@ export function BusinessItem({
             />
           </a>
         )}
-
         {instagram && (
           <a
             href={`https://instagram.com/${instagram}`}
@@ -250,6 +249,7 @@ export function BusinessDetails({ item, track }: Record<string, any>): any {
     description,
     address,
     menu,
+    website,
   } = item;
   const logo = item.logo || "/static/images/example-business-logo.png";
 
@@ -325,6 +325,27 @@ export function BusinessDetails({ item, track }: Record<string, any>): any {
             <ModalDetailsItem className="tw-text-blue-700">
               {`@${facebook}`}
             </ModalDetailsItem>
+          </a>
+        )}
+
+        {website && (
+          <a
+            href={website}
+            target="_blank"
+            rel="noreferrer"
+            className="tw-flex tw-flex-no-wrap tw-justify-start tw-items-center tw-my-3"
+            onClick={() => {
+              track("Detalles Website");
+            }}
+          >
+            <ModalDetailsIcon
+              className="tw-rounded-sm tw-bg-gray-300"
+              tw-classnames-overrides="ModalDetailsIcon>tw-h-6=tw-h-auto"
+              is="span"
+            >
+              🔗
+            </ModalDetailsIcon>
+            <ModalDetailsItem className="tw-text-gray-700">{website}</ModalDetailsItem>
           </a>
         )}
 

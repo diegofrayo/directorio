@@ -43,13 +43,17 @@ export function slugify(str: string): string {
 }
 
 export function isDevelopmentEnvironment(source?: string): boolean {
-  // if (source === "ANALYTICS") {
-  //   return true;
-  // }
+  /*
+  if (source === "ANALYTICS") {
+    return true;
+  }
 
-  // if (source === "FIREBASE") {
-  //   return false;
-  // }
+  if (source === "FIREBASE") {
+    return true;
+  }
+  */
+
+  console.log(source);
 
   return typeof window !== "undefined"
     ? !window.location.href.includes(".vercel.app")

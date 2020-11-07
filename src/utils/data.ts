@@ -23,6 +23,10 @@ export function generateCategoryBusinessList(
       name: "El nombre de tu negocio",
       slug: slugify("El nombre de tu negocio"),
       whatsapp: "3113728898",
+      website:
+        index % 2 === 0
+          ? `http://localhost:3000/${slugify("El nombre de tu negocio")}`
+          : "",
     };
   });
 }

@@ -20,20 +20,19 @@ function cleanData(database) {
     menu: "",
     name: "",
     whatsapp: "",
+    website: "",
   };
 
   Object.entries(database["directorio-armenia"]["businesses-by-category"]).forEach(
     ([category, business]) => {
       Object.entries(business).forEach(([businessSlug, businessData]) => {
-        // eslint-disable-next-line no-param-reassign
-        database["directorio-armenia"]["businesses-by-category"][category][
-          businessSlug
-        ] = {
+        const businessDataTransformed = {
           ...EMPTY_ATTRS,
           ...businessData,
 
-          // transformations
           /*
+          // Old transformations
+
           categories: [businessData.category],
           created_at:
             businessData.created_at || new Date(businessData.approved_at).toISOString(),
@@ -43,14 +42,14 @@ function cleanData(database) {
         };
 
         // eslint-disable-next-line no-param-reassign
-        delete database["directorio-armenia"]["businesses-by-category"][category][
+        database["directorio-armenia"]["businesses-by-category"][category][
           businessSlug
-        ].email;
+        ] = businessDataTransformed;
 
         // eslint-disable-next-line no-param-reassign
-        delete database["directorio-armenia"]["businesses-by-category"][category][
+        database["directorio-armenia"]["businesses-by-slug"][
           businessSlug
-        ].category;
+        ] = businessDataTransformed;
       });
     },
   );

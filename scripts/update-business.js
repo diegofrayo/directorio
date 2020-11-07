@@ -40,8 +40,10 @@ async function updateBusiness(business, businessUpdates) {
 
 setTimeout(async () => {
   try {
-    const businessToUpdate = await getBusinessToUpdate("bonaven");
-    await updateBusiness(businessToUpdate, {});
+    const businessToUpdate = await getBusinessToUpdate("agrosol");
+    await updateBusiness(businessToUpdate, {
+      website: "http://agrosol.com.co",
+    });
   } catch (e) {
     console.log(e);
   } finally {

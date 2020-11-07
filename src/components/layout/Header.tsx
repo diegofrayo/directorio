@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Link from "next/link";
 import { Formik, Field, ErrorMessage } from "formik";
@@ -9,7 +9,7 @@ import twcss from "~/lib/twcss";
 import { ContentBox, Title, BusinessItem, Separator } from "~/components/pages";
 import { Modal } from "~/components/primitive";
 import { trackEvent, trackModal } from "~/utils/analytics";
-import { useWindowResize } from "~/hooks";
+import { useDidMount, useWindowResize } from "~/hooks";
 
 function Header(): any {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -125,9 +125,9 @@ const MenuItemLinkText = twcss.span`tw-inline-block tw-border-b-2 tw-border-dash
 function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
   const [portal, setPortal] = useState(undefined);
 
-  useEffect(() => {
+  useDidMount(() => {
     setPortal(document.getElementById("modals-portal-container"));
-  }, []);
+  });
 
   if (!portal) return null;
 
@@ -144,6 +144,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
           whatsapp: "",
           instagram: "",
           facebook: "",
+          website: "",
           address: "",
           location: "",
           description: "",
@@ -180,6 +181,7 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
             });
           } catch (e) {
             console.trace(e);
+
             alert(
               "Lo sentimos, ha ocurrido un error, estamos trabajando para solucionarlo",
             );
@@ -298,6 +300,22 @@ function CreateBusinessModal({ isModalVisible, setIsModalVisible }) {
                           rel="noreferrer"
                         >{`https://facebook.com/${values.facebook}`}</URLPreview>
                       )}
+                    </InputContainer>
+                    <Separator />
+
+                    <InputContainer htmlFor="website">
+                      <InputLabel>website</InputLabel>
+                      <InputGroup>
+                        <InputIcon>
+                          <span className="tw-rounded-full tw-bg-white tw-px-1">🔗</span>
+                        </InputIcon>
+                        <Field
+                          type="text"
+                          id="website"
+                          name="website"
+                          as={InputElement}
+                        />
+                      </InputGroup>
                     </InputContainer>
                     <Separator />
 
